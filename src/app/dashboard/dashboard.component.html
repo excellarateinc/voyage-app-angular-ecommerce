@@ -1,8 +1,9 @@
-<div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="10px">
-  <mat-card fxFlex>
-    <app-graph [chartType]="'line'"></app-graph>
-  </mat-card>
-  <mat-card fxFlex>
-    <app-graph [chartType]="'bar'"></app-graph>
+<div class="flex-container" fxflex>
+  <mat-card class="flexitem" *ngFor="let product of products ">
+      <figure>
+        <img  [src]="product.imageUrl" alt="{{product.description}}" style='width:110%;'>
+        <figcaption>{{ product.name }}</figcaption>
+        <figcaption>${{ product.price }}</figcaption>
+      </figure>
   </mat-card>
 </div>
