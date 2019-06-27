@@ -10,7 +10,7 @@ export class PublicGuardService implements CanActivate, CanActivateChild, CanLoa
   canActivate(): boolean {
     const authenticated = this.authenticationService.isAuthenticated();
     if (authenticated) {
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['store']);
       return false;
     }
     return true;
