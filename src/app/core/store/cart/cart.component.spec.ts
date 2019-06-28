@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardComponent } from './dashboard.component';
-import { ExamplesModule } from '../examples/examples.module';
-import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { CartComponent } from './cart.component';
+import { ExamplesModule } from '../../../examples/examples.module';
+import { AngularMaterialModule } from '../../../angular-material/angular-material.module';
 
 describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+  let component: CartComponent;
+  let fixture: ComponentFixture<CartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -13,13 +13,13 @@ describe('DashboardComponent', () => {
         ExamplesModule,
         AngularMaterialModule
       ],
-      declarations: [DashboardComponent]
+      declarations: [CartComponent]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

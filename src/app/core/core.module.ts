@@ -4,6 +4,7 @@ import { UserService } from './user/user.service';
 import { BroadcastService } from './broadcast.service';
 import { MobileService } from './mobile.service';
 import { ThemeService } from './theme.service';
+import { ProductService } from './store/product/product.service';
 
 export function windowFactory() {
   return window;
@@ -18,7 +19,8 @@ export function windowFactory() {
     BroadcastService,
     { provide: 'Window', useFactory: windowFactory },
     MobileService,
-    ThemeService
+	ThemeService,
+	ProductService
   ]
 })
 export class CoreModule { }

@@ -1,0 +1,25 @@
+<div class ="title">
+	<h1>SHOPPING CART</h1>
+</div>
+
+<div class="cart-products-head">
+	<div class="cartProduct-head" style="flex-grow: 4;">ITEM</div>
+	<div class="cartProduct-head cartProduct-quantity">QUANTITY</div>
+	<div class="cartProduct-head cartProduct-price">PRICE</div>
+</div>
+
+<div class="cart-products" *ngFor="let cartProduct of cartProducts; let i = index">
+	<div class="remove-cartProduct"><div (click)="onRemove(i)">X</div></div>
+	<div class="cartProduct-img"><img [src]="cartProduct.imageUrl" alt="{{ cartProduct.name | uppercase }}"></div>
+	<div class="cartProduct-name"> {{ cartProduct.name | uppercase }} </div>
+	<div class="cartProduct-quantity"> {{ cartProduct.quantity }} </div>
+	<div class="cartProduct-price"> {{ cartProduct.price }} </div>
+</div>
+
+<div class="cart-products-subtotal">
+	SUBTOTOTAL {{ subtotal }}
+</div>
+
+<div class="checkout">
+	<div (click)="onCheckout()">CHECKOUT</div>
+</div>
