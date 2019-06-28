@@ -8,7 +8,8 @@ const appRoutes: Routes = [
   { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuardService] },
   { path: 'examples', loadChildren: 'app/examples/examples.module#ExamplesModule', canLoad: [AuthGuardService] },
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canLoad: [AuthGuardService] },
-  { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', canLoad: [AuthGuardService] }
+  { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', canLoad: [AuthGuardService] },
+  { path: 'cart', loadChildren: 'app/cart/cart.module#CartModule', canLoad: [AuthGuardService] }
 ];
 
 @NgModule({
