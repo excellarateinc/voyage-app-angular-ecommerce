@@ -1,5 +1,5 @@
-<mat-sidenav-container [ngClass]="{'sidenav-height': isAuthenticated, 'sidenav-height-full': !isAuthenticated}">
-  <mat-sidenav #sidenav mode="{{mobile ? 'over' : 'side'}}" opened="{{mobile ? 'false' : 'true'}}" *ngIf="isAuthenticated">
+<mat-sidenav-container [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
+  <mat-sidenav #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired">
     <nav (click)="close()">
       <ul>
         <li>

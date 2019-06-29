@@ -25,17 +25,30 @@ export class SidebarComponent implements OnInit {
   isAuthenticated = false;
   @ViewChild('sidenav') sidenav: MatSidenav;
   mobile: boolean;
+  toggleTheme: false;
   isAdmin = false;
+  isVerificationRequired = false;
 
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
-    if (!this.isAuthenticated) {
-      return;
-    }
-    this.userService.getCurrentUser()
+    this.userService.userChanged$
       .subscribe(user => {
-        this.isAdmin = user.roles.indexOf('Administrator') !== -1;
+        if (user) {
+          this.isAdmin = user.roles.indexOf('Administrator') !== -1;
+        }
+      });
+
+    this.userService.verificationChanged$
+      .subscribe(value => {
+        this.isVerificationRequired = value;
+      });
+
+    this.userService.authenticationChanged$
+      .subscribe(isAuthenticated => {
+        if (isAuthenticated != null) {
+          this.isAuthenticated = isAuthenticated;
+        }
       });
   }
 
