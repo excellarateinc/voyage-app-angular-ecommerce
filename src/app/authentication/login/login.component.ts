@@ -66,10 +66,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.window.location.href = `${environment.SERVER_URL}/authentication/linkedin`;
   }
 
-  googleLogin(): void {
-    this.window.location.href = `${environment.SERVER_URL}/authentication/google`;
-  }
-
   private initializeForm(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],

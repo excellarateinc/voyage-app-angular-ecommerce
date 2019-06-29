@@ -3,8 +3,8 @@
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
       <div fxLayout="column" fxFlexAlign="center">
-        <h1>Recruit With Us</h1>
-        <span style="color: gray;">New to Recruit With Us? <a routerLink="/authentication/register">Sign Up</a></span>
+        <h1>Sample App</h1>
+        <span style="color: gray;">New to Sample App? <a routerLink="/authentication/register">Sign Up</a></span>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutGap="10px" novalidate>
         <mat-form-field>
@@ -46,9 +46,6 @@
             <a (click)="linkedInLogin()">
               <img src="/assets/images/linkedin-small.png" class="linkedin-button">
             </a>
-            <a (click)="googleLogin()">
-              <img src="/assets/images/google-large.png" class="google-button">
-            </a>
           </div>
         </div>
       </form>
@@ -61,10 +58,10 @@
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="20px">
       <div class="app-title">
-        Recruit With Us
+        Sample App
       </div>
       <span class="white">
-        New to Recruit With Us? <a class="white" routerLink="/authentication/register">Sign Up</a>
+        New to Sample App? <a class="white" routerLink="/authentication/register">Sign Up</a>
       </span>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate fxLayout="column" fxLayoutGap="10px">
@@ -108,9 +105,6 @@
         <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="10px">
           <a (click)="linkedInLogin()">
             <img src="/assets/images/linkedin-small.png" class="linkedin-button">
-          </a>
-          <a (click)="googleLogin()">
-            <img src="/assets/images/google-large.png" class="google-button">
           </a>
         </div>
       </div>
