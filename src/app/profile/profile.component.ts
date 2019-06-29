@@ -80,6 +80,13 @@ export class ProfileComponent implements OnInit {
       }));
     });
 
+    if (this.phones.length === 0) {
+      this.phones.push(this.formBuilder.group({
+        phoneNumber: [null, Validators.required],
+        phoneType: 'Mobile'
+      }));
+    }
+
     this.profileForm.get('newPassword').valueChanges.subscribe(value => {
       if (value) {
         this.profileForm.get('currentPassword').setValidators([Validators.required]);
