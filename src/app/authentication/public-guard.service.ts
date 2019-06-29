@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, CanActivateChild, CanLoad } from '@angular/router';
+import { Router, CanActivate } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { UserService } from 'app/core/user/user.service';
 
 @Injectable()
-export class PublicGuardService implements CanActivate, CanActivateChild, CanLoad {
+export class PublicGuardService implements CanActivate {
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -20,13 +20,5 @@ export class PublicGuardService implements CanActivate, CanActivateChild, CanLoa
     }
     this.userService.emitUserAuthenticated(false);
     return true;
-  }
-
-  canActivateChild(): boolean {
-    return this.canActivate();
-  }
-
-  canLoad(): boolean {
-    return this.canActivate();
   }
 }

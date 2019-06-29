@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { UserService } from '../core/user/user.service';
 import { User } from '../core/user/user.model';
 import { BroadcastService } from '../core/broadcast.service';
-import { ConfirmPasswordValidator } from './confirm-password.validator';
+import { ConfirmPasswordValidator } from 'app/shared/validators/confirm-password.validator';
 
 @Component({
   selector: 'app-profile',
