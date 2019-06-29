@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getCurrentUser(true)
+    this.userService.getCurrentUser()
       .subscribe(user => {
         this.user = user;
         this.initializeForm(user);

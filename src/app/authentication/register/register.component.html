@@ -2,7 +2,7 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex.md="80" fxFlex.lg="60" fxFlex.xl="50">
-      <h1>Sample App</h1>
+      <h1>Recruit With Us</h1>
       <div>Create Account</div>
       <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate fxLayout="column" fxLayoutGap="5px">
         <mat-form-field>
@@ -25,21 +25,10 @@
         </mat-form-field>
         <div formArrayName="phones">
           <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row">
-            <mat-form-field fxFlex="60">
-              <input matInput placeholder="Phone" formControlName="phoneNumber" required>
-              <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
-                Phone is required
-              </mat-error>
-            </mat-form-field>
             <mat-form-field fxFlex>
-              <mat-select placeholder="Type" formControlName="phoneType" required>
-                <mat-option value="Mobile">Mobile</mat-option>
-                <mat-option value="Office">Office</mat-option>
-                <mat-option value="Home">Home</mat-option>
-                <mat-option value="Other">Other</mat-option>
-              </mat-select>
-              <mat-error *ngIf="phones.controls[i].controls['phoneType'].hasError('required')">
-                Type is required
+              <input matInput placeholder="Mobile Phone" formControlName="phoneNumber" required>
+              <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
+                Mobile Phone is required
               </mat-error>
             </mat-form-field>
           </div>
@@ -68,9 +57,11 @@
             <br />
           </span>
         </div>
-        <div fxLayout="column" fxLayoutGap="10px">
-          <button mat-raised-button color="primary" type="submit">Register</button>
-          <button type="button" routerLink="/authentication/login" color="accent" mat-raised-button>Cancel</button>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <span fxFlex></span>
+          <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
+          <button mat-raised-button color="primary" type="submit" [disabled]="working">Register</button>
+          <button type="button" routerLink="/authentication/login" color="accent" mat-raised-button [disabled]="working">Cancel</button>
         </div>
       </form>
     </mat-card>
@@ -81,7 +72,7 @@
 <div class="masthead-mobile" *ngIf="isMobile">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <div class="white">Create Account</div>
-    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate fxLayout="column" fxLayoutGap="5px">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate fxLayout="column" fxLayoutGap="10px">
       <mat-form-field class="light-input">
         <input matInput placeholder="Email" formControlName="email" required>
         <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
@@ -102,19 +93,11 @@
       </mat-form-field>
       <div formArrayName="phones">
         <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row">
-          <mat-form-field fxFlex="60" class="light-input">
-            <input matInput placeholder="Phone" formControlName="phoneNumber" required>
+          <mat-form-field fxFlex class="light-input">
+            <input matInput placeholder="Mobile Phone" formControlName="phoneNumber" required>
             <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
-              Phone and Type are required
+              Mobile Phone is required
             </mat-error>
-          </mat-form-field>
-          <mat-form-field class="light-input" fxFlex>
-            <mat-select placeholder="Type" formControlName="phoneType" required>
-              <mat-option value="Mobile">Mobile</mat-option>
-              <mat-option value="Office">Office</mat-option>
-              <mat-option value="Home">Home</mat-option>
-              <mat-option value="Other">Other</mat-option>
-            </mat-select>
           </mat-form-field>
         </div>
       </div>
@@ -142,9 +125,11 @@
           <br />
         </span>
       </div>
-      <div fxLayout="column" fxLayoutGap="10px">
-        <button mat-raised-button color="primary" type="submit">Register</button>
-        <button type="button" routerLink="/authentication/login" mat-raised-button class="cancel-button">
+      <div fxLayout="row" fxLayoutGap="10px" style="margin-top:10px">
+        <span fxFlex></span>
+        <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
+        <button mat-raised-button color="primary" type="submit" [disabled]="working">Register</button>
+        <button type="button" routerLink="/authentication/login" mat-raised-button color="accent" [disabled]="working">
           Cancel
         </button>
       </div>
