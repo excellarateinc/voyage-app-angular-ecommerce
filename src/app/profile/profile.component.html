@@ -42,7 +42,7 @@
           <mat-form-field>
             <input matInput placeholder="Username" readonly="readonly" value="{{user.username}}">
           </mat-form-field>
-          <mat-expansion-panel *ngIf="!user.isLinkedIn">
+          <mat-expansion-panel *ngIf="!user.isOAuth">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Change Password
