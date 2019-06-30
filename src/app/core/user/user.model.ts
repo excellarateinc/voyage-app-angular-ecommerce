@@ -11,4 +11,5 @@ export class User {
   roles: Array<string>;
   phones: Array<Phone>;
   profileImage: string;
+  isOAuth: boolean;
 }

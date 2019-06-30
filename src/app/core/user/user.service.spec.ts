@@ -36,8 +36,7 @@ describe('UserService', () => {
 
     it('should return the existing user if it exists',
       inject([UserService, HttpTestingController], (service: UserService, httpMock: HttpTestingController) => {
-        let expectedUser = new User()
-        service.currentUser = expectedUser;
+        const expectedUser = new User();
         service.getCurrentUser().subscribe((actualUser: User) => {
           expect(expectedUser).toBe(actualUser);
         });
@@ -47,9 +46,8 @@ describe('UserService', () => {
 
       it('should call the user API endpoint even if it has an existing user if forced',
       inject([UserService, HttpTestingController], (service: UserService, httpMock: HttpTestingController) => {
-        let expectedUser = new User()
-        service.currentUser = expectedUser;
-        service.getCurrentUser(true).subscribe((actualUser: User) => {
+        const expectedUser = new User();
+        service.getCurrentUser().subscribe((actualUser: User) => {
           expect(expectedUser).not.toBe(actualUser);
         });
 

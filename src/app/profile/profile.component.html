@@ -1,78 +1,87 @@
 <div fxLayout="row">
-  <mat-card fxFlex.xl="60" fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="overflow-wrapper">
+  <mat-card fxFlex.xl="60" fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card-title>Profile</mat-card-title>
-      <mat-spinner *ngIf="loading"></mat-spinner>
-      <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
-        <div style="margin-bottom:10px; margin-right:20px;" [hidden]="user == null">
-          <app-profile-image [currentImage]="user?.profileImage" (imageChanged)="onProfileImageChanged($event)"></app-profile-image>
-        </div>
-        <div fxFlex.gt-sm>
-          <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate fxLayoutGap="10px">
-            <mat-form-field>
-              <input matInput placeholder="Email" formControlName="email" required>
-              <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
-                Email is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="First Name" formControlName="firstName" required>
-              <mat-error *ngIf="profileForm.controls['firstName'].hasError('required')">
-                First Name is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Last Name" formControlName="lastName" required>
-              <mat-error *ngIf="profileForm.controls['lastName'].hasError('required')">
-                Last Name is required
-              </mat-error>
-            </mat-form-field>
-            <div formArrayName="phones">
-              <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row" fxLayoutGap="10px">
-                <mat-form-field fxFlex>
-                  <input matInput placeholder="Mobile Phone" formControlName="phoneNumber" required>
-                  <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
-                    Mobile Phone is required
-                  </mat-error>
-                </mat-form-field>
-              </div>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+      <div style="margin-bottom:10px; margin-right:20px;" [hidden]="user == null">
+        <app-profile-image [currentImage]="user?.profileImage" (imageChanged)="onProfileImageChanged($event)">
+        </app-profile-image>
+      </div>
+      <div fxFlex.gt-sm>
+        <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate
+          fxLayoutGap="10px">
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="First Name" formControlName="firstName" required>
+            <mat-error *ngIf="profileForm.controls['firstName'].hasError('required')">
+              First Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="lastName" required>
+            <mat-error *ngIf="profileForm.controls['lastName'].hasError('required')">
+              Last Name is required
+            </mat-error>
+          </mat-form-field>
+          <div formArrayName="phones">
+            <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row"
+              fxLayoutGap="10px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Mobile Phone" formControlName="phoneNumber" required>
+                <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
+                  Mobile Phone is required
+                </mat-error>
+              </mat-form-field>
             </div>
-            <mat-form-field>
-              <input matInput placeholder="Username" readonly="readonly" value="{{user.username}}">
-            </mat-form-field>
-            <strong>Change Password</strong>
-            <mat-form-field>
-              <input matInput type="password" placeholder="Current Password" formControlName="currentPassword">
-              <mat-error *ngIf="profileForm.controls['currentPassword'].hasError('required')">
-                Current Password is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput type="password" placeholder="New Password" formControlName="newPassword">
-              <mat-error *ngIf="profileForm.controls['newPassword'].hasError('required')">
-                New Password is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput type="password" placeholder="Confirm New Password" formControlName="confirmNewPassword">
-              <mat-error *ngIf="profileForm.controls['confirmNewPassword'].hasError('matchPassword')">
-                New Password and Confirm New Password must match
-              </mat-error>
-            </mat-form-field>
-            <div *ngIf="profileErrors?.length > 0">
-              <span *ngFor="let error of profileErrors" style="color:#f44336">
-                {{error.errorDescription}}
-                <br />
-              </span>
+          </div>
+          <mat-form-field>
+            <input matInput placeholder="Username" readonly="readonly" value="{{user.username}}">
+          </mat-form-field>
+          <mat-expansion-panel *ngIf="!user.isOAuth">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Change Password
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="column" fxLayoutGap="10px">
+              <mat-form-field>
+                <input matInput type="password" placeholder="Current Password" formControlName="currentPassword">
+                <mat-error *ngIf="profileForm.controls['currentPassword'].hasError('required')">
+                  Current Password is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="password" placeholder="New Password" formControlName="newPassword">
+                <mat-error *ngIf="profileForm.controls['newPassword'].hasError('required')">
+                  New Password is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="password" placeholder="Confirm New Password" formControlName="confirmNewPassword">
+                <mat-error *ngIf="profileForm.controls['confirmNewPassword'].hasError('matchPassword')">
+                  New Password and Confirm New Password must match
+                </mat-error>
+              </mat-form-field>
             </div>
-            <div fxLayout="column" class="button-section">
-              <button type="submit" mat-raised-button color="primary">
-                Save Changes
-              </button>
-              <span>&nbsp;</span>
-              <button type="button" routerLink="/dashboard" color="accent" mat-raised-button>
-                Cancel
-              </button>
-            </div>
+          </mat-expansion-panel>
+
+          <div *ngIf="profileErrors?.length > 0">
+            <span *ngFor="let error of profileErrors" style="color:#f44336">
+              {{error.errorDescription}}
+              <br />
+            </span>
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" class="button-section">
+            <span fxFlex></span>
+            <button type="submit" mat-raised-button color="primary">
+              Save Changes
+            </button>
+          </div>
         </form>
       </div>
     </div>

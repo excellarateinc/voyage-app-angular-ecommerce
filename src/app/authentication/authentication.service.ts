@@ -2,32 +2,34 @@ import { Injectable, Inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { UserService } from 'app/core/user/user.service';
 
 @Injectable()
 export class AuthenticationService {
-  private sessionStorageTokenKey = 'voyage.token';
+  private localStorageTokenKey = 'voyage.token';
 
   constructor(
     private location: Location,
     private router: Router,
+    private userService: UserService,
     @Inject('Window') private window: any) { }
 
   getToken(): string {
     // Attempt to retrieve the token from session storage.
-    let token = sessionStorage.getItem(this.sessionStorageTokenKey);
+    let token = localStorage.getItem(this.localStorageTokenKey);
     // If not in session storage, attempt to get it from the URL.
     if (!token) {
       token = this.getTokenFromUrl();
       // If it was in the URL, save it to session storage.
       if (token) {
-        sessionStorage.setItem(this.sessionStorageTokenKey, token);
+        localStorage.setItem(this.localStorageTokenKey, token);
       }
     }
     return token;
   }
 
   setToken(token: string): void {
-    sessionStorage.setItem(this.sessionStorageTokenKey, token);
+    localStorage.setItem(this.localStorageTokenKey, token);
   }
 
   isAuthenticated(): boolean {
@@ -44,11 +46,12 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    sessionStorage.removeItem(this.sessionStorageTokenKey);
-    this.window.location.reload();
+    localStorage.removeItem(this.localStorageTokenKey);
+    this.router.navigate(['authentication/login']);
   }
 
   goToVerification(): void {
+    this.userService.emitUserVerificationRequired(true);
     this.router.navigate(['authentication/verification']);
   }
 
