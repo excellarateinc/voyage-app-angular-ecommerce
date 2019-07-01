@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate([this.redirectUrl]);
           return;
         }
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['store']);
         this.working = false;
       }, error => {
         this.working = false;

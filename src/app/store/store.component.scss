@@ -1,7 +1,18 @@
+figure {
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-inline-end: 0px;
+}
+
 .dashboard-header {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 15px;
+}
+
+.product-image {
+  width: 100%;
 }
 
 .flex-container {
@@ -12,7 +23,6 @@
 .flexitem {
   width: 58%;
   float:left;
-
 }
 
 .flexitem:nth-child(2) {

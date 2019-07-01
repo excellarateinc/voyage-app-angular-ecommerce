@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DashboardComponent } from './dashboard.component';
+import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { StoreService } from 'app/core/store/store.service';
 import { Observable } from 'rxjs';
 
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('StoreComponent', () => {
+  let component: StoreComponent;
+  let fixture: ComponentFixture<StoreComponent>;
   let storeService: StoreService;
 
   beforeEach(async(() => {
@@ -20,7 +20,7 @@ describe('DashboardComponent', () => {
         ExamplesModule,
         AngularMaterialModule
       ],
-      declarations: [DashboardComponent],
+      declarations: [StoreComponent],
       providers: [
         { provide: StoreService, useValue: storeServiceStub }
       ]
@@ -31,7 +31,7 @@ describe('DashboardComponent', () => {
   beforeEach(() => {
     storeService = TestBed.get(StoreService);
     spyOn(storeService, 'getProductListing').and.callFake(() => new Observable(observer => observer.next()));
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
