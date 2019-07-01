@@ -28,7 +28,7 @@ describe('AuthGuardService', () => {
         (service: AuthGuardService, router: Router, authService: AuthenticationService) => {
           spyOn(router, 'navigate');
           spyOn(authService, 'isAuthenticated').and.callFake(() => false);
-          const canActivate = service.canActivate();
+          const canActivate = service.canActivate(null, null);
           expect(canActivate).toBe(false);
           expect(router.navigate).toHaveBeenCalledWith(['authentication/login']);
     }));
@@ -38,7 +38,7 @@ describe('AuthGuardService', () => {
         (service: AuthGuardService, router: Router, authService: AuthenticationService) => {
           spyOn(router, 'navigate');
           spyOn(authService, 'isAuthenticated').and.callFake(() => true);
-          const canActivate = service.canActivate();
+          const canActivate = service.canActivate(null, null);
           expect(canActivate).toBe(true);
           expect(router.navigate).not.toHaveBeenCalled();
     }));

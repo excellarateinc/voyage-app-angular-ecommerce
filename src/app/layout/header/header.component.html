@@ -1,5 +1,5 @@
 <div class="fill-space;" class="header-accent-bar"></div>
-<mat-toolbar color="primary" *ngIf="isAuthenticated">
+<mat-toolbar color="primary" *ngIf="isAuthenticated && !isVerificationRequired">
   <button class="menu-button" (click)="toggleSidebar()" *ngIf="isMobile && !isMenuShowing">
     <mat-icon class="clickable menu-icon">menu</mat-icon>
   </button>

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { RegisterService } from './register.service';
 import { Register } from './register.model';
@@ -9,12 +9,15 @@ import { MobileService } from '../../core/mobile.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   registrationErrors: Array<any>;
   isMobile = false;
+  invitationToken: string;
+  working = false;
   private watcher: Subscription;
 
   constructor(
@@ -22,13 +25,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private registerService: RegisterService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private mobileService: MobileService) { }
+    private mobileService: MobileService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.isMobile = this.mobileService.isMobile();
     this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
       this.isMobile = isMobile;
+    });
+
+    this.route.queryParams.subscribe(async params => {
+      this.invitationToken = params['invitationToken'];
     });
   }
 
@@ -40,14 +48,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.registerForm.invalid) {
       return;
     }
+    this.working = true;
     const register = this.registerForm.value as Register;
+    register.invitationToken = this.invitationToken;
     this.registerService.register(register)
-      .subscribe(result => {
+      .subscribe(() => {
+        this.working = false;
         this.snackBar.open('Registration successful', null, {
           duration: 2000
         });
         this.router.navigate(['/authentication/login']);
-      }, errors => this.registrationErrors = errors);
+      }, errors => {
+        this.working = false;
+        this.registrationErrors = errors.error;
+      });
   }
 
   get phones(): FormArray {
@@ -65,7 +79,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       phones: this.formBuilder.array([
         this.formBuilder.group({
           phoneNumber: ['', Validators.required],
-          phoneType: [null, Validators.required]
+          phoneType: ['Mobile', Validators.required]
         })
       ])
     });

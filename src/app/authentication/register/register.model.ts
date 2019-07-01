@@ -8,4 +8,5 @@ export class Register {
   password: string;
   confirmPassword: string;
   phones: Array<Phone>;
+  invitationToken?: string;
 }

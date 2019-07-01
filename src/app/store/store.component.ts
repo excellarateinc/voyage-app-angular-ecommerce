@@ -4,16 +4,16 @@ import { Product } from 'app/core/store/product.model';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  templateUrl: './store.component.html',
+  styleUrls: ['./store.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class StoreComponent implements OnInit {
   products: Array<Product>;
 
   constructor(private storeService: StoreService) {}
 
   ngOnInit() {
-    this.storeService.getProductListing().subscribe( result => {
+    this.storeService.getProductListing().subscribe(result => {
       this.products = result;
     })
   }

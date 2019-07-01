@@ -9,14 +9,18 @@
   margin-right: 10px;
 }
 
+.icon-prefix-large {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
 .white {
   color: #FFF;
 }
 
 .app-title {
-  font-size: 20px;
+  font-size: 30px;
   color: white;
-  margin-bottom: 30px;
 }
 
 .sign-up-message {
@@ -26,4 +30,32 @@
 
 .error {
   color: #f44336;
+}
+
+.masthead-mobile {
+  button:disabled {
+    background-color: #eeeeee !important;
+    &.mat-primary {
+      background-color: #3f51b5 !important;
+    }
+  }
+}
+
+.linkedin-button {
+  width: 190px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.google-button {
+  width: 197px;
+  height: 45px;
+  margin-top: -3px;
+  margin-left: -3px;
+  cursor: pointer;
+}
+
+.forgot-password {
+  margin-top: -15px;
+  margin-bottom: 15px;
 }
