@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AccountService } from 'app/core/accounts/account.service';
+import { Account } from 'app/core/accounts/account.model';
 
 @Component({
   selector: 'app-header',
@@ -11,12 +13,23 @@ export class HeaderComponent implements OnInit {
   @Input()
   isAuthenticated = false;
   @Output() onToggleSidebar = new EventEmitter<void>();
+  isMenuShowing = false;
 
-  constructor() { }
+  accounts: Array<Account>;
+  totalBalance: number = 0;
 
-  ngOnInit() { }
+  constructor(private AccountService: AccountService) { }
+
+  ngOnInit() {
+    this.AccountService.getUserAccounts().subscribe(
+      result => {this.accounts = result;
+      this.totalBalance = this.AccountService.getTotalAccountsBalance(result);
+      });
+
+   }
 
   toggleSidebar(): void {
     this.onToggleSidebar.emit();
+    this.isMenuShowing = !this.isMenuShowing;
   }
 }

@@ -4,41 +4,47 @@
       <ul>
         <li>
           <a class="nav-item-container" routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">show_chart</i>
             Shop
           </a>
         </li>
         <li>
           <a class="nav-item-container" routerLink="/examples/samplepage" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">pie_chart</i>
-            Sample Page
+            Orders
+          </a>
+        </li>
+        <li>
+          <a class="nav-item-container" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+            Profile
           </a>
         </li>
         <li *ngIf="isAdmin">
           <a class="nav-item-container" routerLink="/admin/users" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">supervisor_account</i>
-            User Admin
+            Invite
           </a>
         </li>
         <div class="nav-section-divider"></div>
         <li>
-          <a class="nav-item-container" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">help</i>
-            Help & Feedback
+          <a class="nav-item-container" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+            Contact Us
           </a>
         </li>
         <li>
+          <a class="nav-item-container" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+            About Lighthouse
+          </a>
+        </li>
+
+        <!-- <li>
           <a class="nav-item-container" routerLinkActive="active" (click)="themeService.toggleDarkTheme(); $event.stopPropagation();" [ngClass]="{'dark': themeService.darkTheme}">
             <i class="material-icons mat-light">lightbulb_outline</i>
             {{themeService.darkTheme ? 'Go Light' : 'Go Dark'}}
           </a>
-        </li>
-        <mat-divider></mat-divider>
+        </li> -->
+
       </ul>
     </nav>
-    <div>
-      <img src="./favicon.ico" width="20px" style="padding-left:30px; position: absolute; margin: auto;" />
-      <span style="margin-left:55px;">Powered by Voyage</span>
+    <div style="width: 100%;">
+      <span style="color: white; margin-inline-start: 38.5%; margin-top: 15%; font-size: 10px;">Powered by Voyage</span>
     </div>
   </mat-sidenav>
 

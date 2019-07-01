@@ -1,6 +1,7 @@
 mat-sidenav {
-  width: 256px;
-  background-color: inherit !important;
+  width: 100%;
+  padding-top: 20%;
+  background-color: #f4511e;
 }
 
 mat-sidenav ul {
@@ -27,6 +28,7 @@ mat-sidenav ul {
 
 .nav-item-container {
   align-items: center;
+  justify-content: center;
   cursor: pointer;
   display: flex;
   font-size: 16px;
@@ -54,7 +56,7 @@ mat-sidenav ul {
 }
 
 .active {
-  background-color: #ddd;
+  background-color: #1565c0;
 
   &.dark {
     background-color: #565656;
@@ -65,7 +67,7 @@ a {
   color: inherit;
 
   &:visited {
-    color: inherit;
+    color: white;
   }
 
   &:hover {
