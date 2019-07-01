@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { UserService } from '../core/user/user.service';
 import { User } from '../core/user/user.model';
 import { BroadcastService } from '../core/broadcast.service';
-import { ConfirmPasswordValidator } from './confirm-password.validator';
+import { ConfirmPasswordValidator } from 'app/shared/validators/confirm-password.validator';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.userService.getCurrentUser(true)
+    this.userService.getCurrentUser()
       .subscribe(user => {
         this.user = user;
         this.initializeForm(user);
@@ -79,6 +79,13 @@ export class ProfileComponent implements OnInit {
         phoneType: 'Mobile'
       }));
     });
+
+    if (this.phones.length === 0) {
+      this.phones.push(this.formBuilder.group({
+        phoneNumber: [null, Validators.required],
+        phoneType: 'Mobile'
+      }));
+    }
 
     this.profileForm.get('newPassword').valueChanges.subscribe(value => {
       if (value) {

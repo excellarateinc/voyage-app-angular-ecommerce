@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
 import { Login } from './login.model';
 import { MobileService } from '../../core/mobile.service';
+import { environment } from 'environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   loginFailed = false;
   isMobile = false;
+  working = false;
   private watcher: Subscription;
+  private redirectUrl: string;
 
   constructor(
     private loginService: LoginService,
     private formBuilder: FormBuilder,
     @Inject('Window') private window: any,
-    private mobileService: MobileService) { }
+    private mobileService: MobileService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -28,6 +34,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
       this.isMobile = isMobile;
     });
+    this.route.queryParams
+      .subscribe(params => this.redirectUrl = params['redirectUrl'] || '');
   }
 
   ngOnDestroy(): void {
@@ -38,11 +46,24 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.loginForm.invalid) {
       return;
     }
+    this.working = true;
     const login = this.loginForm.value as Login;
     this.loginService.login(login)
       .subscribe(result => {
-        this.window.location.reload();
-      }, error => this.loginFailed = true);
+        if (this.redirectUrl) {
+          this.router.navigate([this.redirectUrl]);
+          return;
+        }
+        this.router.navigate(['dashboard']);
+        this.working = false;
+      }, error => {
+        this.working = false;
+        this.loginFailed = true;
+      });
+  }
+
+  linkedInLogin(): void {
+    this.window.location.href = `${environment.SERVER_URL}/authentication/linkedin`;
   }
 
   private initializeForm(): void {

@@ -13,6 +13,8 @@ import { VerificationComponent } from './verification/verification.component';
 import { VerificationService } from './verification/verification.service';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { PublicGuardService } from './public-guard.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ForgotPasswordService } from './forgot-password/forgot-password.service';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { PublicGuardService } from './public-guard.service';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    VerificationComponent
+    VerificationComponent,
+    ForgotPasswordComponent
   ],
   providers: [
     AuthenticationService,
@@ -33,7 +36,8 @@ import { PublicGuardService } from './public-guard.service';
     PublicGuardService,
     RegisterService,
     VerificationService,
-    LoginService
+    LoginService,
+    ForgotPasswordService
   ]
 })
 export class AuthenticationModule { }
