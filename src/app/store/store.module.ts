@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard.component';
-import { DashboardRoutingModule } from './dashboard-routing.module';
+import { StoreComponent } from './store.component';
+import { StoreRoutingModule } from './store-routing.module';
 import { ExamplesModule } from '../examples/examples.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { FlexLayoutModule } from '../../../node_modules/@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialModule,
-    DashboardRoutingModule,
+    StoreRoutingModule,
     ExamplesModule,
     FlexLayoutModule,
     SharedModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [StoreComponent]
 })
-export class DashboardModule { }
+export class StoreModule { }
