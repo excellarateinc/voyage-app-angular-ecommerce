@@ -1,0 +1,57 @@
+<!-- Tablet / Desktop -->
+<div class="masthead" *ngIf="!isMobile">
+  <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
+    <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
+      <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
+      <div *ngIf="inviteFailed">
+        <span class="error">
+          INVALID NUMBER. TRY AGAIN.
+        </span>
+      </div>
+      <div fxLayout="row" fxFlexAlign="center">
+        <div class="app-title">
+          INVITE
+        </div>
+      </div>
+      <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
+        <mat-form-field class="light-input">
+          <input matInput placeholder="mobile number" formControlName="mobileNumber" type="phone" required>
+          <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
+            Mobile number is required
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="column" fxLayoutGap="20px">
+          <button class="button-invite" mat-raised-button type="submit">SEND INVITE</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Mobile -->
+<div class="masthead-mobile" *ngIf="isMobile" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutGap="30px" class="form-container">
+    <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
+    <div *ngIf="inviteFailed">
+      <span class="error">
+        INVALID NUMBER. TRY AGAIN.
+      </span>
+    </div>
+    <div fxLayout="row" fxFlexAlign="center">
+      <div class="app-title">
+        INVITE
+      </div>
+    </div>
+    <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
+      <mat-form-field class="light-input">
+        <input matInput placeholder="mobile number" formControlName="mobileNumber" type="phone" required>
+        <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
+          Mobile number is required
+        </mat-error>
+      </mat-form-field>
+      <div fxLayout="column" fxLayoutGap="20px">
+        <button class="button-invite" mat-raised-button type="submit">SEND INVITE</button>
+      </div>
+    </form>
+  </div>
+</div>
