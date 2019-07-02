@@ -5,5 +5,6 @@ export class Product {
   description: string;
   price: string;
   imageUrl: string;
+  sizes: string[];
 }
 

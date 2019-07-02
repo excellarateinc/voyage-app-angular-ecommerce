@@ -12,4 +12,8 @@ export class StoreService {
   getProductListing(): Observable<Array<Product>> {
     return this.http.get<Array<Product>>(`${environment.API_URL}/store/products`);
   }
+
+  getProduct(index: string): Observable<Product> {
+    return this.http.get<Product>(`${environment.API_URL}/store/products/` + index);
+  }
 }

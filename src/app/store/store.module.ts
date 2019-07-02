@@ -6,6 +6,7 @@ import { ExamplesModule } from '../examples/examples.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from 'app/shared/shared.module';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { SharedModule } from 'app/shared/shared.module';
     FlexLayoutModule,
     SharedModule
   ],
-  declarations: [StoreComponent]
+  declarations: [StoreComponent, ProductDetailComponent]
 })
 export class StoreModule { }
