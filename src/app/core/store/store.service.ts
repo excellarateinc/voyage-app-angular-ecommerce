@@ -13,7 +13,14 @@ export class StoreService {
     return this.http.get<Array<Product>>(`${environment.API_URL}/store/products`);
   }
 
-  getProduct(index: string): Observable<Product> {
+  getProduct(index: number): Observable<Product> {
     return this.http.get<Product>(`${environment.API_URL}/store/products/` + index);
+  }
+
+  addToCart(productId: number, size: string, quantity: number) {
+    const request = {productId: productId, size: size, quantity: quantity};
+
+    return this.http.put(`${environment.API_URL}/store/cart`, request);
+
   }
 }
