@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 
 import { Product } from '../../core/store/product.model';
 import { StoreService } from '../../core/store/store.service';
+import { AddToCart } from 'app/core/store/addToCart.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,7 +13,7 @@ import { StoreService } from '../../core/store/store.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  product: Product = new Product();
+  product: Product;
   shoppingForm: FormGroup;
   errors: any[] = [];
   loading = false;
@@ -28,34 +29,30 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
-    this.storeService.getProduct(this.route.snapshot.params['id']).subscribe(result => {
-      this.product = result;
-      if (this.product.sizes && this.product.sizes.length === 0) {
-        this.shoppingForm.get('size').clearValidators();
-        this.shoppingForm.get('size').updateValueAndValidity();
-      } else {
-        this.shoppingForm.get('size').setValidators(Validators.required);
-      }
-    })
-
-    this.route.params
+    this.route.data
       .subscribe(
-        (params: Params) => {
-          this.storeService.getProduct(params['id']).subscribe(result => {
-            this.product = result;
-            if (this.product.sizes && this.product.sizes.length === 0) {
+        (data) => {
+          this.errors = [];
+          if (data.resolvedData.hasOwnProperty("productId")) {
+            this.product = data.resolvedData;
+            this.shoppingForm.get('productId').setValue(this.product.productId);
+            if (this.product.sizes && this.product.sizes.length > 0) {
+              this.shoppingForm.get('size').setValidators(Validators.required);
+            } else {
               this.shoppingForm.get('size').clearValidators();
               this.shoppingForm.get('size').updateValueAndValidity();
-            } else {
-              this.shoppingForm.get('size').setValidators(Validators.required);
             }
-          })
+          } else {
+            this.product = null;
+            this.errors = data.resolvedData.error;
+          }
         }
-      )
+      );
   }
 
   private initializeForm(): void {
     this.shoppingForm = this.formBuilder.group({
+      productId: [''],
       quantity: ['1', [Validators.required, Validators.min(1)]],
       size: [''],
     });
@@ -69,9 +66,8 @@ export class ProductDetailComponent implements OnInit {
     }
     this.loading = true;
     const quantity = this.shoppingForm.value.quantity as number;
-    const size = this.shoppingForm.value.size;
 
-    this.storeService.addToCart(this.product.productId, size, quantity)
+    this.storeService.addToCart(this.shoppingForm.value as AddToCart)
       .subscribe(result => {
         this.router.navigate(['/store']);
         this.snackBar.open(quantity + (quantity > 1 ? ' items' : ' item') + ' added to cart', null, { duration: 5000 });
