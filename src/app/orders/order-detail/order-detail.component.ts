@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 import { Order } from '../order.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-detail',
@@ -10,11 +11,15 @@ import { Order } from '../order.model';
 export class OrderDetailComponent implements OnInit {
   order: Order;
 
-  constructor(private ordersService: OrdersService) { }
+  constructor(private route: ActivatedRoute, private ordersService: OrdersService) { }
 
   ngOnInit() {
-    // this.ordersService.getOrder()
-    //   .subscribe(result => this.order = result);
+    this.route.params.subscribe(async params => {
+      const orderId = Number(params['id']);
+      this.ordersService.getOrder(orderId)
+        .subscribe(result => this.order = result);
+    });
+
   }
 
 }

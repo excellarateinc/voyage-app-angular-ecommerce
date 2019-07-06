@@ -1,3 +1,31 @@
-<p>
-  order-detail works!
-</p>
+<div fxLayout="column" *ngIf="order" style="padding:10px;" fxLayoutGap="15px">
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h2>Track Order</h2>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <span>Order Id: {{order.orderId}}</span>
+    <span>{{order.createdUtc | date}}</span>
+    <span>Total: {{order.total | currency}}</span>
+  </div>
+
+  <mat-vertical-stepper [linear]="true" #stepper disableRipple="true">
+    <mat-step label="Order Processed" [editable]="false" [completed]="true">
+    </mat-step>
+    <mat-step label="In Transit" [editable]="false" [completed]="false">
+    </mat-step>
+  </mat-vertical-stepper>
+
+  <mat-card fxLayout="row" fxLayoutGap="20px">
+    <mat-icon>home</mat-icon>
+    <div fxLayout="column">
+      <span>Delivery Address</span>
+      <span>{{order.addressLine1}}</span>
+      <span>{{order.addressLine2}}</span>
+      <span>{{order.city}} {{order.state}} {{order.zip}}</span>
+    </div>
+  </mat-card>
+
+  <a routerLink="/store" mat-raised-button color="primary">SHOP SOME MO'</a>
+</div>
