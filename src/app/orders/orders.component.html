@@ -1,3 +1,16 @@
-<p>
-  orders works!
-</p>
+<div>
+  <h2>Your Orders</h2>
+
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row" style="font-weight: bold;">
+      <div fxFlex>Order Number</div>
+      <div fxFlex>Date</div>
+      <div fxFlex>Amount</div>
+    </div>
+    <div fxLayout="row" *ngFor="let order of orders" style="border-bottom: 1px solid lightgray;">
+      <div fxFlex><a routerLink="/orders/{{order.orderId}}">{{order.orderId}}</a></div>
+      <div fxFlex>{{order.createdUtc | date}}</div>
+      <div fxFlex>{{order.total | currency}}</div>
+    </div>
+  </div>
+</div>

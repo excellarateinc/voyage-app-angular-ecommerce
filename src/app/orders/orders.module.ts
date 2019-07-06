@@ -5,6 +5,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
+import { OrdersService } from './orders.service';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,12 @@ import { OrdersComponent } from './orders.component';
     FlexLayoutModule,
     FormsModule
   ],
-  declarations: [OrdersComponent]
+  declarations: [
+    OrdersComponent,
+    OrderDetailComponent
+  ],
+  providers: [
+    OrdersService
+  ]
 })
 export class OrdersModule { }
