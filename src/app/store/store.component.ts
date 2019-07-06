@@ -15,7 +15,7 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
     this.storeService.getProductListing().subscribe(result => {
       this.products = result;
-    })
+    });
   }
 
 }
