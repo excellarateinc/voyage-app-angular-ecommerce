@@ -1,21 +1,26 @@
-<mat-sidenav-container [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
-  <mat-sidenav #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired">
+<mat-sidenav-container
+  [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
+  <mat-sidenav #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}"
+    *ngIf="isAuthenticated && !isVerificationRequired">
     <nav (click)="close()">
       <ul>
         <li>
-          <a class="nav-item-container" routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" routerLink="/store" routerLinkActive="active"
+            [ngClass]="{'dark': themeService.darkTheme}">
             <i class="material-icons">show_chart</i>
             Shop
           </a>
         </li>
         <li>
-          <a class="nav-item-container" routerLink="/examples/samplepage" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" routerLink="/examples/samplepage" routerLinkActive="active"
+            [ngClass]="{'dark': themeService.darkTheme}">
             <i class="material-icons">pie_chart</i>
             Sample Page
           </a>
         </li>
         <li *ngIf="isAdmin">
-          <a class="nav-item-container" routerLink="/admin/users" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" routerLink="/admin/users" routerLinkActive="active"
+            [ngClass]="{'dark': themeService.darkTheme}">
             <i class="material-icons">supervisor_account</i>
             User Admin
           </a>
@@ -28,9 +33,17 @@
           </a>
         </li>
         <li>
-          <a class="nav-item-container" routerLinkActive="active" (click)="themeService.toggleDarkTheme(); $event.stopPropagation();" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" routerLinkActive="active"
+            (click)="themeService.toggleDarkTheme(); $event.stopPropagation();"
+            [ngClass]="{'dark': themeService.darkTheme}">
             <i class="material-icons mat-light">lightbulb_outline</i>
             {{themeService.darkTheme ? 'Go Light' : 'Go Dark'}}
+          </a>
+        </li>
+        <li>
+          <a class="nav-item-container" routerLink="/about-us" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+            <i class="material-icons">help</i>
+            About Lighthouse
           </a>
         </li>
         <mat-divider></mat-divider>
