@@ -1,6 +1,8 @@
+import { OrderStatus } from './order-status.enum';
+
 export class Order {
   orderId: number;
-  orderStatusId: number;
+  orderStatusId: OrderStatus;
   name: string;
   email: string;
   company: string;

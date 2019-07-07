@@ -1,4 +1,4 @@
-<div fxLayout="column" *ngIf="order" style="padding:20px;" fxLayoutGap="15px">
+<div fxLayout="column" *ngIf="order" style="padding:20px;" fxLayoutGap="20px">
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <h2>Track Order</h2>
@@ -25,18 +25,18 @@
       <span class="circle"></span>
     </div>
     <div fxLayout="row" fxLayoutGap="10px">
-      <mat-icon class="incomplete">check_circle</mat-icon>
+      <mat-icon [ngClass]="{'complete': order.orderStatusId === 2, 'incomplete': order.orderStatusId !== 2}">check_circle</mat-icon>
       <span>In Transit</span>
     </div>
   </div>
 
   <mat-card fxLayout="row" fxLayoutGap="20px">
-    <mat-icon>home</mat-icon>
+    <mat-icon class="house-icon">home</mat-icon>
     <div fxLayout="column">
       <span>Delivery Address</span>
       <span>{{order.addressLine1}}</span>
       <span>{{order.addressLine2}}</span>
-      <span>{{order.city}} {{order.state}} {{order.zip}}</span>
+      <span>{{order.city}}, {{order.state}} {{order.zip}}</span>
     </div>
   </mat-card>
 
