@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContactUsService } from './contact-us.service';
+import { ContactUs } from './contact-us.model';
 
 @Component({
   selector: 'app-contact-us',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-us.component.scss']
 })
 export class ContactUsComponent implements OnInit {
+  invitedBy: ContactUs;
 
-  constructor() { }
+  constructor(private contactUsService: ContactUsService) { }
 
   ngOnInit() {
+    this.contactUsService.getInvitedBy()
+      .subscribe(result => this.invitedBy = result);
   }
 
 }

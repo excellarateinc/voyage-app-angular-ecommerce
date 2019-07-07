@@ -1,3 +1,13 @@
-<p>
-  contact-us works!
-</p>
+<div class="page-padding" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="center center">
+
+  <div class="contact-image" appProfileImage [image]="invitedBy?.image"></div>
+
+  <span>LET'S CHAT!</span>
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+    <span>{{invitedBy?.name}}</span>
+    <span><a href="tel:{{invitedBy?.phone}}">{{invitedBy?.phone}}</a></span>
+    <span><a href="mailto:{{invitedBy?.email}}">{{invitedBy?.email}}</a></span>
+  </div>
+
+</div>
