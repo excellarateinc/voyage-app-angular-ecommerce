@@ -1,16 +1,20 @@
-<div>
+<div style="padding: 20px;">
   <h2>Your Orders</h2>
 
-  <div fxLayout="column" fxLayoutGap="10px">
-    <div fxLayout="row" style="font-weight: bold;">
+  <div fxLayout="column" fxLayoutGap="10px" *ngIf="orders?.length">
+    <div fxLayout="row" style="font-weight: bold; border-bottom: 1px solid lightgray; padding-bottom: 10px;">
       <div fxFlex>Order Number</div>
       <div fxFlex>Date</div>
-      <div fxFlex>Amount</div>
+      <div fxFlexAlign="end">Amount</div>
     </div>
-    <div fxLayout="row" *ngFor="let order of orders" style="border-bottom: 1px solid lightgray;">
-      <div fxFlex><a routerLink="/orders/{{order.orderId}}">{{order.orderId}}</a></div>
+    <div fxLayout="row" *ngFor="let order of orders" style="border-bottom: 1px solid lightgray; padding-top: 5px; padding-bottom: 15px;">
+      <div fxFlex><a routerLink="/orders/{{order.orderId}}">{{order.orderNumber}}</a></div>
       <div fxFlex>{{order.createdUtc | date}}</div>
-      <div fxFlex>{{order.total | currency}}</div>
+      <div fxFlexAlign="end">{{order.total | currency}}</div>
     </div>
+  </div>
+
+  <div *ngIf="orders?.length === 0">
+    You have no orders.
   </div>
 </div>

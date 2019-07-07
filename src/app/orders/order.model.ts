@@ -2,6 +2,7 @@ import { OrderStatus } from './order-status.enum';
 
 export class Order {
   orderId: number;
+  orderNumber: string;
   orderStatusId: OrderStatus;
   name: string;
   email: string;
