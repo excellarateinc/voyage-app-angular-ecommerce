@@ -1,4 +1,4 @@
-<div fxLayout="column" *ngIf="order" style="padding:10px;" fxLayoutGap="15px">
+<div fxLayout="column" *ngIf="order" style="padding:20px;" fxLayoutGap="15px">
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <h2>Track Order</h2>
@@ -10,12 +10,25 @@
     <span>Total: {{order.total | currency}}</span>
   </div>
 
-  <mat-vertical-stepper [linear]="true" #stepper disableRipple="true">
-    <mat-step label="Order Processed" [editable]="false" [completed]="true">
-    </mat-step>
-    <mat-step label="In Transit" [editable]="false" [completed]="false">
-    </mat-step>
-  </mat-vertical-stepper>
+  <div fxLayout="column" fxLayoutGap="5px">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-icon class="complete">check_circle</mat-icon>
+      <span>Order Processed</span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-icon class="incomplete">check_circle</mat-icon>
+      <span>In Transit</span>
+    </div>
+  </div>
 
   <mat-card fxLayout="row" fxLayoutGap="20px">
     <mat-icon>home</mat-icon>

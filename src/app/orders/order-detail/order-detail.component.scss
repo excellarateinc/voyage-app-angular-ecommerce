@@ -1,0 +1,15 @@
+.complete {
+  color: green;
+}
+
+.incomplete {
+  color: lightgray;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: lightgray;
+  width: 8px;
+  height: 8px;
+  margin-left: 7px;
+}
