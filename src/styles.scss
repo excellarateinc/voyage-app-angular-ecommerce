@@ -120,6 +120,10 @@ https://github.com/angular/material2/issues/998 */
   height: 100%;
 }
 
+.page-padding {
+  padding: 20px;
+}
+
 /* Override material colors for login/registration */
 .light-input .mat-form-field-label {
   color: white !important;
