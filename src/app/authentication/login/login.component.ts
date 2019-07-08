@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.working = true;
-    const login = this.loginForm.value as Login;
-    this.loginService.login(login)
+    const phone = this.loginForm.value.phone;
+    this.loginService.login(phone)
       .subscribe(result => {
         if (this.redirectUrl) {
           this.router.navigate([this.redirectUrl]);
@@ -68,8 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private initializeForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      phone: ['', Validators.required]
     });
   }
 }
