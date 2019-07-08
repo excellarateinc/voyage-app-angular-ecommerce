@@ -1,0 +1,20 @@
+<div class="page-padding">
+  <h2>Your Orders</h2>
+
+  <div fxLayout="column" fxLayoutGap="10px" *ngIf="orders?.length">
+    <div fxLayout="row" class="order-header separator">
+      <div fxFlex>Order Number</div>
+      <div fxFlex>Date</div>
+      <div fxFlexAlign="end">Amount</div>
+    </div>
+    <div fxLayout="row" *ngFor="let order of orders" class="order-row separator">
+      <div fxFlex><a routerLink="/orders/{{order.orderId}}">{{order.orderNumber}}</a></div>
+      <div fxFlex>{{order.createdUtc | date}}</div>
+      <div fxFlexAlign="end">{{order.total | currency}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="orders?.length === 0">
+    You have no orders.
+  </div>
+</div>

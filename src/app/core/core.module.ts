@@ -4,6 +4,7 @@ import { UserService } from './user/user.service';
 import { BroadcastService } from './broadcast.service';
 import { MobileService } from './mobile.service';
 import { ThemeService } from './theme.service';
+import { StoreService } from './store/store.service';
 import { ProductService } from './store/product/product.service';
 
 export function windowFactory() {
@@ -16,6 +17,7 @@ export function windowFactory() {
   ],
   providers: [
     UserService,
+    StoreService,
     BroadcastService,
     { provide: 'Window', useFactory: windowFactory },
     MobileService,

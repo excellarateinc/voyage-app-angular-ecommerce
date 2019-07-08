@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VerificationService } from './verification.service';
 import { Verification } from './verification.model';
 import { Router } from '@angular/router';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'app-verification',
@@ -17,6 +18,7 @@ export class VerificationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private verificationService: VerificationService,
+    private userService: UserService,
     private router: Router) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class VerificationComponent implements OnInit {
 
   sendCode(): void {
     this.verificationService.sendCode()
-      .subscribe(result => {
+      .subscribe(() => {
         this.codeSent = true;
       });
   }
@@ -37,8 +39,9 @@ export class VerificationComponent implements OnInit {
 
     const verification = this.verificationForm.value as Verification;
     this.verificationService.verify(verification)
-      .subscribe(result => {
-        this.router.navigate(['/dashboard']);
+      .subscribe(() => {
+        this.userService.emitUserVerificationRequired(false);
+        this.router.navigate(['/store']);
       }, () => {
         this.verificationFailed = true;
       });

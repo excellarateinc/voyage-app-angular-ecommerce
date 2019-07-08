@@ -1,0 +1,44 @@
+<div fxLayout="column" *ngIf="order" class="page-padding" fxLayoutGap="20px">
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h2>Track Order</h2>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <span>Order Number: {{order.orderNumber}}</span>
+    <span>{{order.createdUtc | date}}</span>
+    <span>Total: {{order.total | currency}}</span>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="5px">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-icon class="complete">check_circle</mat-icon>
+      <span>Order Processed</span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row">
+      <span class="circle"></span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <mat-icon [ngClass]="{'complete': order.orderStatusId === 2, 'incomplete': order.orderStatusId !== 2}">check_circle</mat-icon>
+      <span>In Transit</span>
+    </div>
+  </div>
+
+  <mat-card fxLayout="row" fxLayoutGap="20px">
+    <mat-icon class="house-icon">home</mat-icon>
+    <div fxLayout="column">
+      <span>Delivery Address</span>
+      <span>{{order.addressLine1}}</span>
+      <span>{{order.addressLine2}}</span>
+      <span>{{order.city}}, {{order.state}} {{order.zip}}</span>
+    </div>
+  </mat-card>
+
+  <a routerLink="/store" mat-raised-button color="primary">SHOP SOME MO'</a>
+</div>

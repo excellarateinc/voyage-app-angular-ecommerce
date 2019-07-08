@@ -4,11 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from './authentication/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuardService] },
-  { path: 'examples', loadChildren: 'app/examples/examples.module#ExamplesModule', canLoad: [AuthGuardService] },
-  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canLoad: [AuthGuardService] },
-  { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', canLoad: [AuthGuardService] },
+  { path: '', redirectTo: '/store', pathMatch: 'full' },
+  { path: 'store', loadChildren: 'app/store/store.module#StoreModule', canActivate: [AuthGuardService] },
+  { path: 'examples', loadChildren: 'app/examples/examples.module#ExamplesModule', canActivate: [AuthGuardService] },
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthGuardService] },
+  { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', canActivate: [AuthGuardService] },
+  { path: 'about-us', loadChildren: 'app/about-us/about-us.module#AboutUsModule' },
+  { path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule' },
+  { path: 'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule' },
   { path: 'cart', loadChildren: 'app/core/store/cart/cart.module#CartModule', canLoad: [AuthGuardService] }
 ];
 

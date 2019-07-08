@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { User } from './user.model';
 import { UserStatus } from './user-status.model';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
-  currentUser: User;
+  private userSubscription = new BehaviorSubject<User>(null);
+  userChanged$ = this.userSubscription.asObservable();
+
+  private verificationSubscription = new BehaviorSubject<boolean>(null);
+  verificationChanged$ = this.verificationSubscription.asObservable();
+
+  private authenticationSubscription = new BehaviorSubject<boolean>(null);
+  authenticationChanged$ = this.authenticationSubscription.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -17,18 +23,14 @@ export class UserService {
     return this.http.get<Array<User>>(`${environment.API_URL}/users`);
   }
 
-  getCurrentUser(force = false): Observable<User> {
-    if (this.currentUser != null && !force) {
-      return of(this.currentUser);
-    }
+  getCurrentUser(): Observable<User> {
     return this.http.get<User>(`${environment.API_URL}/profiles/me`)
-      .pipe(
-        map(response => {
-          const currentUser = response;
-          this.currentUser = currentUser;
-          return currentUser;
-        })
-      );
+    .pipe(
+      map(response => {
+        this.userSubscription.next(response);
+        return response;
+      })
+    );
   }
 
   toggleStatus(userId: string, status: UserStatus): Observable<User> {
@@ -38,4 +40,13 @@ export class UserService {
   updateProfile(user: User): Observable<User> {
     return this.http.put<User>(`${environment.API_URL}/profiles/me`, user);
   }
+
+  emitUserVerificationRequired(required: boolean): void {
+    this.verificationSubscription.next(required);
+  }
+
+  emitUserAuthenticated(isAuthenticated: boolean): void {
+    this.authenticationSubscription.next(isAuthenticated);
+  }
+
 }

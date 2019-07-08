@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../authentication.service';
 import { Login } from './login.model';
@@ -12,6 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   login(login: Login): Observable<any> {
+
     // tslint:disable-next-line:max-line-length
     const body = `username=${login.username}&password=${login.password}&client_id=${environment.OAUTH_CLIENT_ID}&client_secret=${environment.OAUTH_CLIENT_SECRET}&grant_type=password`;
     const clientCreds = `${environment.OAUTH_CLIENT_ID}:${environment.OAUTH_CLIENT_SECRET}`;

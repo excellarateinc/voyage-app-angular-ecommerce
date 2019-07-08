@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" *ngIf="isAuthenticated">
+<mat-toolbar color="primary" *ngIf="isAuthenticated && !isVerificationRequired">
   <button class="mat-button menu-button" (click)="toggleSidebar()" *ngIf="isMobile">
     <mat-icon class="clickable menu-icon">menu</mat-icon>
   </button>
