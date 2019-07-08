@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
     this.sidenav.close();
   }
 
-  toggleSidebar(): void {
-    this.userService.updateIsMenuShowing();
+  toggleSidebar(showMenu: boolean): void {
+    this.userService.emitIsMenuShowing(showMenu);
   }
 }

@@ -17,7 +17,8 @@ export class UserService {
   private authenticationSubscription = new BehaviorSubject<boolean>(null);
   authenticationChanged$ = this.authenticationSubscription.asObservable();
 
-  private isMenuShowing = new BehaviorSubject<boolean>(true);
+  private isMenuShowing = new BehaviorSubject<boolean>(null);
+  menuShowing$ = this.isMenuShowing.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -51,13 +52,8 @@ export class UserService {
     this.authenticationSubscription.next(isAuthenticated);
   }
 
-  updateIsMenuShowing():Observable<boolean> {
-    if (this.isMenuShowing.value === true) {
-      this.isMenuShowing.next(false)
-    } else {
-      this.isMenuShowing.next(true)
-    }
-    return this.isMenuShowing.asObservable();
+  emitIsMenuShowing(showMenu: boolean): void {
+    this.isMenuShowing.next(showMenu);
   }
 
 }

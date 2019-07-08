@@ -34,8 +34,8 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    this.userService.updateIsMenuShowing().subscribe(
-      result => {
+    this.userService.menuShowing$
+    .subscribe( result => {
         this.isMenuShowing = result;
       }
     )
@@ -46,9 +46,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  toggleSidebar(): void {
+  toggleSidebar(showMenu: boolean): void {
     this.onToggleSidebar.emit();
-    this.userService.updateIsMenuShowing();
+    this.userService.emitIsMenuShowing(showMenu);
     // this.isMenuShowing = !this.isMenuShowing;
   }
 }

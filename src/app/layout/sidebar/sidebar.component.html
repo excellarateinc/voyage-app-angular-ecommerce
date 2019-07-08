@@ -7,40 +7,40 @@
     <nav (click)="close()">
       <ul>
         <li>
-          <a class="nav-item-container" (click)="toggleSidebar()"  routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" (click)="toggleSidebar(false)"  routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Shop
           </a>
         </li>
         <li>
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/orders" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/orders" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Orders
           </a>
         </li>
         <li>
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Profile
           </a>
         </li>
         <li *ngIf="isAdmin">
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/admin/users" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/users" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
             User Admin
           </a>
         </li>
         <li *ngIf="isAdmin">
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/admin/invite" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/invite" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Invite
           </a>
         </li>
         <div class="nav-section-divider"></div>
         <li>
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/contact-us" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/contact-us" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
             Contact Us
           </a>
         </li>
         <li>
-          <a class="nav-item-container" (click)="toggleSidebar()" routerLink="/about-us" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/about-us" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
             About Lighthouse
           </a>
@@ -55,7 +55,7 @@
   <mat-sidenav #sidenav class="desktop" mode="{{ 'side' }}" opened="{{ 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired && !mobile">
       <div style="justify-content: center; align-content: center;">
           <img class="logo" src="../../../assets/images/ls-roundel-black.png"/>
-          <div class="logo-text-desktop">Lighthouse Software</div>
+          <div class="logo-text-desktop">LIGHTHOUSE SOFTWARE</div>
       </div>
       <nav (click)="close()">
         <ul class="desktop-nav">
