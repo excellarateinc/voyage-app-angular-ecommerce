@@ -2,7 +2,6 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
       <div *ngIf="failureMessage?.length">
         <span class="error">
           {{failureMessage}}
@@ -21,7 +20,7 @@
           </mat-error>
         </mat-form-field>
         <div fxLayout="column" fxLayoutGap="20px">
-          <button class="button-invite" mat-raised-button type="submit">SEND INVITE</button>
+          <button class="button-invite" mat-raised-button type="submit" [disabled]="loading">SEND INVITE</button>
         </div>
       </form>
     </mat-card>
@@ -31,7 +30,6 @@
 <!-- Mobile -->
 <div class="masthead-mobile" *ngIf="isMobile" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
-    <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
     <div *ngIf="failureMessage?.length">
       <span class="error">
         {{failureMessage}}
@@ -50,7 +48,7 @@
         </mat-error>
       </mat-form-field>
       <div fxLayout="column" fxLayoutGap="20px">
-        <button class="button-invite" mat-raised-button type="submit">SEND INVITE</button>
+        <button class="button-invite" mat-raised-button type="submit" [disabled]="loading">SEND INVITE</button>
       </div>
     </form>
   </div>
