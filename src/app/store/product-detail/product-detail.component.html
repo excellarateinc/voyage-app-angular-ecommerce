@@ -1,4 +1,67 @@
-<p>
-  productId is {{ product.productId }}
-  <img class="product-image"  [src]="product.imageUrl" alt="{{product.description}}">
-</p>
+<div fxLayout="row">
+  <div *ngIf="!product">
+    <span *ngFor="let error of errors" style="color:#f44336">
+      {{error.errorDescription}}
+      <br />
+    </span>
+  </div>
+  <mat-card *ngIf="product" fxFlex="60" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}">
+    </div>
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div>
+          <h3>{{ product.name }}</h3>
+        </div>
+        <div>
+          <h3>{{ product.price }}</h3>
+        </div>
+      </div>
+      <div class="mat-small">
+        {{ product.description }}
+      </div>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="shoppingForm" (ngSubmit)="addToCart()" novalidate>
+        <mat-form-field style="display:none;">
+          <input matInput formControlName="productId" type="number">
+        </mat-form-field>
+        <div *ngIf="product.sizes?.length > 0" fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column">
+            <label for="size">Select Size</label>
+            <div fxLayout="row">
+              <mat-button-toggle-group formControlName="size">
+                <div *ngFor="let size of product.sizes">
+                  <mat-button-toggle type="button" value='{{ size }}'>{{ size }}</mat-button-toggle>
+                </div>
+              </mat-button-toggle-group>
+            </div>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <div fxLayout="column">
+            <label for="quantity">Quantity</label>
+            <mat-form-field>
+              <input matInput formControlName="quantity" type="number" min="1">
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="errors?.length > 0">
+          <span *ngFor="let error of errors" style="color:#f44336">
+            {{error.errorDescription}}
+            <br />
+          </span>
+        </div>
+        <div fxLayout="column" class="button-section">
+          <button type="submit" mat-raised-button color="primary">
+            ADD TO CART
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
