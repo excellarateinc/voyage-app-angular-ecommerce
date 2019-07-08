@@ -6,7 +6,12 @@
         <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
     </div>
-    <form [formGroup]="codeForm" (ngSubmit)="submitCode()" novalidate fxLayout="column" fxLayoutGap="10px">
+    <div *ngIf="isMobile" fxLayout="column" fxLayoutAlign="center center">
+      <span>You will receive a magic link shortly.</span>
+      <span>If you have any issues, contact</span>
+      <span>hello@lighthousesoftware.com</span>
+    </div>
+    <form [formGroup]="codeForm" (ngSubmit)="submitCode()" novalidate fxLayout="column" fxLayoutGap="10px" *ngIf="!isMobile">
       <mat-form-field class="light-input">
         <input matInput placeholder="Code" formControlName="code" required>
         <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
@@ -14,11 +19,8 @@
         </mat-error>
       </mat-form-field>
       <div fxLayout="column" fxLayoutGap="25px">
-        <div fxLayout="row" fxLayoutAlign="center">
-          <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
-        </div>
         <div fxLayout="row" fxLayoutGap="20px">
-          <button fxFlex="100" color="primary" mat-raised-button type="submit" [disabled]="working">Log In</button>
+          <button fxFlex="100" color="primary" mat-raised-button type="submit">Log In</button>
         </div>
       </div>
     </form>

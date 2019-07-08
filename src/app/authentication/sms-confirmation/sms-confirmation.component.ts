@@ -15,7 +15,6 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
   codeForm: FormGroup;
   loginFailed = false;
   isMobile = false;
-  working = false;
   private watcher: Subscription;
 
   constructor(
@@ -36,6 +35,9 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
   ngAfterViewInit() {
     this.route.queryParams
       .subscribe(params => {
+          if (this.isMobile) {
+            return;
+          }
           const error = params['error'];
           setTimeout(() => {
             if (error === 'linkInvalid') {
@@ -55,7 +57,6 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
     if (this.codeForm.invalid) {
       return;
     }
-    this.working = true;
     const code = this.codeForm.value.code;
     this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${code}`;
   }
