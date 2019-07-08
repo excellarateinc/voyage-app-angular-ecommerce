@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UserService } from '../../core/user/user.service';
 import { ThemeService } from '../../core/theme.service';
@@ -53,10 +53,6 @@ export class SidebarComponent implements OnInit {
           this.isAuthenticated = isAuthenticated;
         }
       });
-  }
-
-  ngAfterViewInit(): void {
-    this.isMenuShowing = this.header.isMenuShowing.subscribe;
   }
 
   toggle(): void {

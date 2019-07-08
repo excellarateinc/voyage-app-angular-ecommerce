@@ -15,8 +15,6 @@ mat-sidenav ul {
   padding: 0;
 }
 
-
-
 // When not authenticated, we don't show the toolbar, meaning we need the height to be 100%.
 .sidenav-height-full {
   height: 100%;
@@ -94,18 +92,11 @@ mat-sidenav ul {
     &:visited {
       color: white;
     }
-    &.dark {
-      background-color: #565656;
-    }
   }
 }
 
 .active-desktop {
   background-color: #565656;
-
-  &.dark {
-    background-color: #565656;
-  }
 }
 
 a {
@@ -151,8 +142,4 @@ a {
       background-color: #565656;
     }
   }
-}
-
-.nav-item-container-desktop a:active {
-
 }

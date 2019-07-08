@@ -1,5 +1,5 @@
 <mat-sidenav-container [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
-  <mat-sidenav #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired && mobile">
+  <mat-sidenav #sidenav mode="{{'over'}}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired && mobile">
     <nav (click)="close()">
       <ul>
         <li>
@@ -33,14 +33,6 @@
             About Lighthouse
           </a>
         </li>
-
-        <!-- <li>
-          <a class="nav-item-container" routerLinkActive="active" (click)="themeService.toggleDarkTheme(); $event.stopPropagation();" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons mat-light">lightbulb_outline</i>
-            {{themeService.darkTheme ? 'Go Light' : 'Go Dark'}}
-          </a>
-        </li> -->
-
       </ul>
     </nav>
     <div style="width: 100%;">
@@ -82,18 +74,10 @@
               About Lighthouse
             </a>
           </li>
-
-          <!-- <li>
-            <a class="nav-item-container" routerLinkActive="active" (click)="themeService.toggleDarkTheme(); $event.stopPropagation();" [ngClass]="{'dark': themeService.darkTheme}">
-              <i class="material-icons mat-light">lightbulb_outline</i>
-              {{themeService.darkTheme ? 'Go Light' : 'Go Dark'}}
-            </a>
-          </li> -->
-
         </ul>
       </nav>
       <div style="width: 100%;">
-        <span style="color: white; margin-inline-start: 38.5%; margin-top: 15%; font-size: 10px;">Powered by Voyage</span>
+        <span style="color: black; margin-inline-start: 34%; margin-top: 15%; font-size: 10px;">Powered by Voyage</span>
       </div>
     </mat-sidenav>
 
