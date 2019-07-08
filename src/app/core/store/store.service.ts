@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Product } from '../store/product.model';
 import { HttpClient } from '@angular/common/http';
+import { AddToCart } from './addToCart.model';
 
 @Injectable()
 export class StoreService {
@@ -13,7 +14,14 @@ export class StoreService {
     return this.http.get<Array<Product>>(`${environment.API_URL}/store/products`);
   }
 
-  getProduct(index: string): Observable<Product> {
-    return this.http.get<Product>(`${environment.API_URL}/store/products/` + index);
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${environment.API_URL}/store/products/` + id);
+  }
+
+  addToCart(addToCart: AddToCart) {
+    const request = {productId: addToCart.productId, size: addToCart.size, quantity: addToCart.quantity};
+
+    return this.http.put(`${environment.API_URL}/store/cart`, request);
+
   }
 }

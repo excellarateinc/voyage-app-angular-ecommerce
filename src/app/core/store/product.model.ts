@@ -1,9 +1,9 @@
 
 export class Product {
-  productId: string;
+  productId: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   imageUrl: string;
   sizes: string[];
 }
