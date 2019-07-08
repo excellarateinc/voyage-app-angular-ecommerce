@@ -30,7 +30,7 @@ export class SidebarComponent implements OnInit {
   toggleTheme: false;
   isAdmin = false;
   isVerificationRequired = false;
-  isMenuShowing = false;
+  isMenuShowing:boolean;
 
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
@@ -64,6 +64,9 @@ export class SidebarComponent implements OnInit {
       return;
     }
     this.sidenav.close();
-    this.header.isMenuShowing = !this.header.isMenuShowing;
+  }
+
+  toggleSidebar(): void {
+    this.userService.updateIsMenuShowing();
   }
 }

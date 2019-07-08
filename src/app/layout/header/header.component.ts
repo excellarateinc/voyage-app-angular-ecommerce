@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   @Output() onToggleSidebar = new EventEmitter<void>();
   isVerificationRequired = false;
-  isMenuShowing = false;
+  isMenuShowing:boolean = false;
 
   accounts: Array<Account>;
   totalBalance: number = 0;
@@ -33,6 +33,13 @@ export class HeaderComponent implements OnInit {
         this.isAuthenticated = isAuthenticated;
       }
     });
+
+    this.userService.updateIsMenuShowing().subscribe(
+      result => {
+        this.isMenuShowing = result;
+      }
+    )
+
     this.AccountService.getUserAccounts().subscribe(
       result => {this.accounts = result;
       this.totalBalance = this.AccountService.getTotalAccountsBalance(result);
@@ -41,6 +48,7 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar(): void {
     this.onToggleSidebar.emit();
-    this.isMenuShowing = !this.isMenuShowing;
+    this.userService.updateIsMenuShowing();
+    // this.isMenuShowing = !this.isMenuShowing;
   }
 }

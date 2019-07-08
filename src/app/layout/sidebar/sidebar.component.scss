@@ -1,12 +1,12 @@
 .desktop {
   width: 20%;
-  padding-top: 10%;
+  padding-top: 5%;
   background-color: #ddd;
 }
 
 mat-sidenav {
   width: 100%;
-  padding-top: 20%;
+  padding-top: 5%;
   background-color: #f4511e;
 }
 
@@ -14,6 +14,35 @@ mat-sidenav ul {
   list-style-type: none;
   padding: 0;
 }
+
+.logo {
+  justify-content: center;
+  align-content: center;
+  display: flex;
+  margin: auto;
+  width: 35%;
+}
+
+.logo-text-mobile {
+  font-size: 26px;
+  font-weight: 300;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 4% 0 10% 0%;
+}
+
+.logo-text-desktop {
+  font-size: 20px;
+  font-weight: 300;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 4% 0 10% 0%;
+}
+
 
 // When not authenticated, we don't show the toolbar, meaning we need the height to be 100%.
 .sidenav-height-full {
@@ -37,10 +66,10 @@ mat-sidenav ul {
   justify-content: center;
   cursor: pointer;
   display: flex;
-  font-size: 16px;
-  font-weight: 500;
-  height: 48px;
-  line-height: 24px;
+  font-size: 26px;
+  font-weight: 400;
+  height: 43px;
+  line-height: 20px;
   outline: none;
   overflow: hidden;
   padding: 0;
@@ -142,4 +171,30 @@ a {
       background-color: #565656;
     }
   }
+}
+
+.voyage-icon-container-mobile {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: white
+}
+
+.voyage-icon-mobile {
+  width: 30px;
+  padding-left:10px;
+}
+
+.voyage-icon-desktop {
+  width: 20px;
+  padding-left:10px;
+  position: absolute;
+  margin: auto;
+}
+
+.voyage-icon-container-desktop {
+  color: black;
+  margin-inline-start: 34%;
+  margin-top: 15%;
+  font-size: 10px;
 }
