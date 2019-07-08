@@ -2,8 +2,9 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <div fxLayout="column" fxFlexAlign="center">
-        <h1>Sample App</h1>
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
+        <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutGap="10px" novalidate>
         <mat-form-field>

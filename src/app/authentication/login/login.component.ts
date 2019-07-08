@@ -48,22 +48,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.working = true;
     const phone = this.loginForm.value.phone;
-    this.loginService.login(phone)
+    this.loginService.sendLoginLink(phone, this.isMobile)
       .subscribe(result => {
-        if (this.redirectUrl) {
-          this.router.navigate([this.redirectUrl]);
-          return;
-        }
-        this.router.navigate(['store']);
+        // if (this.redirectUrl) {
+        //   this.router.navigate([this.redirectUrl]);
+        //   return;
+        // }
+        // this.router.navigate(['store']);
         this.working = false;
       }, error => {
         this.working = false;
         this.loginFailed = true;
       });
-  }
-
-  linkedInLogin(): void {
-    this.window.location.href = `${environment.SERVER_URL}/authentication/linkedin`;
   }
 
   private initializeForm(): void {

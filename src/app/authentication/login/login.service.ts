@@ -29,4 +29,8 @@ export class LoginService {
         })
       );
   }
+
+  sendLoginLink(phone: string, isMobile: boolean): Observable<any> {
+    return this.http.post(`${environment.SERVER_URL}/login-links`, { phone, isMobile });
+  }
 }
