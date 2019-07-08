@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UserService } from '../../core/user/user.service';
 import { ThemeService } from '../../core/theme.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -23,11 +24,13 @@ export class SidebarComponent implements OnInit {
   }
   @Input()
   isAuthenticated = false;
+  @ViewChild(HeaderComponent) header;
   @ViewChild('sidenav') sidenav: MatSidenav;
   mobile: boolean;
   toggleTheme: false;
   isAdmin = false;
   isVerificationRequired = false;
+  isMenuShowing = false;
 
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
@@ -52,6 +55,10 @@ export class SidebarComponent implements OnInit {
       });
   }
 
+  ngAfterViewInit(): void {
+    this.isMenuShowing = this.header.isMenuShowing.subscribe;
+  }
+
   toggle(): void {
     this.sidenav.toggle();
   }
@@ -61,5 +68,6 @@ export class SidebarComponent implements OnInit {
       return;
     }
     this.sidenav.close();
+    this.header.isMenuShowing = !this.header.isMenuShowing;
   }
 }
