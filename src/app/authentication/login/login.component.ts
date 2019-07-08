@@ -50,11 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const phone = this.loginForm.value.phone;
     this.loginService.sendLoginLink(phone, this.isMobile)
       .subscribe(result => {
-        // if (this.redirectUrl) {
-        //   this.router.navigate([this.redirectUrl]);
-        //   return;
-        // }
-        // this.router.navigate(['store']);
+        this.router.navigate(['authentication/sms-confirmation']);
         this.working = false;
       }, error => {
         this.working = false;
