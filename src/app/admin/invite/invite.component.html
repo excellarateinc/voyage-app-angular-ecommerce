@@ -3,9 +3,9 @@
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
       <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
-      <div *ngIf="inviteFailed">
+      <div *ngIf="failureMessage?.length">
         <span class="error">
-          INVALID NUMBER. TRY AGAIN.
+          {{failureMessage}}
         </span>
       </div>
       <div fxLayout="row" fxFlexAlign="center">
@@ -15,9 +15,9 @@
       </div>
       <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
         <mat-form-field class="light-input">
-          <input matInput placeholder="mobile number" formControlName="mobileNumber" type="phone" required>
+          <input matInput placeholder="Mobile Number" formControlName="mobileNumber" type="phone" required>
           <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
-            Mobile number is required
+            Mobile Number is required
           </mat-error>
         </mat-form-field>
         <div fxLayout="column" fxLayoutGap="20px">
@@ -32,9 +32,9 @@
 <div class="masthead-mobile" *ngIf="isMobile" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <mat-spinner color="warn" *ngIf="loading"></mat-spinner>
-    <div *ngIf="inviteFailed">
+    <div *ngIf="failureMessage?.length">
       <span class="error">
-        INVALID NUMBER. TRY AGAIN.
+        {{failureMessage}}
       </span>
     </div>
     <div fxLayout="row" fxFlexAlign="center">
@@ -44,9 +44,9 @@
     </div>
     <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
       <mat-form-field class="light-input">
-        <input matInput placeholder="mobile number" formControlName="mobileNumber" type="phone" required>
+        <input matInput placeholder="Mobile Number" formControlName="mobileNumber" type="phone" required>
         <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
-          Mobile number is required
+          Mobile Number is required
         </mat-error>
       </mat-form-field>
       <div fxLayout="column" fxLayoutGap="20px">

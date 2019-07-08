@@ -7,6 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { UserAdminComponent } from './user-admin/user-admin.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { InviteComponent } from './invite/invite.component';
+import { InviteService } from './invite/invite.service';
 
 @NgModule({
   imports: [
@@ -17,9 +18,13 @@ import { InviteComponent } from './invite/invite.component';
     FlexLayoutModule,
     FormsModule
   ],
-  declarations: [UserAdminComponent, InviteComponent],
+  declarations: [
+    UserAdminComponent,
+    InviteComponent
+  ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' }},
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    InviteService
   ]
 
 })

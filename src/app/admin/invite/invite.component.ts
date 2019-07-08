@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-// import { InviteService } from './invite.service';
+import { InviteService } from './invite.service';
 import { MobileService } from '../../core/mobile.service';
 
 @Component({
@@ -9,17 +9,16 @@ import { MobileService } from '../../core/mobile.service';
   templateUrl: './invite.component.html',
   styleUrls: ['./invite.component.scss']
 })
-export class InviteComponent implements OnInit {
+export class InviteComponent implements OnInit, OnDestroy {
   inviteForm: FormGroup;
-  inviteFailed = false;
+  failureMessage: string = null;
   isMobile = false;
   loading = false;
   private watcher: Subscription;
 
   constructor(
-    // private inviteService: InviteService,
+    private inviteService: InviteService,
     private formBuilder: FormBuilder,
-    @Inject('Window') private window: any,
     private mobileService: MobileService) { }
 
   ngOnInit(): void {
@@ -39,15 +38,15 @@ export class InviteComponent implements OnInit {
       return;
     }
     this.loading = true;
-    const mobileNumber = this.inviteForm.value as string;
-    // this.inviteService.invite(mobileNumber)
-    //   .subscribe(result => {
-    //     this.window.location.reload();
-    //     this.loading = false;
-    //   }, error => { 
-    //     this.inviteFailed = true;
-    //     this.loading = false;
-    //   });
+    const mobileNumber = this.inviteForm.value.mobileNumber;
+    this.inviteService.invite(mobileNumber)
+      .subscribe(result => {
+        this.failureMessage = null;
+        this.loading = false;
+      }, error => {
+        this.failureMessage = error.error[0].errorDescription;
+        this.loading = false;
+      });
   }
 
   private initializeForm(): void {
