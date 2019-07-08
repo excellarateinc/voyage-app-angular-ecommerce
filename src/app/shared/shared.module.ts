@@ -8,10 +8,13 @@ import { NotificationService } from './services/notification.service';
   imports: [
     CommonModule
   ],
-  declarations: [ProfileImageDirective],
+  declarations: [
+    ProfileImageDirective
+  ],
   providers: [
     FileDownloadService,
     NotificationService,
+    NotificationService
   ],
   exports: [ProfileImageDirective]
 })
