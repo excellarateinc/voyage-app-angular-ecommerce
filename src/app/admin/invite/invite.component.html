@@ -2,11 +2,6 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <div *ngIf="failureMessage?.length">
-        <span class="error">
-          {{failureMessage}}
-        </span>
-      </div>
       <div fxLayout="row" fxFlexAlign="center">
         <div class="app-title">
           INVITE
@@ -30,11 +25,6 @@
 <!-- Mobile -->
 <div class="masthead-mobile" *ngIf="isMobile" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
-    <div *ngIf="failureMessage?.length">
-      <span class="error">
-        {{failureMessage}}
-      </span>
-    </div>
     <div fxLayout="row" fxFlexAlign="center">
       <div class="app-title">
         INVITE

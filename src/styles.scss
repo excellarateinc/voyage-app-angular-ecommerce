@@ -124,6 +124,14 @@ https://github.com/angular/material2/issues/998 */
   padding: 20px;
 }
 
+.success-snack {
+  background-color: green !important;
+}
+
+.error-snack {
+  background-color: red !important;
+}
+
 /* Override material colors for login/registration */
 // .light-input .mat-form-field-label {
 //   color: white !important;

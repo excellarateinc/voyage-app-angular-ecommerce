@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { InviteService } from './invite.service';
 import { MobileService } from '../../core/mobile.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-invite',
@@ -11,7 +12,6 @@ import { MobileService } from '../../core/mobile.service';
 })
 export class InviteComponent implements OnInit, OnDestroy {
   inviteForm: FormGroup;
-  failureMessage: string = null;
   isMobile = false;
   loading = false;
   private watcher: Subscription;
@@ -19,7 +19,8 @@ export class InviteComponent implements OnInit, OnDestroy {
   constructor(
     private inviteService: InviteService,
     private formBuilder: FormBuilder,
-    private mobileService: MobileService) { }
+    private mobileService: MobileService,
+    private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -41,10 +42,10 @@ export class InviteComponent implements OnInit, OnDestroy {
     const mobileNumber = this.inviteForm.value.mobileNumber;
     this.inviteService.invite(mobileNumber)
       .subscribe(result => {
-        this.failureMessage = null;
+        this.notificationService.showSuccessMessage('Invite sent successfully');
         this.loading = false;
       }, error => {
-        this.failureMessage = error.error[0].errorDescription;
+        this.notificationService.showErrorMessage(error.error[0].errorDescription);
         this.loading = false;
       });
   }
