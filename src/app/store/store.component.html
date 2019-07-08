@@ -1,6 +1,6 @@
 <div class="flex-container" fxflex>
   <mat-card class="flexitem" *ngFor="let product of products ">
-      <figure>
+      <figure (click)="onSelect(product.productId)">
         <img class="product-image"  [src]="product.imageUrl" alt="{{product.description}}">
         <figcaption>{{ product.name }}</figcaption>
         <figcaption>${{ product.price }}</figcaption>

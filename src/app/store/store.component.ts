@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { StoreService } from 'app/core/store/store.service';
 import { Product } from 'app/core/store/product.model';
 
@@ -10,12 +12,18 @@ import { Product } from 'app/core/store/product.model';
 export class StoreComponent implements OnInit {
   products: Array<Product>;
 
-  constructor(private storeService: StoreService) {}
+  constructor(private storeService: StoreService,
+    private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.storeService.getProductListing().subscribe(result => {
       this.products = result;
-    })
+    });
+  }
+
+  onSelect(id: number) {
+    this.router.navigate(['products', id], {relativeTo: this.route});
   }
 
 }
