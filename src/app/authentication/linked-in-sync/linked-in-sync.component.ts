@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, Inject, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MobileService } from '../../core/mobile.service';
 import { environment } from 'environments/environment';
-import { ActivatedRoute } from '@angular/router';
-import { NotificationService } from 'app/shared/services/notification.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-linked-in-sync',
@@ -12,17 +10,14 @@ import { NotificationService } from 'app/shared/services/notification.service';
   styleUrls: ['./linked-in-sync.component.scss']
 })
 export class LinkedInSyncComponent implements OnInit, OnDestroy {
-  codeForm: FormGroup;
   isMobile = false;
   working = false;
   private watcher: Subscription;
 
   constructor(
-    private formBuilder: FormBuilder,
     @Inject('Window') private window: any,
     private mobileService: MobileService,
-    private notificationService: NotificationService,
-    private route: ActivatedRoute) { }
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.isMobile = this.mobileService.isMobile();
@@ -36,6 +31,7 @@ export class LinkedInSyncComponent implements OnInit, OnDestroy {
   }
 
   syncWithLinkedIn(): void {
-    this.window.location.href = `${environment.SERVER_URL}/Authentication/LinkedIn`;
+    const token = this.authenticationService.getToken();
+    this.window.location.href = `${environment.SERVER_URL}/Authentication/LinkedIn?access_token=${token}`;
   }
 }
