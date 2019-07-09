@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'app/core/user/user.service';
+import { AccountService } from 'app/core/accounts/account.service';
+import { Account } from 'app/core/accounts/account.model';
 
 @Component({
   selector: 'app-header',
@@ -13,24 +15,40 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   @Output() onToggleSidebar = new EventEmitter<void>();
   isVerificationRequired = false;
+  isMenuShowing:boolean = false;
 
-  constructor(private userService: UserService) { }
+  accounts: Array<Account>;
+  totalBalance: number = 0;
+  constructor(private userService: UserService, private AccountService: AccountService) { }
 
   ngOnInit() {
     this.userService.verificationChanged$
-      .subscribe(value => {
-        this.isVerificationRequired = value;
-      });
+    .subscribe(value => {
+      this.isVerificationRequired = value;
+    });
 
     this.userService.authenticationChanged$
-      .subscribe(isAuthenticated => {
-        if (isAuthenticated != null) {
-          this.isAuthenticated = isAuthenticated;
-        }
-      });
+    .subscribe(isAuthenticated => {
+      if (isAuthenticated != null) {
+        this.isAuthenticated = isAuthenticated;
+      }
+    });
+
+    this.userService.menuShowing$
+    .subscribe( result => {
+        this.isMenuShowing = result;
+      }
+    )
+
+    this.AccountService.getUserAccounts().subscribe(
+      result => {this.accounts = result;
+      this.totalBalance = this.AccountService.getTotalAccountsBalance(result);
+    });
   }
 
-  toggleSidebar(): void {
+  toggleSidebar(showMenu: boolean): void {
     this.onToggleSidebar.emit();
+    this.userService.emitIsMenuShowing(showMenu);
+    // this.isMenuShowing = !this.isMenuShowing;
   }
 }

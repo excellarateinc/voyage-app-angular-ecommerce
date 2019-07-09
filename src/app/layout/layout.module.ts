@@ -9,6 +9,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ShellComponent } from './shell.component';
 import { ProfileIconComponent } from './header/profile-icon/profile-icon.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { CartIconComponent } from 'app/layout/header/cart-icon/cart-icon.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     HeaderComponent,
     SidebarComponent,
     ShellComponent,
-    ProfileIconComponent
+    ProfileIconComponent,
+    CartIconComponent
   ],
   exports: [ShellComponent]
 })

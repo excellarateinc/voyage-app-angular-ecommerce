@@ -14,7 +14,7 @@ import { SecurityHttpInterceptor } from './authentication/security-http-intercep
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

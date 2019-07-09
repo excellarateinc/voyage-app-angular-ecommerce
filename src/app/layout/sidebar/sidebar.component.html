@@ -1,73 +1,111 @@
-<mat-sidenav-container
-  [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
-  <mat-sidenav #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}"
-    *ngIf="isAuthenticated && !isVerificationRequired">
+<mat-sidenav-container [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
+  <mat-sidenav #sidenav mode="{{'over'}}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired && mobile">
+    <div style="justify-content: center; align-content: center;">
+        <img class="logo" src="../../../assets/images/ls-roundel-white.png" />
+        <div class="logo-text-mobile">LIGHTHOUSE SOFTWARE</div>
+    </div>
     <nav (click)="close()">
       <ul>
         <li>
-          <a class="nav-item-container" routerLink="/store" routerLinkActive="active"
-            [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">show_chart</i>
+          <a class="nav-item-container" (click)="toggleSidebar(false)"  routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Shop
           </a>
         </li>
         <li>
-          <a class="nav-item-container" routerLink="/orders" routerLinkActive="active"
-            [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">pie_chart</i>
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/orders" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Orders
           </a>
         </li>
+        <li>
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/profile" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
+            Profile
+          </a>
+        </li>
         <li *ngIf="isAdmin">
-          <a class="nav-item-container" routerLink="/admin/users" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/users" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">supervisor_account</i>
             User Admin
           </a>
         </li>
         <li *ngIf="isAdmin">
-          <a class="nav-item-container" routerLink="/admin/invite" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">send</i>
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/invite" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Invite
           </a>
         </li>
         <div class="nav-section-divider"></div>
         <li>
-          <a class="nav-item-container" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">help</i>
-            Help & Feedback
-          </a>
-        </li>
-        <li>
-          <a class="nav-item-container" routerLinkActive="active"
-            (click)="themeService.toggleDarkTheme(); $event.stopPropagation();"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/contact-us" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons mat-light">lightbulb_outline</i>
-            {{themeService.darkTheme ? 'Go Light' : 'Go Dark'}}
-          </a>
-        </li>
-        <li>
-          <a class="nav-item-container" routerLink="/contact-us" routerLinkActive="active"
-            [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">help</i>
             Contact Us
           </a>
         </li>
         <li>
-          <a class="nav-item-container" routerLink="/about-us" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/about-us" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
-            <i class="material-icons">help</i>
             About Lighthouse
           </a>
         </li>
-        <mat-divider></mat-divider>
       </ul>
     </nav>
-    <div>
-      <img src="./favicon.ico" width="20px" style="padding-left:30px; position: absolute; margin: auto;" />
-      <span style="margin-left:55px;">Powered by Voyage</span>
+    <div class="voyage-icon-container-mobile">
+     Powered by <img src="../../../assets/images/voyage-logo-vert-white.png" class="voyage-icon-mobile"/>
     </div>
   </mat-sidenav>
+
+  <mat-sidenav #sidenav class="desktop" mode="{{ 'side' }}" opened="{{ 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired && !mobile">
+      <div style="justify-content: center; align-content: center;">
+          <img class="logo" src="../../../assets/images/ls-roundel-black.png"/>
+          <div class="logo-text-desktop">LIGHTHOUSE SOFTWARE</div>
+      </div>
+      <nav (click)="close()">
+        <ul class="desktop-nav">
+            <li>
+                <a class="nav-item-container-desktop" routerLink="/store" routerLinkActive="active-desktop" [ngClass]="{'dark': themeService.darkTheme}">
+                  Shop
+                </a>
+              </li>
+              <li>
+                <a class="nav-item-container-desktop" routerLink="/orders" routerLinkActive="active-desktop" [ngClass]="{'dark': themeService.darkTheme}">
+                  Orders
+                </a>
+              </li>
+              <li>
+                <a class="nav-item-container-desktop" routerLink="/profile" routerLinkActive="active-desktop" [ngClass]="{'dark': themeService.darkTheme}">
+                  Profile
+                </a>
+              </li>
+              <li *ngIf="isAdmin">
+                <a class="nav-item-container-desktop" routerLink="/admin/users" routerLinkActive="active-desktop"
+                  [ngClass]="{'dark': themeService.darkTheme}">
+                  User Admin
+                </a>
+              </li>
+              <li *ngIf="isAdmin">
+                <a class="nav-item-container-desktop" routerLink="/admin/invite" routerLinkActive="active-desktop" [ngClass]="{'dark': themeService.darkTheme}">
+                  Invite
+                </a>
+              </li>
+              <div class="nav-section-divider"></div>
+              <li>
+                <a class="nav-item-container-desktop" routerLink="/contact-us" routerLinkActive="active-desktop"
+                  [ngClass]="{'dark': themeService.darkTheme}">
+                  Contact Us
+                </a>
+              </li>
+              <li>
+                <a class="nav-item-container-desktop" routerLink="/about-us" routerLinkActive="active-desktop"
+                  [ngClass]="{'dark': themeService.darkTheme}">
+                  About Lighthouse
+                </a>
+              </li>
+        </ul>
+      </nav>
+      <div style="width: 100%;">
+        <span class="voyage-icon-container-desktop">Powered by Voyage</span>
+        <img src="./favicon.ico" class="voyage-icon-desktop" />
+      </div>
+    </mat-sidenav>
+
 
   <div class="main-content full-height">
     <router-outlet></router-outlet>
