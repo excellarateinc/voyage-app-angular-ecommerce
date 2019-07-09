@@ -1,5 +1,5 @@
 <mat-sidenav-container [ngClass]="{ 'sidenav-height': isAuthenticated && !isVerificationRequired, 'sidenav-height-full': !isAuthenticated || isVerificationRequired }">
-  <mat-sidenav [ngClass]="{ 'desktop': !mobile }" #sidenav mode="{{ mobile ? 'over' : 'side'}}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired">
+  <mat-sidenav [ngClass]="{ 'desktop': !mobile }" #sidenav mode="{{ mobile ? 'over' : 'side' }}" opened="{{ mobile ? 'false' : 'true' }}" *ngIf="isAuthenticated && !isVerificationRequired">
     <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
       <img class="logo" src="/assets/images/ls-roundel-white.png" />
       <div class="logo-text">LIGHTHOUSE SOFTWARE</div>
