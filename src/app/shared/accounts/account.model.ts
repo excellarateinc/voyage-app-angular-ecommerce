@@ -1,11 +1,10 @@
-import { Transaction } from '../accounts/transaction.model';
+import { Transaction } from './transaction.model';
 
 export class Account {
   accountId: string;
   accountNumber: string;
   name: string;
   type: string;
-  balance: string;
+  balance: number;
   transactions: Array<Transaction>;
 }
-

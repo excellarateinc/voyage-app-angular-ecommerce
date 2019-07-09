@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileImageDirective } from './profile-image.directive';
 import { FileDownloadService } from './services/file-download.service';
 import { NotificationService } from './services/notification.service';
+import { AccountService } from './accounts/account.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { NotificationService } from './services/notification.service';
   providers: [
     FileDownloadService,
     NotificationService,
-    NotificationService
+    NotificationService,
+    AccountService
   ],
   exports: [ProfileImageDirective]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'app/core/user/user.service';
-import { AccountService } from 'app/core/accounts/account.service';
-import { Account } from 'app/core/accounts/account.model';
+import { AccountService } from 'app/shared/accounts/account.service';
+import { Account } from 'app/shared/accounts/account.model';
 
 @Component({
   selector: 'app-header',
@@ -15,40 +15,42 @@ export class HeaderComponent implements OnInit {
   isAuthenticated = false;
   @Output() onToggleSidebar = new EventEmitter<void>();
   isVerificationRequired = false;
-  isMenuShowing:boolean = false;
+  isMenuShowing = false;
+  accounts: Account[];
+  totalBalance = 0;
 
-  accounts: Array<Account>;
-  totalBalance: number = 0;
-  constructor(private userService: UserService, private AccountService: AccountService) { }
+  constructor(private userService: UserService, private accountService: AccountService) { }
 
   ngOnInit() {
     this.userService.verificationChanged$
-    .subscribe(value => {
-      this.isVerificationRequired = value;
-    });
+      .subscribe(value => this.isVerificationRequired = value);
 
     this.userService.authenticationChanged$
-    .subscribe(isAuthenticated => {
-      if (isAuthenticated != null) {
-        this.isAuthenticated = isAuthenticated;
-      }
-    });
+      .subscribe(isAuthenticated => {
+        if (isAuthenticated != null) {
+          this.isAuthenticated = isAuthenticated;
+          if (this.isAuthenticated) {
+            this.getAccounts();
+          }
+        }
+      });
 
     this.userService.menuShowing$
-    .subscribe( result => {
-        this.isMenuShowing = result;
-      }
-    )
-
-    this.AccountService.getUserAccounts().subscribe(
-      result => {this.accounts = result;
-      this.totalBalance = this.AccountService.getTotalAccountsBalance(result);
-    });
+      .subscribe(isMenuShowing => this.isMenuShowing = isMenuShowing);
   }
 
   toggleSidebar(showMenu: boolean): void {
     this.onToggleSidebar.emit();
     this.userService.emitIsMenuShowing(showMenu);
-    // this.isMenuShowing = !this.isMenuShowing;
+  }
+
+  // TODO: Move into an account balance component.
+  private getAccounts(): void {
+    this.totalBalance = 0;
+    this.accountService.getUserAccounts()
+      .subscribe(result => {
+        this.accounts = result;
+        this.totalBalance = this.accountService.getTotalAccountsBalance(result);
+      });
   }
 }

@@ -47,14 +47,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.working = true;
-    const login = this.loginForm.value as Login;
-    this.loginService.login(login)
+    const phone = this.loginForm.value.phone;
+    this.loginService.sendLoginLink(phone, this.isMobile)
       .subscribe(result => {
-        if (this.redirectUrl) {
-          this.router.navigate([this.redirectUrl]);
-          return;
-        }
-        this.router.navigate(['store']);
+        this.router.navigate(['authentication/sms-confirmation']);
         this.working = false;
       }, error => {
         this.working = false;
@@ -62,14 +58,9 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
   }
 
-  linkedInLogin(): void {
-    this.window.location.href = `${environment.SERVER_URL}/authentication/linkedin`;
-  }
-
   private initializeForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      phone: ['', Validators.required]
     });
   }
 }

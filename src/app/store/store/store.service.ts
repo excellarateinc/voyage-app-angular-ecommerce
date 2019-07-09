@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Product } from '../store/product.model';
+import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
 import { AddToCart } from './addToCart.model';
 
