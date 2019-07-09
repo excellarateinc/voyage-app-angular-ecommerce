@@ -59,7 +59,7 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
     }
     this.working = true;
     const code = this.codeForm.value.code;
-    this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${code}&isMobile=true`;
+    this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${code}&isMobile=false`;
   }
 
   private initializeForm(): void {
