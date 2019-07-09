@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'app/core/user/user.service';
-import { AccountService } from 'app/core/accounts/account.service';
-import { Account } from 'app/core/accounts/account.model';
+import { AccountService } from 'app/shared/accounts/account.service';
+import { Account } from 'app/shared/accounts/account.model';
 
 @Component({
   selector: 'app-header',
@@ -46,6 +46,7 @@ export class HeaderComponent implements OnInit {
 
   // TODO: Move into an account balance component.
   private getAccounts(): void {
+    this.totalBalance = 0;
     this.accountService.getUserAccounts()
       .subscribe(result => {
         this.accounts = result;

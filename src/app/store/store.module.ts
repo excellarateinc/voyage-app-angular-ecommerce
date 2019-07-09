@@ -8,8 +8,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { StoreService } from 'app/core/store/store.service';
-import { StoreResolverService } from 'app/core/store/store-resolver.service';
+import { StoreService } from './store/store.service';
+import { StoreResolverService } from './store/store-resolver.service';
 
 @NgModule({
   imports: [

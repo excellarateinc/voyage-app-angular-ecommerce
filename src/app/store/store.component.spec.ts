@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { StoreService } from 'app/core/store/store.service';
+import { StoreService } from './store/store.service';
 import { Observable } from 'rxjs';
 
 

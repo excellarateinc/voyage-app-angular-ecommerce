@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Account } from '../accounts/account.model';
+import { Account } from './account.model';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AccountService {
-  totalBalance: number = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -14,10 +13,11 @@ export class AccountService {
     return this.http.get<Array<Account>>(`${environment.API_URL}/banking/accounts`);
   }
 
-  getTotalAccountsBalance(accounts :Array<Account>) {
+  getTotalAccountsBalance(accounts: Array<Account>) {
+    let balance = 0;
     accounts.forEach(account => {
-      this.totalBalance = +this.totalBalance + +account.balance
+      balance += account.balance;
     });
-    return this.totalBalance;
+    return balance;
   }
 }

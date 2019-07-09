@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
-import { Product } from '../../core/store/product.model';
-import { StoreService } from '../../core/store/store.service';
-import { AddToCart } from 'app/core/store/addToCart.model';
+import { Product } from '../store/product.model';
+import { StoreService } from '../store/store.service';
+import { AddToCart } from '../store/addToCart.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,7 +33,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(
         (data) => {
           this.errors = [];
-          if (data.resolvedData.hasOwnProperty("productId")) {
+          if (data.resolvedData.hasOwnProperty('productId')) {
             this.product = data.resolvedData;
             this.shoppingForm.get('productId').setValue(this.product.productId);
             if (this.product.sizes && this.product.sizes.length > 0) {
