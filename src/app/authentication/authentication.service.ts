@@ -63,7 +63,8 @@ export class AuthenticationService {
 
     const paramLength = 'access_token='.length;
     const token = this.window.location.href.substring(tokenIndex + paramLength, this.window.location.href.indexOf('&'));
-    this.location.replaceState('');
+    const pathWithoutHash = this.location.path(false).split('#')[0];
+    this.location.replaceState(pathWithoutHash);
     return token;
   }
 

@@ -25,7 +25,6 @@ export class LinkedInSyncComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.initializeForm();
     this.isMobile = this.mobileService.isMobile();
     this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
       this.isMobile = isMobile;
@@ -37,17 +36,6 @@ export class LinkedInSyncComponent implements OnInit, OnDestroy {
   }
 
   syncWithLinkedIn(): void {
-    if (this.codeForm.invalid) {
-      return;
-    }
-    this.working = true;
-    const code = this.codeForm.value.code;
-    this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${code}&isMobile=true`;
-  }
-
-  private initializeForm(): void {
-    this.codeForm = this.formBuilder.group({
-      code: ['', Validators.required]
-    });
+    this.window.location.href = `${environment.SERVER_URL}/Authentication/LinkedIn`;
   }
 }

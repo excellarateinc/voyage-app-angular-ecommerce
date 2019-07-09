@@ -8,6 +8,7 @@ import { PublicGuardService } from './public-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { SmsConfirmationComponent } from './sms-confirmation/sms-confirmation.component';
 import { AuthGuardService } from './auth-guard.service';
+import { LinkedInSyncComponent } from './linked-in-sync/linked-in-sync.component';
 
 const authRoutes: Routes = [
   { path: 'authentication/login', component: LoginComponent, canActivate: [PublicGuardService] },
@@ -15,7 +16,7 @@ const authRoutes: Routes = [
   { path: 'authentication/verification', component: VerificationComponent },
   { path: 'authentication/forgot-password', component: ForgotPasswordComponent, canActivate: [PublicGuardService] },
   { path: 'authentication/sms-confirmation', component: SmsConfirmationComponent, canActivate: [PublicGuardService] },
-  { path: 'authentication/linked-in-sync', component: SmsConfirmationComponent, canActivate: [AuthGuardService] }
+  { path: 'authentication/linked-in-sync', component: LinkedInSyncComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({
