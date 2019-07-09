@@ -5,7 +5,7 @@
       <div class="logo-text">LIGHTHOUSE SOFTWARE</div>
     </div>
     <nav (click)="close()">
-      <ul fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <ul>
         <li>
           <a class="nav-item-container" (click)="toggleSidebar(false)"  routerLink="/store" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Shop
@@ -47,9 +47,11 @@
         </li>
       </ul>
     </nav>
+
     <div class="powered-by-label" fxLayout="row" fxLayoutAlign="center center">
      Powered by <img src="/assets/images/voyage-logo-vert-white.png" class="voyage-icon"/>
     </div>
+
   </mat-sidenav>
 
   <div class="main-content full-height">

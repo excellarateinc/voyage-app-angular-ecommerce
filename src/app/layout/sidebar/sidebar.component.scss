@@ -34,7 +34,10 @@ mat-sidenav ul {
 }
 
 .nav-item-container {
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  display: flex;
   font-size: 26px;
   font-weight: 400;
   height: 43px;
