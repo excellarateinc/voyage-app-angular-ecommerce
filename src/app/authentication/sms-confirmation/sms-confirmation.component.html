@@ -1,0 +1,39 @@
+<div class="masthead-mobile" fxLayoutAlign="center center">
+  <div fxLayout="column" fxLayoutGap="30px" class="form-container">
+    <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="20px">
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
+        <h3>LIGHTHOUSE SOFTWARE</h3>
+      </div>
+    </div>
+    <div *ngIf="isMobile" fxLayout="column" fxLayoutAlign="center center">
+      <span>You will receive a magic link shortly.</span>
+      <span>If you have any issues, contact</span>
+      <span>hello@lighthousesoftware.com</span>
+    </div>
+
+    <div *ngIf="!isMobile" fxLayout="column" fxLayoutAlign="center center">
+      <span>You will receive a code shortly.</span>
+      <span>If you have any issues, contact</span>
+      <span>hello@lighthousesoftware.com</span>
+    </div>
+    <form [formGroup]="codeForm" (ngSubmit)="submitCode()" novalidate fxLayout="column" fxLayoutGap="10px" *ngIf="!isMobile">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="30">
+          <input matInput placeholder="Code" formControlName="code" required>
+          <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
+            Code is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxLayoutGap="25px">
+        <div fxLayout="row" fxLayoutAlign="center">
+          <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+          <button fxFlex="30" color="primary" mat-raised-button type="submit" [disabled]="working">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

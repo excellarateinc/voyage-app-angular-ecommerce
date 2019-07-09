@@ -15,6 +15,8 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { PublicGuardService } from './public-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ForgotPasswordService } from './forgot-password/forgot-password.service';
+import { SmsConfirmationComponent } from './sms-confirmation/sms-confirmation.component';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -22,13 +24,15 @@ import { ForgotPasswordService } from './forgot-password/forgot-password.service
     ReactiveFormsModule,
     AngularMaterialModule,
     FlexLayoutModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    SharedModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
     VerificationComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    SmsConfirmationComponent,
   ],
   providers: [
     AuthenticationService,
@@ -37,7 +41,7 @@ import { ForgotPasswordService } from './forgot-password/forgot-password.service
     RegisterService,
     VerificationService,
     LoginService,
-    ForgotPasswordService
+    ForgotPasswordService,
   ]
 })
 export class AuthenticationModule { }

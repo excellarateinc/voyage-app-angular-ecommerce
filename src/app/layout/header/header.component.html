@@ -1,13 +1,15 @@
 <mat-toolbar color="primary" *ngIf="isAuthenticated && !isVerificationRequired">
-  <button class="mat-button menu-button" (click)="toggleSidebar()" *ngIf="isMobile">
+  <button mat-icon-button class="menu-button" (click)="toggleSidebar(true)" *ngIf="isMobile && !isMenuShowing">
     <mat-icon class="clickable menu-icon">menu</mat-icon>
   </button>
+  <button mat-icon-button class="menu-button" (click)="toggleSidebar(false)" *ngIf="isMobile && isMenuShowing">
+    <mat-icon class="clickable menu-icon">clear</mat-icon>
+  </button>
   <span routerLink="/" class="clickable">
-    <span class="nav-item-container" style="color:white;">
-      Sample App
-    </span>
   </span>
   <span class="fill-space"></span>
-  <app-notifications-icon></app-notifications-icon>
-  <app-profile-icon></app-profile-icon>
+  <span class="balance-display" *ngIf="!isMenuShowing">
+    {{ totalBalance | currency }} <br/><span class="balance-label">BALANCE</span>
+  </span>
+  <app-cart-icon class="cart-icon" routerLink="/cart" *ngIf=(!isMenuShowing)></app-cart-icon>
 </mat-toolbar>

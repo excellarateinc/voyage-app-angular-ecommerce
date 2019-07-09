@@ -2,50 +2,26 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <div fxLayout="column" fxFlexAlign="center">
-        <h1>Sample App</h1>
-        <span style="color: gray;">New to Sample App? <a routerLink="/authentication/register">Sign Up</a></span>
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
+        <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutGap="10px" novalidate>
         <mat-form-field>
           <span matPrefix>
             <mat-icon class="icon-prefix-large">person_outline</mat-icon>
           </span>
-          <input matInput placeholder="Username" formControlName="username" required>
-          <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-            Username is required
+          <input matInput placeholder="Mobile Phone" formControlName="phone" required>
+          <mat-error *ngIf="loginForm.controls['phone'].hasError('required')">
+            Mobile Phone is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <span matPrefix>
-            <mat-icon class="icon-prefix-large">lock_outline</mat-icon>
-          </span>
-          <input matInput placeholder="Password" formControlName="password" type="password" required>
-          <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-            Password is required
-          </mat-error>
-        </mat-form-field>
-        <div fxLayout="row">
-          <span fxFlex></span>
-          <span class="forgot-password"><a routerLink="/authentication/forgot-password">Forgot password?</a></span>
-        </div>
-        <div *ngIf="loginFailed">
-          <span class="error">
-            Invalid username or password.
-          </span>
-        </div>
         <div fxLayout="column" fxLayoutGap="20px">
           <div fxLayout="row" fxLayoutAlign="center">
             <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
           </div>
           <div fxLayout="row" fxLayoutGap="20px">
             <button fxFlex="100" (click)="login()" color="primary" mat-raised-button type="submit" [disabled]="working">LOGIN</button>
-          </div>
-          <div fxLayout="row" fxFlexAlign="center" style="color: gray;">OR</div>
-          <div fxLayout="row" fxFlexAlign="center" fxLayoutGap="10px">
-            <a (click)="linkedInLogin()">
-              <img src="/assets/images/linkedin-small.png" class="linkedin-button">
-            </a>
           </div>
         </div>
       </form>
@@ -57,55 +33,24 @@
 <div class="masthead-mobile" *ngIf="isMobile" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="20px">
-      <div class="app-title">
-        Sample App
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
+        <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
-      <span class="white">
-        New to Sample App? <a class="white" routerLink="/authentication/register">Sign Up</a>
-      </span>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate fxLayout="column" fxLayoutGap="10px">
       <mat-form-field class="light-input">
-        <span matPrefix>
-          <mat-icon class="icon-prefix">person_outline</mat-icon>
-        </span>
-        <input matInput placeholder="Username" formControlName="username" required>
-        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
-          Username is required
+        <input matInput placeholder="Mobile Number" formControlName="phone" required>
+        <mat-error *ngIf="loginForm.controls['phone'].hasError('required')">
+          Mobile Number is required
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="light-input">
-        <span matPrefix>
-          <mat-icon class="icon-prefix">lock_outline</mat-icon>
-        </span>
-        <input matInput placeholder="Password" formControlName="password" type="password" required>
-        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-          Password is required
-        </mat-error>
-      </mat-form-field>
-      <div fxLayout="row">
-        <span fxFlex></span>
-        <span class="forgot-password">
-          <a class="white" routerLink="/authentication/forgot-password">Forgot password?</a>
-        </span>
-      </div>
-      <div *ngIf="loginFailed">
-        <span class="white">
-          Invalid username or password.
-        </span>
-      </div>
       <div fxLayout="column" fxLayoutGap="25px">
         <div fxLayout="row" fxLayoutAlign="center">
           <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
         </div>
         <div fxLayout="row" fxLayoutGap="20px">
           <button fxFlex="100" color="primary" mat-raised-button type="submit" [disabled]="working">Log In</button>
-        </div>
-        <div fxLayout="row" fxFlexAlign="center" class="white">OR</div>
-        <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="10px">
-          <a (click)="linkedInLogin()">
-            <img src="/assets/images/linkedin-small.png" class="linkedin-button">
-          </a>
         </div>
       </div>
     </form>

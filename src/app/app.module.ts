@@ -15,7 +15,7 @@ import { CartModule } from './core/store/cart/cart.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

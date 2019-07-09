@@ -19,8 +19,9 @@ $custom-typography: mat-typography-config(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$voyage-app-primary: mat-palette($mat-indigo);
-$voyage-app-accent: mat-palette($mat-grey, A200, A100, A400);
+
+$voyage-app-primary: mat-palette($mat-deep-orange, 600, 300, 900);
+$voyage-app-accent: mat-palette($mat-blue, 800);
 
 // The warn palette is optional (defaults to red).
 $voyage-app-warn: mat-palette($mat-red);

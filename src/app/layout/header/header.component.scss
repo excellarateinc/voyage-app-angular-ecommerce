@@ -7,10 +7,33 @@ app-notifications-icon {
   margin-left: 5px;
 }
 
+.cart-icon {
+  margin: 1% 0 0 0;
+}
+
 .menu-icon {
   vertical-align: middle;
 }
 
 .menu-button {
-  margin-left:-20px;
+  margin-left:-10px;
+  color: inherit;
 }
+
+.balance-display {
+  font-size:18px;
+  color:white;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  margin: 0 3% .05% 0;
+  line-height: initial;
+}
+
+.balance-label {
+  font-size: 12px;
+  float: right;
+  padding-right: 4%;
+  font-weight: 200;
+}
+

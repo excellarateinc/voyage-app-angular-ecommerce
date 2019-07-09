@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Lato, monospace',
+  $display-2: mat-typography-level(45px, 48px, 300),
+  $body-1: mat-typography-level(15px, 22px, 300),
+  $headline: mat-typography-level(24px, 32px, 300)
+);
+
+@include mat-core($custom-typography);
+
+$e-commerce-app-primary: mat-palette($mat-indigo);
+$e-commerce-app-accent: mat-palette($mat-grey, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$e-commerce-app-warn: mat-palette($mat-red, A600);

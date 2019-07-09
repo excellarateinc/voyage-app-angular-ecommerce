@@ -97,7 +97,7 @@ https://github.com/angular/material2/issues/998 */
 }
 
 .masthead {
-  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg);
+  background: white; //linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg);
   background-position: center top;
   background-size: cover;
   margin-left: -10px;
@@ -114,7 +114,7 @@ https://github.com/angular/material2/issues/998 */
   left: 0;
   max-width: 100% !important;
   margin: 0 !important;
-  background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg) top left no-repeat;
+  background: white; //linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg) top left no-repeat;
   background-size: cover;
   overflow-y: auto;
   height: 100%;
@@ -124,46 +124,61 @@ https://github.com/angular/material2/issues/998 */
   padding: 20px;
 }
 
+.success-snack {
+  background-color: green !important;
+}
+
+.error-snack {
+  background-color: red !important;
+}
+
 /* Override material colors for login/registration */
-.light-input .mat-form-field-label {
-  color: white !important;
-}
+// .light-input .mat-form-field-label {
+//   color: white !important;
+// }
 
-.light-input .mat-form-field-underline {
-  background-color: white !important;
-}
+// .light-input .mat-form-field-underline {
+//   background-color: white !important;
+// }
 
-.light-input .mat-form-field-ripple {
-  background-color: white !important;
-}
+// .light-input .mat-form-field-ripple {
+//   background-color: white !important;
+// }
 
-.light-input .mat-error {
-  color: white !important;
-}
+// .light-input .mat-error {
+//   color: white !important;
+// }
 
-.light-input .mat-placeholder-required {
-  color: white !important;
-}
+// .light-input .mat-placeholder-required {
+//   color: white !important;
+// }
 
 .light-input .mat-input-element {
-  color: white !important;
+  font-family: Lato;
+  font-weight: 300;
+  font-size: 20px;
 }
 
-.light-input .mat-select-trigger {
-  color: white !important;
+.light-input .mat-form-field {
+  height: 60px;
+  width: 550px;
 }
 
-.light-input .mat-select-arrow {
-  color: white !important;
-}
+// .light-input .mat-select-trigger {
+//   color: white !important;
+// }
 
-.light-input .mat-select-underline {
-  background: white !important;
-}
+// .light-input .mat-select-arrow {
+//   color: white !important;
+// }
 
-.light-input .mat-select-value-text {
-  color: white !important;
-}
+// .light-input .mat-select-underline {
+//   background: white !important;
+// }
+
+// .light-input .mat-select-value-text {
+//   color: white !important;
+// }
 
 /* Pure CSS spinner, used on page load when Angular Material hasn't loaded yet. */
 .loading-spinner {
