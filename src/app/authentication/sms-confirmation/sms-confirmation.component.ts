@@ -13,8 +13,8 @@ import { NotificationService } from 'app/shared/services/notification.service';
 })
 export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestroy {
   codeForm: FormGroup;
-  loginFailed = false;
   isMobile = false;
+  working = false;
   private watcher: Subscription;
 
   constructor(
@@ -57,6 +57,7 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
     if (this.codeForm.invalid) {
       return;
     }
+    this.working = true;
     const code = this.codeForm.value.code;
     this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${code}`;
   }
