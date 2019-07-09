@@ -9,28 +9,18 @@ import { AuthenticationService } from '../authentication.service';
   templateUrl: './linked-in-sync.component.html',
   styleUrls: ['./linked-in-sync.component.scss']
 })
-export class LinkedInSyncComponent implements OnInit, OnDestroy {
+export class LinkedInSyncComponent implements OnInit {
   isMobile = false;
   working = false;
-  private watcher: Subscription;
 
   constructor(
     @Inject('Window') private window: any,
-    private mobileService: MobileService,
     private authenticationService: AuthenticationService) { }
 
-  ngOnInit(): void {
-    this.isMobile = this.mobileService.isMobile();
-    this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
-      this.isMobile = isMobile;
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.watcher.unsubscribe();
-  }
+  ngOnInit(): void { }
 
   syncWithLinkedIn(): void {
+    this.working = true;
     const token = this.authenticationService.getToken();
     this.window.location.href = `${environment.SERVER_URL}/Authentication/LinkedIn?access_token=${token}`;
   }
