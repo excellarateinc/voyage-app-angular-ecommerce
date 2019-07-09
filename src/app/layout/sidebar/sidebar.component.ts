@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit {
       this.sidenav.close();
     } else {
       this.sidenav.open();
+      this.userService.emitIsMenuShowing(false);
     }
   }
   @Input()
@@ -30,7 +31,6 @@ export class SidebarComponent implements OnInit {
   toggleTheme: false;
   isAdmin = false;
   isVerificationRequired = false;
-  isMenuShowing:boolean;
 
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
