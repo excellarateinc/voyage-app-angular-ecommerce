@@ -1,9 +1,8 @@
-<div class="fill-space;" class="header-accent-bar"></div>
 <mat-toolbar color="primary" *ngIf="isAuthenticated && !isVerificationRequired">
-  <button class="menu-button" (click)="toggleSidebar(true)" *ngIf="isMobile && !isMenuShowing">
+  <button mat-icon-button class="menu-button" (click)="toggleSidebar(true)" *ngIf="isMobile && !isMenuShowing">
     <mat-icon class="clickable menu-icon">menu</mat-icon>
   </button>
-  <button class="menu-button" (click)="toggleSidebar(false)" *ngIf="isMobile && isMenuShowing">
+  <button mat-icon-button class="menu-button" (click)="toggleSidebar(false)" *ngIf="isMobile && isMenuShowing">
     <mat-icon class="clickable menu-icon">clear</mat-icon>
   </button>
   <span routerLink="/" class="clickable">

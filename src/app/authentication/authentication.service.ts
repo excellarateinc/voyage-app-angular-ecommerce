@@ -16,20 +16,20 @@ export class AuthenticationService {
 
   getToken(): string {
     // Attempt to retrieve the token from session storage.
-    let token = localStorage.getItem(this.localStorageTokenKey);
+    let token = sessionStorage.getItem(this.localStorageTokenKey);
     // If not in session storage, attempt to get it from the URL.
     if (!token) {
       token = this.getTokenFromUrl();
       // If it was in the URL, save it to session storage.
       if (token) {
-        localStorage.setItem(this.localStorageTokenKey, token);
+        sessionStorage.setItem(this.localStorageTokenKey, token);
       }
     }
     return token;
   }
 
   setToken(token: string): void {
-    localStorage.setItem(this.localStorageTokenKey, token);
+    sessionStorage.setItem(this.localStorageTokenKey, token);
   }
 
   isAuthenticated(): boolean {
@@ -46,7 +46,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.localStorageTokenKey);
+    sessionStorage.removeItem(this.localStorageTokenKey);
     this.router.navigate(['authentication/login']);
   }
 

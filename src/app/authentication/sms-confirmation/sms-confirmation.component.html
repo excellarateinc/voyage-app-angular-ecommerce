@@ -11,16 +11,24 @@
       <span>If you have any issues, contact</span>
       <span>hello@lighthousesoftware.com</span>
     </div>
+
+    <div *ngIf="!isMobile" fxLayout="column" fxLayoutAlign="center center">
+      <span>You will receive a code shortly.</span>
+      <span>If you have any issues, contact</span>
+      <span>hello@lighthousesoftware.com</span>
+    </div>
     <form [formGroup]="codeForm" (ngSubmit)="submitCode()" novalidate fxLayout="column" fxLayoutGap="10px" *ngIf="!isMobile">
-      <mat-form-field class="light-input">
-        <input matInput placeholder="Code" formControlName="code" required>
-        <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
-          Code is required
-        </mat-error>
-      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="30">
+          <input matInput placeholder="Code" formControlName="code" required>
+          <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
+            Code is required
+          </mat-error>
+        </mat-form-field>
+      </div>
       <div fxLayout="column" fxLayoutGap="25px">
-        <div fxLayout="row" fxLayoutGap="20px">
-          <button fxFlex="100" color="primary" mat-raised-button type="submit">Log In</button>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+          <button fxFlex="30" color="primary" mat-raised-button type="submit">Submit</button>
         </div>
       </div>
     </form>
