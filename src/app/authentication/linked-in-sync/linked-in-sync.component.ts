@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { MobileService } from '../../core/mobile.service';
 import { environment } from 'environments/environment';
 import { AuthenticationService } from '../authentication.service';
 
