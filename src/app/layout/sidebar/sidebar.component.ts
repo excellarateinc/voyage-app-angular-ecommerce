@@ -35,11 +35,9 @@ export class SidebarComponent implements OnInit {
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this.userService.userChanged$
+    this.userService.getCurrentUser()
       .subscribe(user => {
-        if (user) {
-          this.isAdmin = user.roles.indexOf('Administrator') !== -1;
-        }
+        this.isAdmin = user.roles.indexOf('Administrator') !== -1;
       });
 
     this.userService.verificationChanged$

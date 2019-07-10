@@ -56,24 +56,17 @@ mat-sidenav ul {
   }
 
   &:hover {
-    background-color: #fff;
-
-    &.dark {
-      background-color: #565656;
-    }
+    background-color: #f4511e;
+    color: #fff;
   }
 }
 
 .active {
-  background-color: #bf360c;
-
-  &.dark {
-    background-color: #565656;
-  }
+  background-color: #f4511e;
 }
 
 a {
-  color: inherit;
+  color: white;
 
   &:visited {
     color: white;
