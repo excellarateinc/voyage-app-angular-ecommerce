@@ -34,11 +34,6 @@ export class SidebarComponent implements OnInit {
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser()
-      .subscribe(user => {
-        this.isAdmin = user.roles.indexOf('Administrator') !== -1;
-      });
-
     this.userService.verificationChanged$
       .subscribe(value => {
         this.isVerificationRequired = value;
@@ -48,10 +43,11 @@ export class SidebarComponent implements OnInit {
       .subscribe(isAuthenticated => {
         if (isAuthenticated != null) {
           this.isAuthenticated = isAuthenticated;
+          if (this.isAuthenticated) {
+            this.getCurrentUser();
+          }
         }
       });
-
-      this.sidenavClass = this.mobile;
   }
 
   toggle(): void {
@@ -67,5 +63,12 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar(showMenu: boolean): void {
     this.userService.emitIsMenuShowing(showMenu);
+  }
+
+  private getCurrentUser(): void {
+    this.userService.getCurrentUser()
+      .subscribe(user => {
+        this.isAdmin = user.roles.indexOf('Administrator') !== -1;
+      });
   }
 }
