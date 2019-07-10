@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: 'about-us', loadChildren: 'app/about-us/about-us.module#AboutUsModule' },
   { path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule' },
   { path: 'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule' },
-  { path: 'cart', loadChildren: 'app/core/store/cart/cart.module#CartModule', canActivate: [AuthGuardService] }
+  { path: 'cart', loadChildren: 'app/store/cart/cart.module#CartModule', canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

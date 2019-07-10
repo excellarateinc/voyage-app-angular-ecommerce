@@ -11,7 +11,6 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { SecurityHttpInterceptor } from './authentication/security-http-interceptor';
-import { CartModule } from './core/store/cart/cart.module';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { CartModule } from './core/store/cart/cart.module';
     AppRoutingModule,
     CoreModule,
     LayoutModule,
-	AuthenticationModule,
-	CartModule
+	AuthenticationModule
   ],
   providers: [
     {

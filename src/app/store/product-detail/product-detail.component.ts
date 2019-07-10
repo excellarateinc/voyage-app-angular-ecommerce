@@ -66,7 +66,7 @@ export class ProductDetailComponent implements OnInit {
     }
     this.loading = true;
     const quantity = this.shoppingForm.value.quantity as number;
-
+    this.storeService.emitCartLength(quantity)
     this.storeService.addToCart(this.shoppingForm.value as AddToCart)
       .subscribe(result => {
         this.router.navigate(['/store']);

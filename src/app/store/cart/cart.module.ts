@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart.component';
 import { CartRoutingModule } from './cart-routing.module';
-import { ExamplesModule } from '../../../examples/examples.module';
-import { AngularMaterialModule } from '../../../angular-material/angular-material.module';
-import { FlexLayoutModule } from '../../../../../node_modules/@angular/flex-layout';
+import { AngularMaterialModule } from '../../angular-material/angular-material.module';
+import { FlexLayoutModule } from '../../../../node_modules/@angular/flex-layout';
+import { StoreService } from '../store/store.service';
 
 
 @NgModule({
@@ -12,9 +12,12 @@ import { FlexLayoutModule } from '../../../../../node_modules/@angular/flex-layo
 		CommonModule,
 		AngularMaterialModule,
 		CartRoutingModule,
-		ExamplesModule,
 		FlexLayoutModule
 	],
-	declarations: [CartComponent]
+  declarations: [CartComponent],
+  providers: [
+    StoreService,
+  ],
+
 })
 export class CartModule { }
