@@ -17,6 +17,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ForgotPasswordService } from './forgot-password/forgot-password.service';
 import { SmsConfirmationComponent } from './sms-confirmation/sms-confirmation.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { LinkedInSyncComponent } from './linked-in-sync/linked-in-sync.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { SharedModule } from 'app/shared/shared.module';
     VerificationComponent,
     ForgotPasswordComponent,
     SmsConfirmationComponent,
+    LinkedInSyncComponent
   ],
   providers: [
     AuthenticationService,

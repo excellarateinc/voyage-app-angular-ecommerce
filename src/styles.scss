@@ -32,11 +32,6 @@ mat-card {
   mat-card {
     margin: 5px;
   }
-
-  .main-content {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
 }
 
 /*
@@ -133,27 +128,6 @@ https://github.com/angular/material2/issues/998 */
   background-color: red !important;
 }
 
-/* Override material colors for login/registration */
-// .light-input .mat-form-field-label {
-//   color: white !important;
-// }
-
-// .light-input .mat-form-field-underline {
-//   background-color: white !important;
-// }
-
-// .light-input .mat-form-field-ripple {
-//   background-color: white !important;
-// }
-
-// .light-input .mat-error {
-//   color: white !important;
-// }
-
-// .light-input .mat-placeholder-required {
-//   color: white !important;
-// }
-
 .light-input .mat-input-element {
   font-family: Lato;
   font-weight: 300;
@@ -164,22 +138,6 @@ https://github.com/angular/material2/issues/998 */
   height: 60px;
   width: 550px;
 }
-
-// .light-input .mat-select-trigger {
-//   color: white !important;
-// }
-
-// .light-input .mat-select-arrow {
-//   color: white !important;
-// }
-
-// .light-input .mat-select-underline {
-//   background: white !important;
-// }
-
-// .light-input .mat-select-value-text {
-//   color: white !important;
-// }
 
 /* Pure CSS spinner, used on page load when Angular Material hasn't loaded yet. */
 .loading-spinner {
