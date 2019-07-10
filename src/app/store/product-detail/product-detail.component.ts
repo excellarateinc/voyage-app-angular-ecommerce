@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
 
 import { Product } from '../store/product.model';
 import { StoreService } from '../store/store.service';
 import { AddToCart } from '../store/addToCart.model';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +15,6 @@ import { AddToCart } from '../store/addToCart.model';
 export class ProductDetailComponent implements OnInit {
   product: Product;
   shoppingForm: FormGroup;
-  errors: any[] = [];
   loading = false;
 
   constructor(
@@ -23,57 +22,46 @@ export class ProductDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar,
-  ) {
-  }
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.initializeForm();
-    this.route.data
-      .subscribe(
-        (data) => {
-          this.errors = [];
-          if (data.resolvedData.hasOwnProperty('productId')) {
-            this.product = data.resolvedData;
-            this.shoppingForm.get('productId').setValue(this.product.productId);
-            if (this.product.sizes && this.product.sizes.length > 0) {
-              this.shoppingForm.get('size').setValidators(Validators.required);
-            } else {
-              this.shoppingForm.get('size').clearValidators();
-              this.shoppingForm.get('size').updateValueAndValidity();
-            }
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.storeService.getProduct(id)
+        .subscribe(result => {
+          this.product = result;
+          if (this.product.sizes && this.product.sizes.length > 0) {
+            this.shoppingForm.get('size').setValidators(Validators.required);
           } else {
-            this.product = null;
-            this.errors = data.resolvedData.error;
+            this.shoppingForm.get('size').clearValidators();
+            this.shoppingForm.get('size').updateValueAndValidity();
           }
-        }
-      );
+        });
+    });
   }
 
   private initializeForm(): void {
     this.shoppingForm = this.formBuilder.group({
-      productId: [''],
       quantity: ['1', [Validators.required, Validators.min(1)]],
       size: [''],
     });
   }
 
   addToCart(): void {
-    this.errors = [];
     if (this.shoppingForm.invalid) {
-      this.errors.push({ errorDescription: 'Invalid data entered' });
       return;
     }
     this.loading = true;
-    const quantity = this.shoppingForm.value.quantity as number;
-
-    this.storeService.addToCart(this.shoppingForm.value as AddToCart)
+    const model = this.shoppingForm.value as AddToCart;
+    model.productId = this.product.productId;
+    this.storeService.addToCart(model)
       .subscribe(result => {
         this.router.navigate(['/store']);
-        this.snackBar.open(quantity + (quantity > 1 ? ' items' : ' item') + ' added to cart', null, { duration: 5000 });
+        this.notificationService.showSuccessMessage('Successfully added to cart');
         this.loading = false;
       }, errors => {
-        this.errors = errors.error;
+        this.notificationService.showErrorMessage(errors.error.errorDescription);
         this.loading = false;
       });
   }

@@ -17,13 +17,11 @@ export class StoreComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.storeService.getProductListing().subscribe(result => {
-      this.products = result;
-    });
+    this.storeService.getProducts()
+      .subscribe(result => this.products = result);
   }
 
   onSelect(id: number) {
-    this.router.navigate(['products', id], {relativeTo: this.route});
+    this.router.navigate(['products', id], { relativeTo: this.route });
   }
-
 }
