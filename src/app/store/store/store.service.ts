@@ -9,9 +9,6 @@ import { Cart } from '../cart/cart.model';
 @Injectable()
 export class StoreService {
 
-  private cartLength = new BehaviorSubject<number>(null);
-  cartLength$ = this.cartLength.asObservable();
-
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<Array<Product>> {
@@ -32,9 +29,5 @@ export class StoreService {
 
   removeFromCart(id: number) {
     return this.http.delete(`${environment.API_URL}/store/cart/` + id);
-  }
-
-  emitCartLength(cartLength: number): void {
-    this.cartLength.next(cartLength);
   }
 }
