@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UserService } from '../../core/user/user.service';
 import { ThemeService } from '../../core/theme.service';
@@ -25,7 +25,6 @@ export class SidebarComponent implements OnInit {
   }
   @Input()
   isAuthenticated = false;
-  @ViewChild(HeaderComponent) header;
   @ViewChild('sidenav') sidenav: MatSidenav;
   mobile: boolean;
   toggleTheme: false;
@@ -35,13 +34,6 @@ export class SidebarComponent implements OnInit {
   constructor(private userService: UserService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
-    this.userService.userChanged$
-      .subscribe(user => {
-        if (user) {
-          this.isAdmin = user.roles.indexOf('Administrator') !== -1;
-        }
-      });
-
     this.userService.verificationChanged$
       .subscribe(value => {
         this.isVerificationRequired = value;
@@ -51,6 +43,9 @@ export class SidebarComponent implements OnInit {
       .subscribe(isAuthenticated => {
         if (isAuthenticated != null) {
           this.isAuthenticated = isAuthenticated;
+          if (this.isAuthenticated) {
+            this.getCurrentUser();
+          }
         }
       });
   }
@@ -68,5 +63,12 @@ export class SidebarComponent implements OnInit {
 
   toggleSidebar(showMenu: boolean): void {
     this.userService.emitIsMenuShowing(showMenu);
+  }
+
+  private getCurrentUser(): void {
+    this.userService.getCurrentUser()
+      .subscribe(user => {
+        this.isAdmin = user.roles.indexOf('Administrator') !== -1;
+      });
   }
 }

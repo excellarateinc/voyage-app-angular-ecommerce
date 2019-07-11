@@ -92,26 +92,10 @@ https://github.com/angular/material2/issues/998 */
 }
 
 .masthead {
-  background: white; //linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg);
+  background: white;
   background-position: center top;
   background-size: cover;
-  margin-left: -10px;
-  margin-right: -10px;
   min-height: 100%;
-  height: 100%;
-}
-
-.masthead-mobile {
-  position: absolute !important;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  max-width: 100% !important;
-  margin: 0 !important;
-  background: white; //linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(assets/images/main-bg.jpg) top left no-repeat;
-  background-size: cover;
-  overflow-y: auto;
   height: 100%;
 }
 
@@ -161,10 +145,10 @@ https://github.com/angular/material2/issues/998 */
     width: 102px;
     height: 102px;
     margin: 12px;
-    border: 12px solid #fff;
+    border: 12px solid #000;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #fff transparent transparent transparent;
+    border-color: #000 transparent transparent transparent;
   }
 
   .lds-ring div:nth-child(1) {

@@ -8,7 +8,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { StoreResolverService } from './store/store-resolver.service';
+import { StoreService } from './store/store.service';
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import { StoreResolverService } from './store/store-resolver.service';
   ],
   declarations: [StoreComponent, ProductDetailComponent],
   providers: [
-    StoreResolverService,
+    StoreService,
   ],
   exports: [
     ProductDetailComponent
