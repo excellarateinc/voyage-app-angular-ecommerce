@@ -55,7 +55,7 @@ https://github.com/angular/material2/issues/998 */
 .badge {
   display: inline-block;
   min-width: 10px;
-  padding: 3px 7px;
+  padding: 3px 5px 3px 6px;
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
@@ -68,9 +68,9 @@ https://github.com/angular/material2/issues/998 */
 }
 
 .badge-notification {
-  margin-top: -46px;
-  margin-left: -15px;
-  background-color: #F44336;
+  margin-top: 15px;
+  margin-left: -10px;
+  background-color: #1565C0;
 }
 
 .fill-space {

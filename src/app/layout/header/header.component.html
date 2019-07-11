@@ -11,5 +11,5 @@
   <span class="balance-display" *ngIf="!isMenuShowing">
     {{ totalBalance | currency }} <br/><span class="balance-label">BALANCE</span>
   </span>
-  <app-cart-icon class="cart-icon" routerLink="/cart" *ngIf="!isMenuShowing"></app-cart-icon>
+  <app-cart-icon class="cart-icon" routerLink="/cart" [hidden]="isMenuShowing"></app-cart-icon>
 </mat-toolbar>

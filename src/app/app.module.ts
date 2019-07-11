@@ -26,7 +26,7 @@ import { SecurityHttpInterceptor } from './authentication/security-http-intercep
     AppRoutingModule,
     CoreModule,
     LayoutModule,
-    AuthenticationModule
+	AuthenticationModule
   ],
   providers: [
     {

@@ -4,6 +4,7 @@ import { ProfileImageDirective } from './profile-image.directive';
 import { FileDownloadService } from './services/file-download.service';
 import { NotificationService } from './services/notification.service';
 import { AccountService } from './accounts/account.service';
+import { StoreService } from 'app/store/store/store.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { AccountService } from './accounts/account.service';
     FileDownloadService,
     NotificationService,
     NotificationService,
-    AccountService
+    AccountService,
+    StoreService
   ],
   exports: [ProfileImageDirective]
 })
