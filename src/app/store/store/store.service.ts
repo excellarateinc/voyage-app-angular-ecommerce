@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
@@ -27,7 +27,7 @@ export class StoreService {
   }
 
   fetchCart() {
-		return this.http.get<Cart>(`${environment.API_URL}/store/cart`);
+    return this.http.get<Cart>(`${environment.API_URL}/store/cart`);
   }
 
   removeFromCart(id: number) {
