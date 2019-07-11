@@ -20,6 +20,8 @@ export class UserService {
   private isMenuShowing = new BehaviorSubject<boolean>(null);
   menuShowing$ = this.isMenuShowing.asObservable();
 
+  private isAuthenticated = false;
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<Array<User>> {
@@ -49,7 +51,10 @@ export class UserService {
   }
 
   emitUserAuthenticated(isAuthenticated: boolean): void {
-    this.authenticationSubscription.next(isAuthenticated);
+    if (this.isAuthenticated !== isAuthenticated) {
+      this.isAuthenticated = isAuthenticated;
+      this.authenticationSubscription.next(isAuthenticated);
+    }
   }
 
   emitIsMenuShowing(showMenu: boolean): void {

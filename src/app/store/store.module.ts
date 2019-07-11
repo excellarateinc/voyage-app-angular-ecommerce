@@ -9,7 +9,6 @@ import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { StoreService } from './store/store.service';
-import { StoreResolverService } from './store/store-resolver.service';
 
 @NgModule({
   imports: [
@@ -24,7 +23,6 @@ import { StoreResolverService } from './store/store-resolver.service';
   declarations: [StoreComponent, ProductDetailComponent],
   providers: [
     StoreService,
-    StoreResolverService,
   ],
   exports: [
     ProductDetailComponent

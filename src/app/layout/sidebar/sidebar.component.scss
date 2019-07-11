@@ -1,12 +1,7 @@
-.desktop {
-  width: 375px;
+mat-sidenav {
+  width: 300px;
   background-color: #565656;
   padding-top: 20px;
-}
-
-mat-sidenav {
-  width: 100%;
-  background-color: #f4511e;
 }
 
 mat-sidenav ul {
@@ -14,8 +9,13 @@ mat-sidenav ul {
   padding: 0;
 }
 
+.mobile {
+  width: 100%;
+  background-color: #f4511e;
+}
+
 .logo {
-  width: 140px;
+  width: 120px;
 }
 
 // When not authenticated, we don't show the toolbar, meaning we need the height to be 100%.
@@ -56,24 +56,17 @@ mat-sidenav ul {
   }
 
   &:hover {
-    background-color: #fff;
-
-    &.dark {
-      background-color: #565656;
-    }
+    background-color: #f4511e;
+    color: #fff;
   }
 }
 
 .active {
-  background-color: #bf360c;
-
-  &.dark {
-    background-color: #565656;
-  }
+  background-color: #f4511e;
 }
 
 a {
-  color: inherit;
+  color: white;
 
   &:visited {
     color: white;

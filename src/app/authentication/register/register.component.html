@@ -69,7 +69,7 @@
 </div>
 
 <!-- Mobile -->
-<div class="masthead-mobile" *ngIf="isMobile">
+<div class="masthead" *ngIf="isMobile">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <div class="white">Create Account</div>
     <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate fxLayout="column" fxLayoutGap="10px">
