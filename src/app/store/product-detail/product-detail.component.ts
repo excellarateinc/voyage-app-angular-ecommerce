@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   shoppingForm: FormGroup;
   loading = false;
+  currentCartSize: number = 0;
 
   constructor(
     private storeService: StoreService,
@@ -64,5 +65,7 @@ export class ProductDetailComponent implements OnInit {
         this.notificationService.showErrorMessage(errors.error.errorDescription);
         this.loading = false;
       });
+
+    this.storeService.emitCartLength(this.currentCartSize);
   }
 }

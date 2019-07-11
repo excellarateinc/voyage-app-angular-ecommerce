@@ -1,4 +1,3 @@
-
 export class Product {
   productId: number;
   name: string;
@@ -7,4 +6,3 @@ export class Product {
   imageUrl: string;
   sizes: string[];
 }
-
