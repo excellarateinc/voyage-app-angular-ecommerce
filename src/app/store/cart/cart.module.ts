@@ -17,7 +17,6 @@ import { StoreService } from '../store/store.service';
   declarations: [CartComponent],
   providers: [
     StoreService,
-  ],
-
+  ]
 })
 export class CartModule { }

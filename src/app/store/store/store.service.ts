@@ -9,7 +9,7 @@ import { Cart } from '../cart/cart.model';
 @Injectable()
 export class StoreService {
 
-  private cartLength = new BehaviorSubject<number>(0);
+  private cartLength = new BehaviorSubject<number>(null);
   cartLength$ = this.cartLength.asObservable();
 
   constructor(private http: HttpClient) { }
@@ -38,6 +38,6 @@ export class StoreService {
   }
 
   emitCartLength(cartLength: number): void {
-    this.cartLength.next(this.cartLength.value + cartLength);
+    this.cartLength.next(cartLength);
   }
 }

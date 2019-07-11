@@ -17,6 +17,7 @@ export class ProductDetailComponent implements OnInit {
   shoppingForm: FormGroup;
   errors: any[] = [];
   loading = false;
+  currentCartSize: number = 0;
 
   constructor(
     private storeService: StoreService,
@@ -66,7 +67,7 @@ export class ProductDetailComponent implements OnInit {
     }
     this.loading = true;
     const quantity = this.shoppingForm.value.quantity as number;
-    this.storeService.emitCartLength(quantity)
+    this.currentCartSize = +this.currentCartSize + +quantity
     this.storeService.addToCart(this.shoppingForm.value as AddToCart)
       .subscribe(result => {
         this.router.navigate(['/store']);
@@ -76,5 +77,7 @@ export class ProductDetailComponent implements OnInit {
         this.errors = errors.error;
         this.loading = false;
       });
+
+    this.storeService.emitCartLength(this.currentCartSize);
   }
 }
