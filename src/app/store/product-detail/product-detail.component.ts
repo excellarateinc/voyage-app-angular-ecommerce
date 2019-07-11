@@ -43,8 +43,8 @@ export class ProductDetailComponent implements OnInit {
 
   private initializeForm(): void {
     this.shoppingForm = this.formBuilder.group({
-      quantity: ['1', [Validators.required, Validators.min(1)]],
-      size: [''],
+      quantity: [1, [Validators.required, Validators.min(1)]],
+      size: [null],
     });
   }
 
