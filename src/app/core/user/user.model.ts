@@ -4,6 +4,7 @@ export class User {
   email: string;
   firstName: string;
   lastName: string;
+  company: string;
   username: string;
   id: string;
   isActive: boolean;

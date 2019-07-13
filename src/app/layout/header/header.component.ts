@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'app/core/user/user.service';
 import { AccountService } from 'app/shared/accounts/account.service';
 import { Account } from 'app/shared/accounts/account.model';
+import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
   selector: 'app-header',
@@ -16,10 +17,12 @@ export class HeaderComponent implements OnInit {
   @Output() onToggleSidebar = new EventEmitter<void>();
   isVerificationRequired = false;
   isMenuShowing = false;
-  accounts: Account[];
   totalBalance = 0;
 
-  constructor(private userService: UserService, private accountService: AccountService) { }
+  constructor(
+    private userService: UserService,
+    private accountService: AccountService,
+    private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.userService.verificationChanged$
@@ -48,9 +51,11 @@ export class HeaderComponent implements OnInit {
   private getAccounts(): void {
     this.totalBalance = 0;
     this.accountService.getUserAccounts()
-      .subscribe(result => {
-        this.accounts = result;
-        this.totalBalance = this.accountService.getTotalAccountsBalance(result);
+      .subscribe(accounts => {
+        // We're just supporting one account right now. Grab the first result.
+        const account = accounts[0];
+        this.totalBalance = account.balance;
+        this.broadcastService.emitBalanceUpdated(this.totalBalance);
       });
   }
 }

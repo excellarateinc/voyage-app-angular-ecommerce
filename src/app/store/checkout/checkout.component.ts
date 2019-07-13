@@ -4,6 +4,9 @@ import { Checkout } from './checkout.model';
 import { StoreService } from '../store/store.service';
 import { NotificationService } from 'app/shared/services/notification.service';
 import { Router } from '@angular/router';
+import { UserService } from 'app/core/user/user.service';
+import { BroadcastService } from 'app/core/broadcast.service';
+import { User } from 'app/core/user/user.model';
 
 @Component({
   selector: 'app-checkout',
@@ -12,15 +15,22 @@ import { Router } from '@angular/router';
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
+  balance = 0;
 
   constructor(
     private formBuilder: FormBuilder,
     private storeService: StoreService,
     private notificationService: NotificationService,
+    private userService: UserService,
+    private broadcastService: BroadcastService,
     private router: Router) { }
 
   ngOnInit() {
-    this.initializeForm();
+    this.userService.getCurrentUser().subscribe(user => {
+      this.initializeForm(user);
+    });
+    this.broadcastService.balanceUpdated$
+      .subscribe(balance => this.balance = balance);
   }
 
   checkout(): void {
@@ -37,11 +47,11 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  private initializeForm(): void {
+  private initializeForm(user: User): void {
     this.checkoutForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.required],
-      company: ['', Validators.required],
+      email: [user.email, Validators.required],
+      company: [user.company, Validators.required],
       addressLine1: ['', Validators.required],
       addressLine2: [''],
       city: ['', Validators.required],
