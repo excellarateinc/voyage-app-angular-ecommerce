@@ -67,6 +67,7 @@ export class ProfileComponent implements OnInit {
       firstName: [user.firstName, Validators.required],
       lastName: [user.lastName, Validators.required],
       email: [user.email, Validators.required],
+      company: [user.company, Validators.required],
       currentPassword: [''],
       newPassword: [''],
       confirmNewPassword: [''],

@@ -27,6 +27,12 @@
               Last Name is required
             </mat-error>
           </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Company" formControlName="company" required>
+            <mat-error *ngIf="profileForm.controls['company'].hasError('required')">
+              Company is required
+            </mat-error>
+          </mat-form-field>
           <div formArrayName="phones">
             <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row"
               fxLayoutGap="10px">
