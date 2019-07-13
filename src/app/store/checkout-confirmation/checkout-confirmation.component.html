@@ -10,12 +10,12 @@
 
   <div fxLayout="column" fxLayoutGap="10px" *ngIf="cart">
     <div fxLayout="row" class="order-header separator">
-      <div fxFlex="50">ITEM</div>
+      <div fxFlex="60">ITEM</div>
       <div fxFlex>QTY</div>
       <div fxFlexAlign="start end">PRICE</div>
     </div>
     <div fxLayout="row" *ngFor="let product of cart.products; let i = index" class="order-row separator" fxLayoutAlign="center center">
-      <div fxFlex="50" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
         <img class="thumbnail" src="{{product.imageUrl}}" alt="product-image" />
         <span>{{ product.name }}</span>
       </div>

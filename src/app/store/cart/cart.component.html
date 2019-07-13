@@ -10,11 +10,11 @@
   <div fxLayout="column" fxLayoutGap="10px" *ngIf="cartProducts?.length">
     <div fxLayout="row" class="cart-header separator">
       <div fxFlex="10"></div>
-      <div fxFlex>ITEM</div>
+      <div fxFlex="60">ITEM</div>
       <div fxFlex>QTY</div>
       <div fxFlexAlign="start end">PRICE</div>
     </div>
-    <div fxLayout="row" *ngFor="let cartProduct of cartProducts; let i = index" class="cart-row separator">
+    <div fxLayout="row" *ngFor="let cartProduct of cartProducts; let i = index" class="cart-row separator" fxLayoutAlign="center center">
       <div fxFlex="10">
         <div>
           <span class="clickable" (click)="removeItem(i)" matTooltip="Remove" [matTooltipPosition]="'after'">
@@ -22,18 +22,21 @@
           </span>
         </div>
       </div>
-      <div fxFlex>{{ cartProduct.name }} </div>
+      <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <img class="thumbnail" src="{{cartProduct.imageUrl}}" alt="product-image" />
+        <span>{{ cartProduct.name }}</span>
+      </div>
       <div fxFlex>{{ cartProduct.quantity }}</div>
-      <div fxFlexAlign="start end">{{ cartProduct.price | currency }}</div>
+      <div fxFlexAlign="start end">{{ (cartProduct.price * cartProduct.quantity) | currency }}</div>
     </div>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px" *ngIf="cartProducts?.length">
     <span>SUBTOTOTAL</span>
     <span>{{ subtotal | currency }}</span>
   </div>
 
-  <div fxLayout="row">
-    <a color="primary" fxFlex mat-raised-button routerLink="/store/checkout">CHECKOUT</a>
+  <div fxLayout="row" *ngIf="cartProducts?.length">
+    <a class="green-button" fxFlex mat-raised-button routerLink="/store/checkout">CHECKOUT</a>
   </div>
 </div>
