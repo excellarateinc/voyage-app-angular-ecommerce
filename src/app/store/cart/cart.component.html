@@ -1,31 +1,39 @@
-<div class="title">
-	<h1>SHOPPING CART</h1>
-</div>
-
-<div fxLayout="row" *ngIf="cartProducts.length === 0">
-  Your cart is empty.
-</div>
-
-<div *ngIf="cartProducts.length > 0">
-  <div class="cart-products-head">
-    <div class="cartProduct-head cartProduct-name">ITEM</div>
-    <div class="cartProduct-head cartProduct-quantity-header">#</div>
-    <div class="cartProduct-head cartProduct-price">PRICE</div>
+<div class="page-padding" fxLayout="column" fxLayoutGap="20px">
+  <div class="title">
+    <h1>SHOPPING CART</h1>
   </div>
 
-  <div class="cart-products" *ngFor="let cartProduct of cartProducts; let i = index">
-    <div class="remove-cartProduct"><div (click)="removeItem(i)">X</div></div>
-    <div class="cartProduct-img"><img [src]="cartProduct.imageUrl" alt="{{ cartProduct.name | uppercase }}"></div>
-    <div class="cartProduct-name"> {{ cartProduct.name | uppercase }} </div>
-    <div class="cartProduct-quantity"> {{ cartProduct.quantity }} </div>
-    <div class="cartProduct-price"> {{ cartProduct.price | currency }} </div>
+  <div fxLayout="row" *ngIf="cartProducts.length === 0">
+    Your cart is empty.
   </div>
 
-  <div class="cart-products-subtotal">
-    SUBTOTOTAL {{ subtotal | currency}}
+  <div fxLayout="column" fxLayoutGap="10px" *ngIf="cartProducts?.length">
+    <div fxLayout="row" class="cart-header separator">
+      <div fxFlex="10"></div>
+      <div fxFlex>ITEM</div>
+      <div fxFlex>QTY</div>
+      <div fxFlexAlign="start end">PRICE</div>
+    </div>
+    <div fxLayout="row" *ngFor="let cartProduct of cartProducts; let i = index" class="cart-row separator">
+      <div fxFlex="10">
+        <div>
+          <span class="clickable" (click)="removeItem(i)" matTooltip="Remove" [matTooltipPosition]="'after'">
+            <mat-icon>delete</mat-icon>
+          </span>
+        </div>
+      </div>
+      <div fxFlex>{{ cartProduct.name }} </div>
+      <div fxFlex>{{ cartProduct.quantity }}</div>
+      <div fxFlexAlign="start end">{{ cartProduct.price | currency }}</div>
+    </div>
   </div>
 
-  <div fxLayout="row" style="margin-bottom: 20px;">
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <span>SUBTOTOTAL</span>
+    <span>{{ subtotal | currency }}</span>
+  </div>
+
+  <div fxLayout="row">
     <a color="primary" fxFlex mat-raised-button routerLink="/store/checkout">CHECKOUT</a>
   </div>
 </div>
