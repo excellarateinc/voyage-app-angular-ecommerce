@@ -70,7 +70,7 @@ https://github.com/angular/material2/issues/998 */
 .badge-notification {
   margin-top: 15px;
   margin-left: -10px;
-  background-color: #1565C0;
+  background-color: #565656;
 }
 
 .fill-space {
@@ -109,6 +109,16 @@ https://github.com/angular/material2/issues/998 */
 
 .error-snack {
   background-color: red !important;
+}
+
+.title {
+  letter-spacing: 2px;
+  color: rgb(104, 103, 112);
+}
+
+.green-button {
+  background-color: #4caf50 !important;
+  color: #FFF !important;
 }
 
 .light-input .mat-input-element {

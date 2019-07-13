@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'app/store/store/store.service';
-import { CartProduct } from 'app/store/cart/cart-product.model';
+import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
   selector: 'app-cart-icon',
@@ -8,21 +8,20 @@ import { CartProduct } from 'app/store/cart/cart-product.model';
   styleUrls: ['./cart-icon.component.scss']
 })
 export class CartIconComponent implements OnInit {
-
-  cart: CartProduct[];
   cartLength = 0;
 
-	constructor(private storeService: StoreService) { }
+  constructor(private storeService: StoreService, private broadcastService: BroadcastService) { }
 
-	ngOnInit() {
-    this.storeService.cartLength$
-      .subscribe(cartLength => this.cartLength = cartLength);
-
-		this.storeService.fetchCart().subscribe(responseData => {
-      this.cart = responseData.products;
-      this.storeService.emitCartLength(responseData.products.length);
+  ngOnInit() {
+    this.getCart();
+    this.broadcastService.getCart$.subscribe(() => {
+      this.getCart();
     });
+  }
 
-
-	}
+  private getCart(): void {
+    this.storeService.fetchCart().subscribe(result => {
+      this.cartLength = result ? result.products.length : 0;
+    });
+  }
 }

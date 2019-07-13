@@ -5,12 +5,10 @@ import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
 import { AddToCart } from './addToCart.model';
 import { Cart } from '../cart/cart.model';
+import { Checkout } from '../checkout/checkout.model';
 
 @Injectable()
 export class StoreService {
-
-  private cartLength = new BehaviorSubject<number>(null);
-  cartLength$ = this.cartLength.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -30,11 +28,15 @@ export class StoreService {
     return this.http.get<Cart>(`${environment.API_URL}/store/cart`);
   }
 
-  removeFromCart(id: number) {
-    return this.http.delete(`${environment.API_URL}/store/cart/` + id);
+  getLastCompletedCart() {
+    return this.http.get<Cart>(`${environment.API_URL}/store/cart/last-completed`);
   }
 
-  emitCartLength(cartLength: number): void {
-    this.cartLength.next(cartLength);
+  removeFromCart(id: number): Observable<Cart> {
+    return this.http.delete<Cart>(`${environment.API_URL}/store/cart/` + id);
+  }
+
+  checkout(checkout: Checkout): Observable<void> {
+    return this.http.post<void>(`${environment.API_URL}/store/checkout`, checkout);
   }
 }

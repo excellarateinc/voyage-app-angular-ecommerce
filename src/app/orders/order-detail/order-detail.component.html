@@ -26,7 +26,10 @@
     </div>
     <div fxLayout="row" fxLayoutGap="10px">
       <mat-icon [ngClass]="{'complete': order.orderStatusId === 2, 'incomplete': order.orderStatusId !== 2}">check_circle</mat-icon>
-      <span>In Transit</span>
+      <div fxLayout="column">
+        <span>In Transit</span>
+        <span *ngIf="order.trackingLink"><a href="{{order.trackingLink}}" target="_blank">Track your order</a></span>
+      </div>
     </div>
   </div>
 

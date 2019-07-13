@@ -9,13 +9,15 @@
       </div>
       <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
         <mat-form-field class="light-input">
-          <input matInput placeholder="Mobile Number" formControlName="mobileNumber" type="phone" required>
+          <mat-label>Mobile Number</mat-label>
+          <input matInput formControlName="mobileNumber" type="phone" required>
           <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
             Mobile Number is required
           </mat-error>
         </mat-form-field>
         <div fxLayout="column" fxLayoutGap="20px">
-          <button class="button-invite" mat-raised-button type="submit" [disabled]="loading">SEND INVITE</button>
+          <button class="button-invite green-button" mat-raised-button type="submit" [disabled]="loading">SEND
+            INVITE</button>
         </div>
       </form>
     </mat-card>
@@ -38,7 +40,8 @@
         </mat-error>
       </mat-form-field>
       <div fxLayout="column" fxLayoutGap="20px">
-        <button class="button-invite" mat-raised-button type="submit" [disabled]="loading">SEND INVITE</button>
+        <button class="button-invite green-button" mat-raised-button type="submit" [disabled]="loading">SEND
+          INVITE</button>
       </div>
     </form>
   </div>

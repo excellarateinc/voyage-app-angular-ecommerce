@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutGap="50px" class="page-padding">
+
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div class="title"><strong>CONFIRMATION</strong></div>
+    <div>
+      Congratulations, your transaction was successful. You will recieve a confirmation email shortly with shipping
+      details.
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="10px" *ngIf="cart">
+    <div fxLayout="row" class="order-header separator">
+      <div fxFlex="60">ITEM</div>
+      <div fxFlex>QTY</div>
+      <div fxFlexAlign="start end">PRICE</div>
+    </div>
+    <div fxLayout="row" *ngFor="let product of cart.products; let i = index" class="order-row separator" fxLayoutAlign="center center">
+      <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <img class="thumbnail" src="{{product.imageUrl}}" alt="product-image" />
+        <span>{{ product.name }}</span>
+      </div>
+      <div fxFlex>{{ product.quantity }}</div>
+      <div fxFlexAlign="start end">{{ (product.price * product.quantity) | currency }}</div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <span>SUBTOTOTAL</span>
+    <span>{{ cart.totalCost | currency }}</span>
+  </div>
+</div>

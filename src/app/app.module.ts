@@ -11,6 +11,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { SecurityHttpInterceptor } from './authentication/security-http-interceptor';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,15 @@ import { SecurityHttpInterceptor } from './authentication/security-http-intercep
     AppRoutingModule,
     CoreModule,
     LayoutModule,
-	AuthenticationModule
+    AuthenticationModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityHttpInterceptor,
       multi: true
-    }
+    },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline',  } }
   ],
   bootstrap: [AppComponent]
 })

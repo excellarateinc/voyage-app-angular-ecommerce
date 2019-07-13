@@ -6,7 +6,7 @@ import { UserService } from 'app/core/user/user.service';
 
 @Injectable()
 export class AuthenticationService {
-  private localStorageTokenKey = 'voyage.token';
+  private sessionStorageTokenKey = 'voyage.token';
 
   constructor(
     private location: Location,
@@ -16,20 +16,20 @@ export class AuthenticationService {
 
   getToken(): string {
     // Attempt to retrieve the token from session storage.
-    let token = sessionStorage.getItem(this.localStorageTokenKey);
+    let token = sessionStorage.getItem(this.sessionStorageTokenKey);
     // If not in session storage, attempt to get it from the URL.
     if (!token) {
       token = this.getTokenFromUrl();
       // If it was in the URL, save it to session storage.
       if (token) {
-        sessionStorage.setItem(this.localStorageTokenKey, token);
+        sessionStorage.setItem(this.sessionStorageTokenKey, token);
       }
     }
     return token;
   }
 
   setToken(token: string): void {
-    sessionStorage.setItem(this.localStorageTokenKey, token);
+    sessionStorage.setItem(this.sessionStorageTokenKey, token);
   }
 
   isAuthenticated(): boolean {
@@ -46,7 +46,7 @@ export class AuthenticationService {
   }
 
   logout(): void {
-    sessionStorage.removeItem(this.localStorageTokenKey);
+    sessionStorage.removeItem(this.sessionStorageTokenKey);
     this.router.navigate(['authentication/login']);
   }
 

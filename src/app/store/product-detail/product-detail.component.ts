@@ -6,6 +6,7 @@ import { Product } from '../store/product.model';
 import { StoreService } from '../store/store.service';
 import { AddToCart } from '../store/addToCart.model';
 import { NotificationService } from 'app/shared/services/notification.service';
+import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -16,14 +17,14 @@ export class ProductDetailComponent implements OnInit {
   product: Product;
   shoppingForm: FormGroup;
   loading = false;
-  currentCartSize: number = 0;
 
   constructor(
     private storeService: StoreService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -44,8 +45,8 @@ export class ProductDetailComponent implements OnInit {
 
   private initializeForm(): void {
     this.shoppingForm = this.formBuilder.group({
-      quantity: ['1', [Validators.required, Validators.min(1)]],
-      size: [''],
+      quantity: [1, [Validators.required, Validators.min(1)]],
+      size: [null],
     });
   }
 
@@ -58,6 +59,7 @@ export class ProductDetailComponent implements OnInit {
     model.productId = this.product.productId;
     this.storeService.addToCart(model)
       .subscribe(result => {
+        this.broadcastService.emitGetCart();
         this.router.navigate(['/store']);
         this.notificationService.showSuccessMessage('Successfully added to cart');
         this.loading = false;
@@ -65,7 +67,5 @@ export class ProductDetailComponent implements OnInit {
         this.notificationService.showErrorMessage(errors.error.errorDescription);
         this.loading = false;
       });
-
-    this.storeService.emitCartLength(this.currentCartSize);
   }
 }

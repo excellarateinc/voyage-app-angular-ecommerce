@@ -8,31 +8,41 @@
         </app-profile-image>
       </div>
       <div fxFlex.gt-sm>
-        <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate
-          fxLayoutGap="10px">
+        <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate>
           <mat-form-field>
-            <input matInput placeholder="Email" formControlName="email" required>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required>
             <mat-error *ngIf="profileForm.controls['email'].hasError('required')">
               Email is required
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="First Name" formControlName="firstName" required>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required>
             <mat-error *ngIf="profileForm.controls['firstName'].hasError('required')">
               First Name is required
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Last Name" formControlName="lastName" required>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required>
             <mat-error *ngIf="profileForm.controls['lastName'].hasError('required')">
               Last Name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company" required>
+            <mat-error *ngIf="profileForm.controls['company'].hasError('required')">
+              Company is required
             </mat-error>
           </mat-form-field>
           <div formArrayName="phones">
             <div *ngFor="let phone of phones.controls; let i=index" [formGroupName]="i" fxLayout="row"
               fxLayoutGap="10px">
               <mat-form-field fxFlex>
-                <input matInput placeholder="Mobile Phone" formControlName="phoneNumber" required>
+                <mat-label>Mobile Phone</mat-label>
+                <input matInput formControlName="phoneNumber" required>
                 <mat-error *ngIf="phones.controls[i].controls['phoneNumber'].hasError('required')">
                   Mobile Phone is required
                 </mat-error>
@@ -40,7 +50,8 @@
             </div>
           </div>
           <mat-form-field>
-            <input matInput placeholder="Username" readonly="readonly" value="{{user.username}}">
+            <mat-label>Username</mat-label>
+            <input matInput readonly="readonly" value="{{user.username}}">
           </mat-form-field>
           <mat-expansion-panel *ngIf="!user.isOAuth">
             <mat-expansion-panel-header>

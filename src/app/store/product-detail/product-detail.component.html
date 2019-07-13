@@ -28,13 +28,15 @@
             </mat-button-toggle-group>
           </div>
         </div>
-        <div fxLayout="row">
-          <div fxLayout="column">
-            <label for="quantity">Quantity</label>
-            <mat-form-field>
-              <input matInput formControlName="quantity" type="number" min="1">
-            </mat-form-field>
-          </div>
+        <div fxLayout="column">
+          <mat-label>Quantity</mat-label>
+          <mat-form-field>
+            <mat-select formControlName="quantity">
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div fxLayout="column" class="button-section">
           <button type="submit" mat-raised-button color="primary">
