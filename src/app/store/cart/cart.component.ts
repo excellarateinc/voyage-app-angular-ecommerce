@@ -11,7 +11,6 @@ import { BroadcastService } from 'app/core/broadcast.service';
 export class CartComponent implements OnInit {
   subtotal = 0;
   cartProducts: CartProduct[] = [];
-  currentCartSize: number;
 
   constructor(private storeService: StoreService, private broadcastService: BroadcastService) { }
 
@@ -19,16 +18,15 @@ export class CartComponent implements OnInit {
     this.storeService.fetchCart().subscribe(response => {
       this.cartProducts = response ? response.products : [];
       this.subtotal = response ? response.totalCost : 0;
-      this.currentCartSize = this.cartProducts.length;
     });
   }
 
-  onRemove(index: number) {
-    this.subtotal = this.subtotal - this.cartProducts[index].price;
-    this.currentCartSize = this.currentCartSize - this.cartProducts[index].quantity;
-    this.storeService.removeFromCart(this.cartProducts[index].cartProductId).subscribe();
-    this.cartProducts.splice(index, 1);
-    this.cartProducts = this.cartProducts.slice();
-    this.broadcastService.emitCartUpdated(this.currentCartSize);
+  removeItem(index: number) {
+    const product = this.cartProducts[index];
+    this.storeService.removeFromCart(product.cartProductId).subscribe(updatedCart => {
+      this.cartProducts = updatedCart.products;
+      this.subtotal = updatedCart.totalCost;
+      this.broadcastService.emitGetCart();
+    });
   }
 }

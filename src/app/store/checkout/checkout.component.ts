@@ -40,6 +40,8 @@ export class CheckoutComponent implements OnInit {
 
     const model = this.checkoutForm.value as Checkout;
     this.storeService.checkout(model).subscribe(result => {
+      this.broadcastService.emitGetCart();
+      this.broadcastService.emitGetBalance();
       this.router.navigate(['/store/checkout/confirmation']);
     }, error => {
       this.notificationService.showErrorMessage(error.error[0].errorDescription);

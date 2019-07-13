@@ -15,5 +15,6 @@ export class Order {
   createdUtc: Date;
   modifiedUtc: Date;
   total: number;
+  trackingLink: string;
   cartProducts: any[];
 }

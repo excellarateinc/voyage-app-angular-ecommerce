@@ -40,6 +40,10 @@ export class HeaderComponent implements OnInit {
 
     this.userService.menuShowing$
       .subscribe(isMenuShowing => this.isMenuShowing = isMenuShowing);
+
+    this.broadcastService.getBalance$.subscribe(() => {
+      this.getAccounts();
+    });
   }
 
   toggleSidebar(showMenu: boolean): void {

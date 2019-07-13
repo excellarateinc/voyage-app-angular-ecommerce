@@ -8,21 +8,28 @@ export class BroadcastService {
   private profileUpdated = new Subject<User>();
   profileUpdated$ = this.profileUpdated.asObservable();
 
-  private cartUpdated = new BehaviorSubject<number>(null);
-  cartUpdated$ = this.cartUpdated.asObservable();
+  private getCart = new BehaviorSubject<void>(null);
+  getCart$ = this.getCart.asObservable();
 
   private balanceUpdated = new BehaviorSubject<number>(null);
   balanceUpdated$ = this.balanceUpdated.asObservable();
+
+  private getBalance = new BehaviorSubject<void>(null);
+  getBalance$ = this.getBalance.asObservable();
 
   emitProfileUpdated(user: User) {
     this.profileUpdated.next(user);
   }
 
-  emitCartUpdated(numberOfItems: number) {
-    this.cartUpdated.next(numberOfItems);
+  emitGetCart() {
+    this.getCart.next(null);
   }
 
   emitBalanceUpdated(balance: number) {
     this.balanceUpdated.next(balance);
+  }
+
+  emitGetBalance() {
+    this.getBalance.next(null);
   }
 }

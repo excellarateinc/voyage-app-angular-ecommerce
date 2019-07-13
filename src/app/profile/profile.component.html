@@ -8,8 +8,7 @@
         </app-profile-image>
       </div>
       <div fxFlex.gt-sm>
-        <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate
-          fxLayoutGap="10px">
+        <form *ngIf="profileForm" fxLayout="column" [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate>
           <mat-form-field>
             <input matInput placeholder="Email" formControlName="email" required>
             <mat-error *ngIf="profileForm.controls['email'].hasError('required')">

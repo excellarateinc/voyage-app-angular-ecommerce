@@ -6,6 +6,7 @@ import { Product } from '../store/product.model';
 import { StoreService } from '../store/store.service';
 import { AddToCart } from '../store/addToCart.model';
 import { NotificationService } from 'app/shared/services/notification.service';
+import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,7 +23,8 @@ export class ProductDetailComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -57,6 +59,7 @@ export class ProductDetailComponent implements OnInit {
     model.productId = this.product.productId;
     this.storeService.addToCart(model)
       .subscribe(result => {
+        this.broadcastService.emitGetCart();
         this.router.navigate(['/store']);
         this.notificationService.showSuccessMessage('Successfully added to cart');
         this.loading = false;
