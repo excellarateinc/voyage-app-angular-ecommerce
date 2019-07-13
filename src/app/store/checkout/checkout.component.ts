@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Checkout } from './checkout.model';
+import { StoreService } from '../store/store.service';
+import { NotificationService } from 'app/shared/services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +13,11 @@ import { Checkout } from './checkout.model';
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private storeService: StoreService,
+    private notificationService: NotificationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.initializeForm();
@@ -22,6 +29,12 @@ export class CheckoutComponent implements OnInit {
     }
 
     const model = this.checkoutForm.value as Checkout;
+    this.storeService.checkout(model).subscribe(result => {
+      this.router.navigate(['/store/checkout/confirmation']);
+    }, error => {
+      this.notificationService.showErrorMessage(error.error.errorDescription);
+    });
+
   }
 
   private initializeForm(): void {
@@ -35,19 +48,5 @@ export class CheckoutComponent implements OnInit {
       state: ['', Validators.required],
       zip: ['', Validators.required]
     });
-
-    // this.profileForm.get('newPassword').valueChanges.subscribe(value => {
-    //   if (value) {
-    //     this.profileForm.get('currentPassword').setValidators([Validators.required]);
-    //     this.profileForm.get('confirmNewPassword').setValidators([ConfirmPasswordValidator.MatchPassword]);
-    //     this.profileForm.get('currentPassword').updateValueAndValidity();
-    //     this.profileForm.get('confirmNewPassword').updateValueAndValidity();
-    //   } else {
-    //     this.profileForm.get('currentPassword').clearValidators();
-    //     this.profileForm.get('confirmNewPassword').clearValidators();
-    //     this.profileForm.get('currentPassword').updateValueAndValidity();
-    //     this.profileForm.get('confirmNewPassword').updateValueAndValidity();
-    //   }
-    // });
   }
 }

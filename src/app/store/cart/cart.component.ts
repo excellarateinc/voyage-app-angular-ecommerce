@@ -31,8 +31,4 @@ export class CartComponent implements OnInit {
     this.cartProducts = this.cartProducts.slice();
     this.broadcastService.emitCartUpdated(this.currentCartSize);
   }
-
-  onCheckout() {
-  }
-
 }

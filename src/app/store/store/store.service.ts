@@ -5,6 +5,7 @@ import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
 import { AddToCart } from './addToCart.model';
 import { Cart } from '../cart/cart.model';
+import { Checkout } from '../checkout/checkout.model';
 
 @Injectable()
 export class StoreService {
@@ -29,5 +30,9 @@ export class StoreService {
 
   removeFromCart(id: number) {
     return this.http.delete(`${environment.API_URL}/store/cart/` + id);
+  }
+
+  checkout(checkout: Checkout): Observable<void> {
+    return this.http.post<void>(`${environment.API_URL}/store/checkout`, checkout);
   }
 }

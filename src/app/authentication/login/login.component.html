@@ -9,7 +9,7 @@
       <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutGap="10px" novalidate>
         <mat-form-field>
           <span matPrefix>
-            <mat-icon class="icon-prefix-large">person_outline</mat-icon>
+            <mat-icon class="icon-prefix-large">phone</mat-icon>
           </span>
           <input matInput placeholder="Mobile Phone" formControlName="phone" required>
           <mat-error *ngIf="loginForm.controls['phone'].hasError('required')">

@@ -11,10 +11,13 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { StoreService } from './store/store.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
+import { RouterModule } from '@angular/router';
+import { CheckoutConfirmationComponent } from './checkout-confirmation/checkout-confirmation.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     AngularMaterialModule,
     StoreRoutingModule,
@@ -26,7 +29,8 @@ import { CartComponent } from './cart/cart.component';
     StoreComponent,
     ProductDetailComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutConfirmationComponent
   ],
   providers: [
     StoreService,

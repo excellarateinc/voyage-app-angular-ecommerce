@@ -20,6 +20,6 @@
 	SUBTOTOTAL {{ subtotal | currency}}
 </div>
 
-<div class="checkout">
-	<div (click)="onCheckout()">CHECKOUT</div>
+<div fxLayout="row" style="margin-bottom: 20px;">
+  <a color="primary" fxFlex mat-raised-button routerLink="/store/checkout">CHECKOUT</a>
 </div>
