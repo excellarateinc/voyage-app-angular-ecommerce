@@ -9,6 +9,8 @@ import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { StoreService } from './store/store.service';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,12 @@ import { StoreService } from './store/store.service';
     FlexLayoutModule,
     SharedModule
   ],
-  declarations: [StoreComponent, ProductDetailComponent],
+  declarations: [
+    StoreComponent,
+    ProductDetailComponent,
+    CartComponent,
+    CheckoutComponent
+  ],
   providers: [
     StoreService,
   ],

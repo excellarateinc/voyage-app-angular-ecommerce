@@ -5,10 +5,12 @@ import { StoreComponent } from './store.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { AuthGuardService } from '../authentication/auth-guard.service';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CartComponent } from './cart/cart.component';
 
 const storeRoutes: Routes = [
   { path: '', component: StoreComponent, canActivate: [AuthGuardService] },
   { path: 'products/:id', component: ProductDetailComponent, canActivate: [AuthGuardService] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

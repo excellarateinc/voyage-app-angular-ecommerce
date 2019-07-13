@@ -10,9 +10,8 @@ const appRoutes: Routes = [
   { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthGuardService] },
   { path: 'profile', loadChildren: 'app/profile/profile.module#ProfileModule', canActivate: [AuthGuardService] },
   { path: 'about-us', loadChildren: 'app/about-us/about-us.module#AboutUsModule' },
-  { path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule' },
-  { path: 'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule' },
-  { path: 'cart', loadChildren: 'app/store/cart/cart.module#CartModule', canActivate: [AuthGuardService] }
+  { path: 'orders', loadChildren: 'app/orders/orders.module#OrdersModule', canActivate: [AuthGuardService]  },
+  { path: 'contact-us', loadChildren: 'app/contact-us/contact-us.module#ContactUsModule', canActivate: [AuthGuardService]  },
 ];
 
 @NgModule({
