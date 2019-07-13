@@ -1,32 +1,61 @@
 <div fxLayout="row">
   <mat-card fxFlex.xl="60" fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card-title>Profile</mat-card-title>
     <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
       <div fxFlex.gt-sm>
-        <form *ngIf="checkoutForm" fxLayout="column" [formGroup]="checkoutForm" (ngSubmit)="checkout()" novalidate
-          fxLayoutGap="10px">
+        <form *ngIf="checkoutForm" fxLayout="column" [formGroup]="checkoutForm" (ngSubmit)="checkout()" novalidate>
           <mat-form-field>
             <input matInput placeholder="first & last name" formControlName="name" required>
             <mat-error *ngIf="checkoutForm.controls['name'].hasError('required')">
-              Email is required
+              first & last name is required
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="email address" formControlName="email" required>
             <mat-error *ngIf="checkoutForm.controls['email'].hasError('required')">
-              First Name is required
+              email address is required
             </mat-error>
           </mat-form-field>
           <mat-form-field>
             <input matInput placeholder="company" formControlName="company" required>
             <mat-error *ngIf="checkoutForm.controls['company'].hasError('required')">
-              Last Name is required
+              company is required
             </mat-error>
           </mat-form-field>
 
-          <div fxLayout="row" fxLayoutGap="10px" class="button-section">
-            <span fxFlex></span>
-            <button type="submit" mat-raised-button color="primary">
+
+          <mat-form-field>
+            <input matInput placeholder="street address" formControlName="addressLine1" required>
+            <mat-error *ngIf="checkoutForm.controls['addressLine1'].hasError('required')">
+              street address is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="suite #" formControlName="addressLine2">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="city" formControlName="city" required>
+            <mat-error *ngIf="checkoutForm.controls['city'].hasError('required')">
+              city is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="state" formControlName="state" required>
+            <mat-error *ngIf="checkoutForm.controls['city'].hasError('required')">
+              state is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="zip code" formControlName="zip" required>
+            <mat-error *ngIf="checkoutForm.controls['zip'].hasError('required')">
+              zip code is required
+            </mat-error>
+          </mat-form-field>
+
+          <b>PAYMENT</b>
+          <span>$500.00 Credit</span>
+
+          <div fxLayout="row" class="button-section">
+            <button fxFlex type="submit" mat-raised-button color="primary">
               COMPLETE PURCHASE
             </button>
           </div>
