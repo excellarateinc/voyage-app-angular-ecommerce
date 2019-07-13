@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit {
     this.storeService.checkout(model).subscribe(result => {
       this.router.navigate(['/store/checkout/confirmation']);
     }, error => {
-      this.notificationService.showErrorMessage(error.error.errorDescription);
+      this.notificationService.showErrorMessage(error.error[0].errorDescription);
     });
 
   }

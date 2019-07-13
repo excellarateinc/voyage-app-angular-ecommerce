@@ -10,16 +10,16 @@ import { BroadcastService } from 'app/core/broadcast.service';
 })
 export class CartComponent implements OnInit {
   subtotal = 0;
-  cartProducts: CartProduct[];
+  cartProducts: CartProduct[] = [];
   currentCartSize: number;
 
   constructor(private storeService: StoreService, private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.storeService.fetchCart().subscribe(response => {
-      this.cartProducts = response.products;
-      this.subtotal = response.totalCost;
-      this.currentCartSize = response.products.length;
+      this.cartProducts = response ? response.products : [];
+      this.subtotal = response ? response.totalCost : 0;
+      this.currentCartSize = this.cartProducts.length;
     });
   }
 

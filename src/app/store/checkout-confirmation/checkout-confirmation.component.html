@@ -1,3 +1,28 @@
-<p>
-  checkout-confirmation works!
-</p>
+<div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center center" class="page-padding">
+
+  <div>Confirmation</div>
+
+  <div>
+    Congratulations, your transaction was successful. You will recieve a confirmation email shortly with shipping
+    details.
+  </div>
+
+  <div fxLayout="column" fxLayoutGap="10px" *ngIf="cart">
+    <div fxLayout="row" class="order-header separator">
+      <div fxFlex>ITEM</div>
+      <div fxFlex>QTY</div>
+      <div fxFlexAlign="end">PRICE</div>
+    </div>
+    <div fxLayout="row" *ngFor="let product of cart.products" class="order-row separator">
+      <div fxFlex>
+        {{product.name}}
+      </div>
+      <div fxFlex>{{product.quantity}}</div>
+      <div fxFlexAlign="end">{{product.price | currency}}</div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end end">
+      SUBTOTAL {{cart.totalCost | currency}}
+    </div>
+  </div>
+
+</div>

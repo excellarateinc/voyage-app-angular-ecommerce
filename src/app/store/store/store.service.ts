@@ -28,6 +28,10 @@ export class StoreService {
     return this.http.get<Cart>(`${environment.API_URL}/store/cart`);
   }
 
+  getLastCompletedCart() {
+    return this.http.get<Cart>(`${environment.API_URL}/store/cart/last-completed`);
+  }
+
   removeFromCart(id: number) {
     return this.http.delete(`${environment.API_URL}/store/cart/` + id);
   }
