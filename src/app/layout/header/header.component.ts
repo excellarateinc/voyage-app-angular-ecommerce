@@ -41,6 +41,8 @@ export class HeaderComponent implements OnInit {
     this.broadcastService.getBalance$.subscribe(() => {
       this.getAccounts();
     });
+
+    this.getAccounts();
   }
 
   toggleSidebar(showMenu: boolean): void {

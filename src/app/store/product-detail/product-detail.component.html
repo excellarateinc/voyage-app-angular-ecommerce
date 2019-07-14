@@ -1,36 +1,39 @@
-<div fxLayout="column" *ngIf="product">
-  <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image clickable">
-  <div fxLayout="column" class="page-padding" fxLayoutGap="15px">
-    <div fxLayout="row">
-      <span fxFlex>{{product.name}}</span>
-      <span fxFlexAlign="end">{{product.price | currency}}</span>
-    </div>
-    <div>
-      {{product.description}}
-    </div>
-    <div class="separator"></div>
-    <div fxLayout="column" fxLayoutGap="5px" *ngIf="product.sizes?.length">
-      <span>SELECT SIZE</span>
-      <div fxLayout="row" fxLayoutGap="10px">
-        <div *ngFor="let size of product.sizes" class="size-button" [ngClass]="{'selected': size === selectedSize}" fxFlex (click)="setSize(size)" fxLayout="row" fxLayoutAlign="center center">
-          <span>{{size}}</span>
-        </div>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" *ngIf="product" fxFlex fxFlex.gt-sm="75">
+    <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image clickable" [ngClass]="{'large': !mobile}">
+    <div fxLayout="column" class="page-padding" fxLayoutGap="15px">
+      <div fxLayout="row">
+        <span fxFlex>{{product.name}}</span>
+        <span fxFlexAlign="end">{{product.price | currency}}</span>
       </div>
-      <span class="error" *ngIf="!selectedSize && submitted">Size is required</span>
+      <div>
+        {{product.description}}
+      </div>
+      <div class="separator"></div>
+      <div fxLayout="column" fxLayoutGap="5px" *ngIf="product.sizes?.length">
+        <span>SELECT SIZE</span>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div *ngFor="let size of product.sizes" class="size-button clickable" [ngClass]="{'selected': size === selectedSize}"
+            fxFlex (click)="setSize(size)" fxLayout="row" fxLayoutAlign="center center">
+            <span>{{size}}</span>
+          </div>
+        </div>
+        <span class="error" *ngIf="!selectedSize && submitted">Size is required</span>
+      </div>
+      <div class="separator" *ngIf="product.sizes?.length"></div>
+      <div fxLayout="column" fxLayoutGap="5px">
+        <span>QUANTITY</span>
+        <mat-form-field>
+          <mat-select [(ngModel)]="quantity">
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button type="submit" mat-raised-button class="action-button" (click)="addToCart()">
+        ADD TO CART
+      </button>
     </div>
-    <div class="separator" *ngIf="product.sizes?.length"></div>
-    <div fxLayout="column" fxLayoutGap="5px">
-      <span>QUANTITY</span>
-      <mat-form-field>
-        <mat-select [(ngModel)]="quantity">
-          <mat-option [value]="1">1</mat-option>
-          <mat-option [value]="2">2</mat-option>
-          <mat-option [value]="3">3</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <button type="submit" mat-raised-button class="action-button" (click)="addToCart()">
-      ADD TO CART
-    </button>
   </div>
 </div>
