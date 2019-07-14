@@ -1,7 +1,7 @@
 <div fxLayout="column" class="page-padding" fxLayoutGap="20px">
-  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="15px">
     <div fxLayout="column" fxFlex="50" *ngFor="let product of products">
-      <img src="/assets/images/juice.png" alt="{{product.name}}" style="height: 400px; cursor: pointer;">
+      <img [src]="product.imageUrl" alt="{{product.name}}" style="height: 400px; width: 100%; cursor: pointer;">
       <span>{{ product.name }}</span>
       <span>{{ product.price | currency }}</span>
     </div>
