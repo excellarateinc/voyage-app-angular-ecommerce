@@ -119,6 +119,10 @@ https://github.com/angular/material2/issues/998 */
 .action-button {
   background-color: #4caf50 !important;
   color: #FFF !important;
+
+  &:disabled {
+    opacity: .5;
+  }
 }
 
 .separator {

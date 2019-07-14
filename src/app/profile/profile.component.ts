@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
 import { UserService } from '../core/user/user.service';
 import { User } from '../core/user/user.model';
 import { BroadcastService } from '../core/broadcast.service';
 import { ConfirmPasswordValidator } from 'app/shared/validators/confirm-password.validator';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private snackbar: MatSnackBar,
+    private notificationService: NotificationService,
     private broadcastService: BroadcastService) { }
 
   ngOnInit() {
@@ -43,15 +43,20 @@ export class ProfileComponent implements OnInit {
     if (this.profileImage != null) {
       profile.profileImage = this.profileImage;
     }
+    this.loading = true;
     this.userService.updateProfile(profile)
       .subscribe(
         user => {
           this.user = user;
           this.broadcastService.emitProfileUpdated(this.user);
-          this.snackbar.open('Profile updated successfully', null, { duration: 5000 });
+          this.notificationService.showSuccessMessage('Profile updated successfully');
           this.resetPasswordFields();
+          this.loading = false;
         },
-        response => this.profileErrors = response.error);
+        error => {
+          this.loading = false;
+          this.profileErrors = error.error[0].errorDescription;
+        });
   }
 
   onProfileImageChanged(image: any): void {
