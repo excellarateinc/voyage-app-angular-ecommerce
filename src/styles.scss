@@ -121,6 +121,10 @@ https://github.com/angular/material2/issues/998 */
   color: #FFF !important;
 }
 
+.separator {
+  border-bottom: 1px solid lightgray;
+}
+
 .light-input .mat-input-element {
   font-family: Lato;
   font-weight: 300;
