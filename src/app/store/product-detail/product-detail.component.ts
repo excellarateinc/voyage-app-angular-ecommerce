@@ -65,7 +65,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     this.storeService.addToCart(model)
       .subscribe(() => {
         this.broadcastService.emitGetCart();
-        this.router.navigate(['/store']);
+        this.router.navigate(['/store/cart']);
         this.notificationService.showSuccessMessage('Successfully added to cart');
         this.loading = false;
         this.submitted = false;

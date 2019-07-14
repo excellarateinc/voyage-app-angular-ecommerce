@@ -16,6 +16,7 @@ import { User } from 'app/core/user/user.model';
 export class CheckoutComponent implements OnInit {
   checkoutForm: FormGroup;
   balance = 0;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,13 +39,16 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
+    this.loading = true;
     const model = this.checkoutForm.value as Checkout;
     this.storeService.checkout(model).subscribe(result => {
       this.broadcastService.emitGetCart();
       this.broadcastService.emitGetBalance();
       this.router.navigate(['/store/checkout/confirmation']);
+      this.loading = false;
     }, error => {
       this.notificationService.showErrorMessage(error.error[0].errorDescription);
+      this.loading = false;
     });
 
   }
