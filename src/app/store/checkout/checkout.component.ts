@@ -60,5 +60,10 @@ export class CheckoutComponent implements OnInit {
       state: ['', Validators.required],
       zip: ['', Validators.required]
     });
+
+    if (user.firstName && user.lastName) {
+      this.checkoutForm.get('name').setValue(`${user.firstName} ${user.lastName}`);
+      this.checkoutForm.updateValueAndValidity();
+    }
   }
 }
