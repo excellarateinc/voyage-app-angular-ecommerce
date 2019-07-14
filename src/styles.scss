@@ -116,9 +116,17 @@ https://github.com/angular/material2/issues/998 */
   color: rgb(104, 103, 112);
 }
 
-.green-button {
+.action-button {
   background-color: #4caf50 !important;
   color: #FFF !important;
+
+  &:disabled {
+    opacity: .5;
+  }
+}
+
+.separator {
+  border-bottom: 1px solid lightgray;
 }
 
 .light-input .mat-input-element {

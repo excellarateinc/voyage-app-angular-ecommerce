@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { StoreRoutingModule } from './store-routing.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { StoreComponent } from './store.component';
 import { ExamplesModule } from '../examples/examples.module';
@@ -18,6 +18,7 @@ import { CheckoutConfirmationComponent } from './checkout-confirmation/checkout-
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
     StoreRoutingModule,

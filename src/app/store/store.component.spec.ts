@@ -5,7 +5,6 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { StoreService } from './store/store.service';
 import { Observable } from 'rxjs';
 
-
 describe('StoreComponent', () => {
   let component: StoreComponent;
   let fixture: ComponentFixture<StoreComponent>;
@@ -30,7 +29,7 @@ describe('StoreComponent', () => {
 
   beforeEach(() => {
     storeService = TestBed.get(StoreService);
-    spyOn(storeService, 'getProductListing').and.callFake(() => new Observable(observer => observer.next()));
+    spyOn(storeService, 'getProducts').and.callFake(() => new Observable(observer => observer.next()));
     fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -38,6 +37,6 @@ describe('StoreComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(storeService.getProductListing).toHaveBeenCalled();
+    expect(storeService.getProducts).toHaveBeenCalled();
   });
 });

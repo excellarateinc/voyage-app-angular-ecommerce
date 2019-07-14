@@ -14,7 +14,7 @@
       <div fxFlex>QTY</div>
       <div fxFlexAlign="start end">PRICE</div>
     </div>
-    <div fxLayout="row" *ngFor="let product of cart.products; let i = index" class="order-row separator" fxLayoutAlign="center center">
+    <div fxLayout="row" *ngFor="let product of cart.products" class="order-row separator" fxLayoutAlign="center center">
       <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
         <img class="thumbnail" src="{{product.imageUrl}}" alt="product-image" />
         <span>{{ product.name }}</span>
@@ -23,7 +23,7 @@
       <div fxFlexAlign="start end">{{ (product.price * product.quantity) | currency }}</div>
     </div>
   </div>
-  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px" *ngIf="cart">
     <span>SUBTOTOTAL</span>
     <span>{{ cart.totalCost | currency }}</span>
   </div>

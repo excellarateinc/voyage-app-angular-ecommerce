@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
 import { User } from './user/user.model';
 
 @Injectable()
@@ -8,13 +8,13 @@ export class BroadcastService {
   private profileUpdated = new Subject<User>();
   profileUpdated$ = this.profileUpdated.asObservable();
 
-  private getCart = new BehaviorSubject<void>(null);
+  private getCart = new ReplaySubject<void>();
   getCart$ = this.getCart.asObservable();
 
-  private balanceUpdated = new BehaviorSubject<number>(null);
+  private balanceUpdated = new ReplaySubject<number>();
   balanceUpdated$ = this.balanceUpdated.asObservable();
 
-  private getBalance = new BehaviorSubject<void>(null);
+  private getBalance = new ReplaySubject<void>();
   getBalance$ = this.getBalance.asObservable();
 
   emitProfileUpdated(user: User) {
@@ -22,7 +22,7 @@ export class BroadcastService {
   }
 
   emitGetCart() {
-    this.getCart.next(null);
+    this.getCart.next();
   }
 
   emitBalanceUpdated(balance: number) {
@@ -30,6 +30,6 @@ export class BroadcastService {
   }
 
   emitGetBalance() {
-    this.getBalance.next(null);
+    this.getBalance.next();
   }
 }
