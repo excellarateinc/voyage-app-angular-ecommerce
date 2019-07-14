@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'app/core/user/user.service';
 import { AccountService } from 'app/shared/accounts/account.service';
-import { Account } from 'app/shared/accounts/account.model';
 import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
@@ -32,9 +31,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(isAuthenticated => {
         if (isAuthenticated != null) {
           this.isAuthenticated = isAuthenticated;
-          if (this.isAuthenticated) {
-            this.getAccounts();
-          }
+          this.getAccounts();
         }
       });
 
@@ -53,6 +50,9 @@ export class HeaderComponent implements OnInit {
 
   // TODO: Move into an account balance component.
   private getAccounts(): void {
+    if (!this.isAuthenticated) {
+      return;
+    }
     this.totalBalance = 0;
     this.accountService.getUserAccounts()
       .subscribe(accounts => {
