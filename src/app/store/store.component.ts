@@ -21,7 +21,7 @@ export class StoreComponent implements OnInit {
       .subscribe(result => this.products = result);
   }
 
-  onSelect(id: number) {
+  openProductDetail(id: number) {
     this.router.navigate(['products', id], { relativeTo: this.route });
   }
 }

@@ -1,9 +1,9 @@
-<div class="flex-container" fxflex>
-  <mat-card class="flexitem" *ngFor="let product of products ">
-      <figure (click)="onSelect(product.productId)">
-        <img class="product-image"  [src]="product.imageUrl" alt="{{product.description}}">
-        <figcaption>{{ product.name }}</figcaption>
-        <figcaption>${{ product.price }}</figcaption>
-      </figure>
-  </mat-card>
+<div fxLayout="column" class="page-padding" fxLayoutGap="20px">
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div fxLayout="column" fxFlex="50" *ngFor="let product of products">
+      <img src="/assets/images/juice.png" alt="{{product.name}}" style="height: 400px; cursor: pointer;">
+      <span>{{ product.name }}</span>
+      <span>{{ product.price | currency }}</span>
+    </div>
+  </div>
 </div>

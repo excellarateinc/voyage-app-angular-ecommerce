@@ -17,7 +17,7 @@ describe('StoreService', () => {
   describe('when calling getProductListing()', () => {
     it('should call the users API endpoint',
       inject([StoreService, HttpTestingController], (service: StoreService, httpMock: HttpTestingController) => {
-        service.getProductListing().subscribe();
+        service.getProducts().subscribe();
         const req = httpMock.expectOne(request => request.url.includes('/store'));
         expect(req.request.method).toEqual('GET');
       }));
