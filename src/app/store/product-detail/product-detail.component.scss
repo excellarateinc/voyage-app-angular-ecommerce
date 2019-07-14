@@ -2,3 +2,20 @@
   height: 300px;
   width: 100%;
 }
+
+.size-button {
+  background-color: rgb(235, 235, 235);
+  border-color: rgb(102, 102, 102);
+  border-radius: 10px;
+  height: 30px;
+
+  &.selected {
+    background-color: rgb(74, 69, 69);
+    color: white;
+  }
+}
+
+.error {
+  color: #f44336;
+  font-weight: bold;
+}

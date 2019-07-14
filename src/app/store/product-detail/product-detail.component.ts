@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Product } from '../store/product.model';
@@ -15,57 +14,52 @@ import { BroadcastService } from 'app/core/broadcast.service';
 })
 export class ProductDetailComponent implements OnInit {
   product: Product;
-  shoppingForm: FormGroup;
+  quantity = 1;
+  selectedSize = null;
   loading = false;
+  submitted = false;
 
   constructor(
     private storeService: StoreService,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private notificationService: NotificationService,
     private broadcastService: BroadcastService) { }
 
   ngOnInit() {
-    this.initializeForm();
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.storeService.getProduct(id)
-        .subscribe(result => {
-          this.product = result;
-          if (this.product.sizes && this.product.sizes.length > 0) {
-            this.shoppingForm.get('size').setValidators(Validators.required);
-          } else {
-            this.shoppingForm.get('size').clearValidators();
-            this.shoppingForm.get('size').updateValueAndValidity();
-          }
-        });
+        .subscribe(result => this.product = result);
     });
   }
 
-  private initializeForm(): void {
-    this.shoppingForm = this.formBuilder.group({
-      quantity: [1, [Validators.required, Validators.min(1)]],
-      size: [null],
-    });
+  setSize(size: string): void {
+    this.selectedSize = size;
   }
 
   addToCart(): void {
-    if (this.shoppingForm.invalid) {
+    this.submitted = true;
+    if ((this.product.sizes && this.product.sizes.length && !this.selectedSize) || !this.quantity) {
       return;
     }
     this.loading = true;
-    const model = this.shoppingForm.value as AddToCart;
-    model.productId = this.product.productId;
+    const model: AddToCart = {
+      productId: this.product.productId,
+      size: this.selectedSize,
+      quantity: this.quantity
+    };
     this.storeService.addToCart(model)
-      .subscribe(result => {
+      .subscribe(() => {
         this.broadcastService.emitGetCart();
         this.router.navigate(['/store']);
         this.notificationService.showSuccessMessage('Successfully added to cart');
         this.loading = false;
+        this.submitted = false;
       }, errors => {
         this.notificationService.showErrorMessage(errors.error.errorDescription);
         this.loading = false;
+        this.submitted = false;
       });
   }
 }

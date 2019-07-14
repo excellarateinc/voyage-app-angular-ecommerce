@@ -1,7 +1,6 @@
 <div fxLayout="column" *ngIf="product">
-
   <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image clickable">
-  <div fxLayout="column" class="page-padding" fxLayoutGap="20px">
+  <div fxLayout="column" class="page-padding" fxLayoutGap="15px">
     <div fxLayout="row">
       <span fxFlex>{{product.name}}</span>
       <span fxFlexAlign="end">{{product.price | currency}}</span>
@@ -10,73 +9,28 @@
       {{product.description}}
     </div>
     <div class="separator"></div>
-    <div>
-      <!-- TODO: Sizes go here. -->
+    <div fxLayout="column" fxLayoutGap="5px" *ngIf="product.sizes?.length">
+      <span>SELECT SIZE</span>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div *ngFor="let size of product.sizes" class="size-button" [ngClass]="{'selected': size === selectedSize}" fxFlex (click)="setSize(size)" fxLayout="row" fxLayoutAlign="center center">
+          <span>{{size}}</span>
+        </div>
+      </div>
+      <span class="error" *ngIf="!selectedSize && submitted">Size is required</span>
     </div>
-    <div>
-      <!-- TODO: Quantity goes here -->
+    <div class="separator" *ngIf="product.sizes?.length"></div>
+    <div fxLayout="column" fxLayoutGap="5px">
+      <span>QUANTITY</span>
+      <mat-form-field>
+        <mat-select [(ngModel)]="quantity">
+          <mat-option [value]="1">1</mat-option>
+          <mat-option [value]="2">2</mat-option>
+          <mat-option [value]="3">3</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <button type="submit" mat-raised-button class="green-button">
+    <button type="submit" mat-raised-button class="action-button" (click)="addToCart()">
       ADD TO CART
     </button>
-
   </div>
-
-
 </div>
-
-
-
-
-<!--
-
-<div fxLayout="row">
-  <mat-card *ngIf="product" fxFlex="60" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-spinner *ngIf="loading"></mat-spinner>
-    <div fxLayout="row" fxLayoutAlign="center">
-      <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}">
-    </div>
-    <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="space-between">
-        <div>
-          <h3>{{ product.name }}</h3>
-        </div>
-        <div>
-          <h3>{{ product.price | currency }}</h3>
-        </div>
-      </div>
-      <div class="mat-small">
-        {{ product.description }}
-      </div>
-      <br>
-      <mat-divider></mat-divider>
-      <br>
-      <form [formGroup]="shoppingForm" (ngSubmit)="addToCart()" novalidate fxLayout="column" fxLayoutGap="20px">
-        <div *ngIf="product.sizes?.length > 0" fxLayout="row">
-          <div fxLayout="column" fxLayoutGap="5px">
-            <label for="size">Select Size</label>
-            <mat-button-toggle-group formControlName="size">
-              <mat-button-toggle *ngFor="let size of product.sizes" value="{{size}}">{{ size }}</mat-button-toggle>
-            </mat-button-toggle-group>
-          </div>
-        </div>
-        <div fxLayout="column">
-          <mat-label>Quantity</mat-label>
-          <mat-form-field>
-            <mat-select formControlName="quantity">
-              <mat-option [value]="1">1</mat-option>
-              <mat-option [value]="2">2</mat-option>
-              <mat-option [value]="3">3</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div fxLayout="column" class="button-section">
-          <button type="submit" mat-raised-button color="primary">
-            ADD TO CART
-            <mat-icon>add_shopping_cart</mat-icon>
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div> -->
