@@ -34,7 +34,8 @@
     </div>
     <form [formGroup]="inviteForm" (ngSubmit)="invite()" novalidate fxLayout="column" fxLayoutGap="10px">
       <mat-form-field class="light-input">
-        <input matInput placeholder="Mobile Number" formControlName="mobileNumber" type="phone" required>
+        <mat-label>Mobile Number</mat-label>
+        <input matInput formControlName="mobileNumber" type="phone" required>
         <mat-error *ngIf="inviteForm.controls['mobileNumber'].hasError('required')">
           Mobile Number is required
         </mat-error>
