@@ -20,7 +20,8 @@
     <form [formGroup]="codeForm" (ngSubmit)="submitCode()" novalidate fxLayout="column" fxLayoutGap="10px" *ngIf="!isMobile">
       <div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field fxFlex="30">
-          <input matInput placeholder="Code" formControlName="code" required>
+          <mat-label>Code</mat-label>
+          <input type="number" pattern="\d*" matInput formControlName="code" required>
           <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
             Code is required
           </mat-error>
