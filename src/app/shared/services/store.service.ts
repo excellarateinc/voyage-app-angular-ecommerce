@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
-import { AddToCart } from './addToCart.model';
-import { Cart } from '../cart/cart.model';
-import { Checkout } from '../checkout/checkout.model';
+import { Product } from '../models/product.model';
+import { AddToCart } from '../models/addToCart.model';
+import { Cart } from '../models/cart.model';
+import { Checkout } from '../models/checkout.model';
 
 @Injectable()
 export class StoreService {

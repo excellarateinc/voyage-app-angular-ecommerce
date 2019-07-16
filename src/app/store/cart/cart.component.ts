@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CartProduct } from './cart-product.model';
-import { StoreService } from '../store/store.service';
 import { BroadcastService } from 'app/core/broadcast.service';
+import { CartProduct } from 'app/shared/models/cart-product.model';
+import { StoreService } from 'app/shared/services/store.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +12,9 @@ export class CartComponent implements OnInit {
   subtotal = 0;
   cartProducts: CartProduct[] = [];
 
-  constructor(private storeService: StoreService, private broadcastService: BroadcastService) { }
+  constructor(
+    private storeService: StoreService,
+    private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.storeService.fetchCart().subscribe(response => {

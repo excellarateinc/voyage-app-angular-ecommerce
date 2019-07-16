@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Checkout } from './checkout.model';
-import { StoreService } from '../store/store.service';
 import { NotificationService } from 'app/shared/services/notification.service';
 import { Router } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
 import { BroadcastService } from 'app/core/broadcast.service';
 import { User } from 'app/core/user/user.model';
+import { StoreService } from 'app/shared/services/store.service';
+import { Checkout } from 'app/shared/models/checkout.model';
 
 @Component({
   selector: 'app-checkout',

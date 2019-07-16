@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from '../store/store.service';
-import { Cart } from '../cart/cart.model';
+import { Cart } from 'app/shared/models/cart.model';
+import { StoreService } from 'app/shared/services/store.service';
 
 @Component({
   selector: 'app-checkout-confirmation',
