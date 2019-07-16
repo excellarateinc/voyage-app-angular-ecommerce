@@ -1,10 +1,7 @@
 <div fxLayout="column" *ngIf="order" class="page-padding" fxLayoutGap="20px">
 
-  <div fxLayout="row" fxLayoutAlign="center center" class="title">
-    <h2>TRACK ORDER</h2>
-  </div>
-
   <div fxLayout="column" fxLayoutAlign="center center">
+    <h2 class="title">TRACK ORDER</h2>
     <span>Order Number: {{order.orderNumber}}</span>
     <span>{{order.createdUtc | date}}</span>
     <span>Total: {{order.total | currency}}</span>
@@ -25,7 +22,8 @@
       <span class="circle"></span>
     </div>
     <div fxLayout="row" fxLayoutGap="10px">
-      <mat-icon [ngClass]="{'complete': order.orderStatusId === 2, 'incomplete': order.orderStatusId !== 2}">check_circle</mat-icon>
+      <mat-icon [ngClass]="{'complete': order.orderStatusId === 2, 'incomplete': order.orderStatusId !== 2}">
+        check_circle</mat-icon>
       <div fxLayout="column">
         <span>In Transit</span>
         <span *ngIf="order.trackingLink"><a href="{{order.trackingLink}}" target="_blank">Track your order</a></span>
@@ -42,6 +40,29 @@
       <span>{{order.city}}, {{order.state}} {{order.zip}}</span>
     </div>
   </mat-card>
+
+  <div fxLayout="column" fxLayoutGap="10px">
+    <div fxLayout="row" class="order-header separator">
+      <div fxFlex="60">ITEM</div>
+      <div fxFlex>QTY</div>
+      <div fxFlexAlign="start end">PRICE</div>
+    </div>
+    <div fxLayout="row" *ngFor="let product of order.cartProducts" class="order-row separator" fxLayoutAlign="center center">
+      <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <img class="thumbnail" src="{{product.imageUrl}}" alt="product-image" />
+        <div fxLayout="column">
+          <span>{{product.name}}</span>
+          <span *ngIf="product.size">{{product.size}}</span>
+        </div>
+      </div>
+      <div fxFlex>{{ product.quantity }}</div>
+      <div fxFlexAlign="start end">{{ (product.price * product.quantity) | currency }}</div>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <span>SUBTOTOTAL</span>
+    <span>{{ order.total | currency }}</span>
+  </div>
 
   <a routerLink="/store" mat-raised-button class="action-button">SHOP SOME MO'</a>
 </div>
