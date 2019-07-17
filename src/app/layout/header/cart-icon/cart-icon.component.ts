@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from 'app/store/store/store.service';
 import { BroadcastService } from 'app/core/broadcast.service';
+import { StoreService } from 'app/shared/services/store.service';
 
 @Component({
   selector: 'app-cart-icon',

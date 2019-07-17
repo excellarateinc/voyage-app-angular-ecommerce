@@ -24,7 +24,10 @@
       </div>
       <div fxFlex="60" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
         <img class="thumbnail" src="{{cartProduct.imageUrl}}" alt="product-image" />
-        <span>{{ cartProduct.name }}</span>
+        <div fxLayout="column">
+          <span>{{ cartProduct.name }}</span>
+          <span *ngIf="cartProduct.size">{{ cartProduct.size }}</span>
+        </div>
       </div>
       <div fxFlex>{{ cartProduct.quantity }}</div>
       <div fxFlexAlign="start end">{{ (cartProduct.price * cartProduct.quantity) | currency }}</div>
@@ -37,6 +40,6 @@
   </div>
 
   <div fxLayout="row" *ngIf="cartProducts?.length">
-    <a class="action-button" fxFlex mat-raised-button routerLink="/store/checkout">CHECKOUT</a>
+    <a class="action-button" fxFlex mat-raised-button (click)="goToCheckout()">CHECKOUT</a>
   </div>
 </div>

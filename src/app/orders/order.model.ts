@@ -1,4 +1,5 @@
 import { OrderStatus } from './order-status.enum';
+import { CartProduct } from 'app/shared/models/cart-product.model';
 
 export class Order {
   orderId: number;
@@ -16,5 +17,5 @@ export class Order {
   modifiedUtc: Date;
   total: number;
   trackingLink: string;
-  cartProducts: any[];
+  cartProducts: CartProduct[];
 }

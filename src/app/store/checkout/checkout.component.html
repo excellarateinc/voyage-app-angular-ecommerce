@@ -3,7 +3,7 @@
     <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
       <div fxFlex.gt-sm>
         <form *ngIf="checkoutForm" fxLayout="column" [formGroup]="checkoutForm" (ngSubmit)="checkout()" novalidate>
-          <div class="title">CONTACT</div>
+          <div class="checkout-title">CONTACT</div>
           <mat-form-field>
             <mat-label>First & Last Name</mat-label>
             <input matInput formControlName="name" required>
@@ -26,7 +26,7 @@
             </mat-error>
           </mat-form-field>
 
-          <div class="title">SHIPPING</div>
+          <div class="checkout-title">SHIPPING</div>
           <mat-form-field>
             <mat-label>Street Address</mat-label>
             <input matInput formControlName="addressLine1" required>
@@ -60,9 +60,10 @@
             </mat-error>
           </mat-form-field>
 
-          <div class="title">PAYMENT</div>
+          <div class="checkout-title">PAYMENT</div>
           <mat-form-field>
-            <input matInput readonly value="{{balance | currency}} CREDIT">
+            <mat-label>Credit</mat-label>
+            <input matInput readonly value="{{balance | currency}}">
           </mat-form-field>
 
           <div fxLayout="row" class="button-section">

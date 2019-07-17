@@ -22,9 +22,9 @@
           </a>
         </li>
         <!-- <li *ngIf="isAdmin">
-          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/users" routerLinkActive="active"
+          <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
-            User Admin
+            Admin
           </a>
         </li> -->
         <li *ngIf="isAdmin">
@@ -48,8 +48,11 @@
       </ul>
     </nav>
 
-    <div class="powered-by-label" fxLayout="row" fxLayoutAlign="center center">
-     Powered by <img src="/assets/images/voyage-logo-vert-white.png" class="voyage-icon"/>
+    <div class="powered-by-label" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px">
+      <span class="powered-text">Powered By</span>
+      <a href="https://www.lighthousesoftware.com/voyage" target="_blank">
+        <img src="/assets/images/voyage-logo-vert-white.png" class="voyage-icon" />
+      </a>
     </div>
 
   </mat-sidenav>

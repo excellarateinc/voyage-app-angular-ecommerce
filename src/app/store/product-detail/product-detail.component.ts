@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Product } from '../store/product.model';
-import { StoreService } from '../store/store.service';
-import { AddToCart } from '../store/addToCart.model';
 import { NotificationService } from 'app/shared/services/notification.service';
 import { BroadcastService } from 'app/core/broadcast.service';
 import { MobileService } from 'app/core/mobile.service';
 import { Subscription } from 'rxjs';
+import { Product } from 'app/shared/models/product.model';
+import { StoreService } from 'app/shared/services/store.service';
+import { AddToCart } from 'app/shared/models/addToCart.model';
 
 @Component({
   selector: 'app-product-detail',
