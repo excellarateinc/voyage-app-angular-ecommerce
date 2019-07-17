@@ -57,12 +57,12 @@ export class ProfileImageComponent implements OnInit, OnDestroy {
 
   private initializeCropper(): void {
     const cropperSettings = new CropperSettings();
-    cropperSettings.width = 150;
-    cropperSettings.height = 150;
-    cropperSettings.croppedWidth = 150;
-    cropperSettings.croppedHeight = 150;
-    cropperSettings.canvasWidth = 250;
-    cropperSettings.canvasHeight = 150;
+    cropperSettings.width = 300;
+    cropperSettings.height = 300;
+    cropperSettings.croppedWidth = 300;
+    cropperSettings.croppedHeight = 300;
+    cropperSettings.canvasWidth = 300;
+    cropperSettings.canvasHeight = 300;
     cropperSettings.minWidth = 10;
     cropperSettings.minHeight = 10;
     cropperSettings.rounded = false;
