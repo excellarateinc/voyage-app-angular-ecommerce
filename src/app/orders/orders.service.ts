@@ -16,4 +16,8 @@ export class OrdersService {
   getOrder(id: number): Observable<Order> {
     return this.http.get<Order>(`${environment.API_URL}/store/orders/${id}`);
   }
+
+  cancelOrder(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.API_URL}/store/orders/${id}`);
+  }
 }

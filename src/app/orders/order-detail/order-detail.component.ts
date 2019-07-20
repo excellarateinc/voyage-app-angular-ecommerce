@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 import { Order } from '../order.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ConfirmCancelOrderComponent } from './confirm-cancel-order/confirm-cancel-order.component';
+import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -11,7 +14,12 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderDetailComponent implements OnInit {
   order: Order;
 
-  constructor(private route: ActivatedRoute, private ordersService: OrdersService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private ordersService: OrdersService,
+    private router: Router,
+    private matDialog: MatDialog,
+    private broadcastService: BroadcastService) { }
 
   ngOnInit() {
     this.route.params.subscribe(async params => {
@@ -19,7 +27,19 @@ export class OrderDetailComponent implements OnInit {
       this.ordersService.getOrder(orderId)
         .subscribe(result => this.order = result);
     });
-
   }
 
+  cancelOrder(): void {
+    const dialogRef = this.matDialog.open(ConfirmCancelOrderComponent, { });
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (!confirmed) {
+        return;
+      }
+      this.ordersService.cancelOrder(this.order.orderId)
+        .subscribe(() => {
+          this.broadcastService.emitGetBalance();
+          this.router.navigate(['/orders']);
+        });
+    });
+  }
 }
