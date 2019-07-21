@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
     if (!this.isAuthenticated) {
       return;
     }
-    this.totalBalance = 0;
     this.accountService.getUserAccounts()
       .subscribe(accounts => {
         // We're just supporting one account right now. Grab the first result.
