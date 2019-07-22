@@ -21,7 +21,7 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field fxFlex="30">
           <mat-label>Code</mat-label>
-          <input type="number" pattern="\d*" matInput formControlName="code" required>
+          <input type="text" matInput formControlName="code" required>
           <mat-error *ngIf="codeForm.controls['code'].hasError('required')">
             Code is required
           </mat-error>
