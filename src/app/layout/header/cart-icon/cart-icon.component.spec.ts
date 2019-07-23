@@ -8,7 +8,7 @@ describe('CartIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartIconComponent ]
+      declarations: [CartIconComponent]
     })
     .compileComponents();
   }));

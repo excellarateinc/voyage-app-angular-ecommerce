@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
-import { Login } from './login.model';
 import { MobileService } from '../../core/mobile.service';
-import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -23,7 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private loginService: LoginService,
     private formBuilder: FormBuilder,
-    @Inject('Window') private window: any,
     private mobileService: MobileService,
     private router: Router,
     private route: ActivatedRoute) { }

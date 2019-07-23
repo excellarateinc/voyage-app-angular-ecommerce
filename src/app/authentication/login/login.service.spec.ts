@@ -29,7 +29,7 @@ describe('LoginService', () => {
   describe('login()', () => {
     it('should call the POST /oauth/token API endpoint',
       inject([LoginService, HttpTestingController], (service: LoginService, httpMock: HttpTestingController) => {
-        let login = new Login();
+        const login = new Login();
         service.login(login).subscribe();
         const req = httpMock.expectOne(request => request.url.includes('/oauth/token'));
         expect(req.request.method).toEqual('POST');

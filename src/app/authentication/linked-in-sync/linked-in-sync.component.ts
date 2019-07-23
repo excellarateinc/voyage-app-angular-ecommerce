@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from 'environments/environment';
 import { AuthenticationService } from '../authentication.service';
 import { UserService } from 'app/core/user/user.service';

@@ -52,7 +52,7 @@ describe('AuthenticationService', () => {
 
     it('should return the token if it exists in sessionStorage',
       inject([AuthenticationService], (service: AuthenticationService) => {
-        let expectedValue = 'somevalue';
+        const expectedValue = 'somevalue';
         sessionStorage.setItem(service['sessionStorageTokenKey'], expectedValue);
         expect(service.getToken()).toBe(expectedValue);
       }));
@@ -61,7 +61,7 @@ describe('AuthenticationService', () => {
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
         windowStub.location.href = 'access_token=123&';
         spyOn(locationStub, 'replaceState');
-        let token = service.getToken();
+        const token = service.getToken();
         expect(token).toBe('123');
         expect(locationStub.replaceState).toHaveBeenCalled();
       }));
@@ -70,7 +70,7 @@ describe('AuthenticationService', () => {
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
         windowStub.location.href = 'blah';
         spyOn(locationStub, 'replaceState');
-        let token = service.getToken();
+        const token = service.getToken();
         expect(token).toBe(null);
         expect(sessionStorage.getItem(service['sessionStorageTokenKey'])).toBeNull();
         expect(locationStub.replaceState).not.toHaveBeenCalled();
@@ -80,7 +80,7 @@ describe('AuthenticationService', () => {
   describe('setToken()', () => {
     it('should set the token in sessionStorage',
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
-        let expectedValue = 'tokenvalue';
+        const expectedValue = 'tokenvalue';
         service.setToken(expectedValue);
         expect(sessionStorage.getItem(service['sessionStorageTokenKey'])).toBe(expectedValue);
       }));
@@ -93,7 +93,7 @@ describe('AuthenticationService', () => {
 
     it('should return true if token can be retrieved',
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
-        let expectedValue = true;
+        const expectedValue = true;
         sessionStorage.setItem(service['sessionStorageTokenKey'], 'somevalue');
         expect(service.isAuthenticated()).toBe(expectedValue);
       }));
@@ -101,7 +101,7 @@ describe('AuthenticationService', () => {
     it('should return false if token cannot be retrieved',
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
         windowStub.location.href = 'blah';
-        let expectedValue = false;
+        const expectedValue = false;
         expect(service.isAuthenticated()).toBe(expectedValue);
       }));
   });
