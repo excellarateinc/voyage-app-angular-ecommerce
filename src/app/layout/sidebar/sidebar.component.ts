@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { UserService } from '../../core/user/user.service';
 import { ThemeService } from '../../core/theme.service';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-sidebar',

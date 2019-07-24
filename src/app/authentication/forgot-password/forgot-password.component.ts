@@ -4,7 +4,6 @@ import { ForgotPasswordService } from './forgot-password.service';
 import { ConfirmPasswordValidator } from 'app/shared/validators/confirm-password.validator';
 import { ForgotPassword } from './forgot-password.model';
 import { ForgotPasswordStep } from './forgot-password-step.enum';
-import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { NotificationService } from 'app/shared/services/notification.service';
 

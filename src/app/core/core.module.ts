@@ -5,7 +5,6 @@ import { BroadcastService } from './broadcast.service';
 import { MobileService } from './mobile.service';
 import { ThemeService } from './theme.service';
 
-
 export function windowFactory() {
   return window;
 }

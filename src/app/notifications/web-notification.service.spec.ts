@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { WebNotificationsService } from './web-notifications.service';
 
@@ -16,7 +16,7 @@ describe('WebNotificationsService', () => {
   describe('when calling requestPermissions()', () => {
     it('should do nothing if no Notification property on window',
       inject([WebNotificationsService], (service: WebNotificationsService) => {
-        var result = service.requestPermission();
+        const result = service.requestPermission();
         expect(result).toBeUndefined();
         expect(service['permission']).toBeUndefined();
       }));
@@ -41,9 +41,9 @@ describe('WebNotificationsService', () => {
   describe('when calling displayNotification()', () => {
     it('should call navigator.serviceWorker.register when permission not denied',
       inject([WebNotificationsService], (service: WebNotificationsService) => {
-        let mockReg = { showNotification: () => { } };
+        const mockReg = { showNotification: () => { } };
         spyOn(mockReg, 'showNotification');
-        spyOn(window.navigator.serviceWorker, 'register').and.returnValue({ then: (fn) => { fn(mockReg) } });
+        spyOn(window.navigator.serviceWorker, 'register').and.returnValue({ then: (fn) => { fn(mockReg); } });
         service['permission'] = 'allowed';
         service.displayNotification('', '');
         expect(window.navigator.serviceWorker.register).toHaveBeenCalled();

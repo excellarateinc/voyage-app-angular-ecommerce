@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 import { User } from './user/user.model';
 
 @Injectable()
