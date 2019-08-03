@@ -8,6 +8,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { InviteComponent } from './invite/invite.component';
 import { InviteService } from './invite/invite.service';
 import { AdminComponent } from './admin.component';
+import { AdminService } from './admin.service';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { AdminComponent } from './admin.component';
     AdminComponent
   ],
   providers: [
-    InviteService
+    InviteService,
+    AdminService
   ]
 })
 export class AdminModule { }
