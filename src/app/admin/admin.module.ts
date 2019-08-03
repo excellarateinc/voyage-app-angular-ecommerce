@@ -7,6 +7,7 @@ import { UserAdminComponent } from './user-admin/user-admin.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { InviteComponent } from './invite/invite.component';
 import { InviteService } from './invite/invite.service';
+import { AdminComponent } from './admin.component';
 
 @NgModule({
   imports: [
@@ -19,11 +20,11 @@ import { InviteService } from './invite/invite.service';
   ],
   declarations: [
     UserAdminComponent,
-    InviteComponent
+    InviteComponent,
+    AdminComponent
   ],
   providers: [
     InviteService
   ]
-
 })
 export class AdminModule { }

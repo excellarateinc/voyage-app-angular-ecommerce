@@ -21,12 +21,12 @@
             Profile
           </a>
         </li>
-        <!-- <li *ngIf="isAdmin">
+        <li *ngIf="isAdmin">
           <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin" routerLinkActive="active"
             [ngClass]="{'dark': themeService.darkTheme}">
             Admin
           </a>
-        </li> -->
+        </li>
         <li *ngIf="isAdmin">
           <a class="nav-item-container" (click)="toggleSidebar(false)" routerLink="/admin/invite" routerLinkActive="active" [ngClass]="{'dark': themeService.darkTheme}">
             Invite
