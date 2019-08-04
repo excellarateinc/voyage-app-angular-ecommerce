@@ -21,4 +21,9 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  save() {
+    this.adminService.updateUser(this.user)
+      .subscribe(result => this.user = result);
+  }
+
 }

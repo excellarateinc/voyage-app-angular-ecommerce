@@ -17,4 +17,8 @@ export class AdminService {
   getUser(id: string): Observable<UpdateUser> {
     return this.http.get<UpdateUser>(`${environment.API_URL}/admin/users/${id}`);
   }
+
+  updateUser(model: UpdateUser): Observable<UpdateUser> {
+    return this.http.put<UpdateUser>(`${environment.API_URL}/admin/users`, model);
+  }
 }
