@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'app/admin/admin.service';
 import { ActivatedRoute } from '@angular/router';
 import { UpdateUser } from './update-user.model';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-user-details',
@@ -11,7 +12,10 @@ import { UpdateUser } from './update-user.model';
 export class UserDetailsComponent implements OnInit {
   user: UpdateUser;
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute) { }
+  constructor(
+    private adminService: AdminService,
+    private route: ActivatedRoute,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -21,9 +25,14 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
-  save() {
+  save(): void {
     this.adminService.updateUser(this.user)
-      .subscribe(result => this.user = result);
+      .subscribe(result => {
+        this.user = result;
+        this.notificationService.showSuccessMessage('User updated successfully');
+      }, error => {
+        this.notificationService.showErrorMessage(error.error[0].errorDescription);
+      });
   }
 
 }
