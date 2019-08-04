@@ -9,6 +9,7 @@ import { InviteComponent } from './invite/invite.component';
 import { InviteService } from './invite/invite.service';
 import { AdminComponent } from './admin.component';
 import { AdminService } from './admin.service';
+import { UserDetailsComponent } from './user-admin/user-details/user-details.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { AdminService } from './admin.service';
   declarations: [
     UserAdminComponent,
     InviteComponent,
-    AdminComponent
+    AdminComponent,
+    UserDetailsComponent
   ],
   providers: [
     InviteService,

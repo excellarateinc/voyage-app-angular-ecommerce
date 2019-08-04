@@ -1,11 +1,9 @@
-<div fxLayout="row">
-  <mat-card fxFlex="60" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card-title>User Admin</mat-card-title>
-    <div fxLayout="column">
-      <mat-list>
-        <mat-list-item>
-        </mat-list-item>
-      </mat-list>
-    </div>
-  </mat-card>
+<div fxLayout="column">
+  <mat-nav-list>
+    <mat-list-item *ngFor="let user of users">
+      <a matLine routerLink="/admin/users/{{user.id}}">{{user.firstName}} {{user.lastName}}</a>
+      <p matLine *ngIf="user.company">{{user.company}}</p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-nav-list>
 </div>
