@@ -26,6 +26,9 @@ export class UserDetailsComponent implements OnInit {
   }
 
   save(): void {
+    if (!this.user.accountBalance) {
+      return;
+    }
     this.adminService.updateUser(this.user)
       .subscribe(result => {
         this.user = result;

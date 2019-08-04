@@ -30,4 +30,16 @@ export class AdminService {
   getOrder(id: number): Observable<Order> {
     return this.http.get<Order>(`${environment.API_URL}/admin/orders/${id}`);
   }
+
+  setOrderToShipped(id: number, trackingLink: string): Observable<Order> {
+    return this.http.put<Order>(`${environment.API_URL}/admin/orders/${id}?trackingLink=${trackingLink}`, { });
+  }
+
+  removeItemFromOrder(id: number, cartProductId: number): Observable<Order> {
+    return this.http.delete<Order>(`${environment.API_URL}/admin/orders/${id}/items?cartProductId=${cartProductId}`);
+  }
+
+  cancelOrder(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.API_URL}/admin/orders/${id}`);
+  }
 }
