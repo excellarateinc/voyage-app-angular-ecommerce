@@ -1,7 +1,7 @@
 <div fxLayout="column">
   <mat-nav-list>
-    <mat-list-item *ngFor="let user of users">
-      <a matLine routerLink="/admin/users/{{user.id}}">{{user.firstName}} {{user.lastName}}</a>
+    <mat-list-item *ngFor="let user of users" routerLink="/admin/users/{{user.id}}">
+      <p matLine>{{user.firstName}} {{user.lastName}}</p>
       <p matLine *ngIf="user.company">{{user.company}}</p>
       <mat-divider></mat-divider>
     </mat-list-item>

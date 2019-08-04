@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
 import { User } from 'app/core/user/user.model';
 import { UpdateUser } from './user-admin/user-details/update-user.model';
+import { Order } from 'app/orders/order.model';
 
 @Injectable()
 export class AdminService {
@@ -20,5 +21,13 @@ export class AdminService {
 
   updateUser(model: UpdateUser): Observable<UpdateUser> {
     return this.http.put<UpdateUser>(`${environment.API_URL}/admin/users`, model);
+  }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${environment.API_URL}/admin/orders`);
+  }
+
+  getOrder(id: number): Observable<Order> {
+    return this.http.get<Order>(`${environment.API_URL}/admin/orders/${id}`);
   }
 }
