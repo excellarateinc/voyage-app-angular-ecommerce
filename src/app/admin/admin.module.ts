@@ -10,6 +10,8 @@ import { InviteService } from './invite/invite.service';
 import { AdminComponent } from './admin.component';
 import { AdminService } from './admin.service';
 import { UserDetailsComponent } from './user-admin/user-details/user-details.component';
+import { OrderAdminComponent } from './order-admin/order-admin.component';
+import { OrderDetailsComponent } from './order-admin/order-details/order-details.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,9 @@ import { UserDetailsComponent } from './user-admin/user-details/user-details.com
     UserAdminComponent,
     InviteComponent,
     AdminComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    OrderAdminComponent,
+    OrderDetailsComponent
   ],
   providers: [
     InviteService,
