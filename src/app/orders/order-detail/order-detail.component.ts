@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ConfirmCancelOrderComponent } from '../../shared/confirm-cancel-order/confirm-cancel-order.component';
 import { BroadcastService } from 'app/core/broadcast.service';
+import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -19,7 +20,8 @@ export class OrderDetailComponent implements OnInit {
     private ordersService: OrdersService,
     private router: Router,
     private matDialog: MatDialog,
-    private broadcastService: BroadcastService) { }
+    private broadcastService: BroadcastService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(async params => {
@@ -37,6 +39,7 @@ export class OrderDetailComponent implements OnInit {
       }
       this.ordersService.cancelOrder(this.order.orderId)
         .subscribe(() => {
+          this.notificationService.showSuccessMessage('Order cancelled successfully');
           this.broadcastService.emitGetBalance();
           this.router.navigate(['/orders']);
         });
