@@ -6,13 +6,18 @@ import { NotificationService } from './services/notification.service';
 import { AccountService } from './accounts/account.service';
 import { StoreService } from './services/store.service';
 import { ConfirmCancelOrderComponent } from './confirm-cancel-order/confirm-cancel-order.component';
+import { AngularMaterialModule } from 'app/angular-material/angular-material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule,
+    FlexLayoutModule
   ],
   declarations: [
-    ProfileImageDirective
+    ProfileImageDirective,
+    ConfirmCancelOrderComponent
   ],
   providers: [
     FileDownloadService,
