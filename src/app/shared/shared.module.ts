@@ -5,6 +5,7 @@ import { FileDownloadService } from './services/file-download.service';
 import { NotificationService } from './services/notification.service';
 import { AccountService } from './accounts/account.service';
 import { StoreService } from './services/store.service';
+import { ConfirmCancelOrderComponent } from './confirm-cancel-order/confirm-cancel-order.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,12 @@ import { StoreService } from './services/store.service';
     AccountService,
     StoreService
   ],
-  exports: [ProfileImageDirective]
+  exports: [
+    ProfileImageDirective,
+    ConfirmCancelOrderComponent
+  ],
+  entryComponents: [
+    ConfirmCancelOrderComponent
+  ]
 })
 export class SharedModule { }

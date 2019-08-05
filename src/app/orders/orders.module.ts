@@ -7,7 +7,6 @@ import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
 import { OrdersService } from './orders.service';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
-import { ConfirmCancelOrderComponent } from './order-detail/confirm-cancel-order/confirm-cancel-order.component';
 
 @NgModule({
   imports: [
@@ -19,14 +18,10 @@ import { ConfirmCancelOrderComponent } from './order-detail/confirm-cancel-order
   ],
   declarations: [
     OrdersComponent,
-    OrderDetailComponent,
-    ConfirmCancelOrderComponent
+    OrderDetailComponent
   ],
   providers: [
     OrdersService
-  ],
-  entryComponents: [
-    ConfirmCancelOrderComponent
   ]
 })
 export class OrdersModule { }

@@ -3,7 +3,7 @@ import { OrdersService } from '../orders.service';
 import { Order } from '../order.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { ConfirmCancelOrderComponent } from './confirm-cancel-order/confirm-cancel-order.component';
+import { ConfirmCancelOrderComponent } from '../../shared/confirm-cancel-order/confirm-cancel-order.component';
 import { BroadcastService } from 'app/core/broadcast.service';
 
 @Component({

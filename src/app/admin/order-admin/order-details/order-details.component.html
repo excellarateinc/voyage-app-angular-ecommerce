@@ -44,13 +44,13 @@
 
   <div fxLayout="column" fxLayoutGap="10px">
     <div fxLayout="row" class="order-header separator">
-      <div fxFlex="10"></div>
+      <div fxFlex="10" *ngIf="order.orderStatusId === 1 && order.cartProducts.length > 1"></div>
       <div fxFlex="60">ITEM</div>
       <div fxFlex>QTY</div>
       <div fxFlexAlign="start end">PRICE</div>
     </div>
     <div fxLayout="row" *ngFor="let product of order.cartProducts; let i = index" class="order-row separator" fxLayoutAlign="center center">
-      <div fxFlex="10">
+      <div fxFlex="10" *ngIf="order.orderStatusId === 1 && order.cartProducts.length > 1">
         <div>
           <span class="clickable" (click)="removeItem(i)" matTooltip="Remove" [matTooltipPosition]="'after'">
             <mat-icon>delete</mat-icon>
@@ -73,10 +73,17 @@
     <span>{{ order.total | currency }}</span>
   </div>
 
-  <a mat-raised-button class="action-button">
-    SAVE
-  </a>
-  <!-- <button mat-raised-button color="primary" (click)="cancelOrder()" *ngIf="order.orderStatusId === 1">
-    CANCEL ORDER
-  </button> -->
+  <form fxLayout="column" (ngSubmit)="setOrderToShipped()" fxLayoutGap="10px">
+    <mat-form-field>
+      <mat-label>Tracking Link</mat-label>
+      <input matInput type="text" name="trackingLink" [(ngModel)]="order.trackingLink" required />
+      <mat-error>Tracking Link is required</mat-error>
+    </mat-form-field>
+    <button mat-raised-button class="action-button" type="submit" [disabled]="order.orderStatusId !== 1">
+      CHANGE STATUS TO SHIPPED
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="cancelOrder()">
+      CANCEL ORDER
+    </button>
+  </form>
 </div>
