@@ -1,0 +1,38 @@
+.complete {
+  color: green;
+}
+
+.incomplete {
+  color: lightgray;
+}
+
+.circle {
+  border-radius: 50%;
+  background-color: lightgray;
+  width: 7px;
+  height: 7px;
+  margin-left: 8px;
+}
+
+.house-icon {
+  color: gray;
+}
+
+a {
+  text-decoration: none;
+}
+
+.order-header {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.order-row {
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
+.thumbnail {
+  width: 50px;
+  height: 50px;
+}

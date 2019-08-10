@@ -1,0 +1,19 @@
+<div fxLayout="row" *ngIf="user">
+  <mat-card fxFlex.xl="60" fxFlex.lg="70" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+    <mat-card-content fxLayout="column" fxLayoutGap="30px" style="margin-top:30px;">
+      <mat-checkbox color="primary" [(ngModel)]="user.isAdministrator">Is Administrator</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="user.isActive">Is Active</mat-checkbox>
+      <mat-form-field>
+        <mat-label>Account Balance ($)</mat-label>
+        <input matInput required [(ngModel)]="user.accountBalance">
+        <mat-error>
+          Account Balance is required
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions fxLayout="row">
+      <button fxFlex mat-raised-button class="action-button" (click)="save()">SAVE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

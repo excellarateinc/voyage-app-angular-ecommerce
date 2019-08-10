@@ -1,0 +1,10 @@
+<div fxLayout="column">
+  <mat-nav-list>
+    <mat-list-item *ngFor="let order of orders" routerLink="/admin/orders/{{order.orderId}}">
+      <p matLine>{{order.name}}</p>
+      <p matLine>{{order.orderNumber}}</p>
+      <p matLine>{{order.createdUtc | date}}</p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-nav-list>
+</div>
