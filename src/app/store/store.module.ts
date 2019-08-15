@@ -6,7 +6,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from 'app/shared/shared.module';
 import { StoreComponent } from './store.component';
-import { ExamplesModule } from '../examples/examples.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
@@ -21,7 +20,6 @@ import { CheckoutConfirmationComponent } from './checkout-confirmation/checkout-
     ReactiveFormsModule,
     AngularMaterialModule,
     StoreRoutingModule,
-    ExamplesModule,
     FlexLayoutModule,
     SharedModule
   ],
