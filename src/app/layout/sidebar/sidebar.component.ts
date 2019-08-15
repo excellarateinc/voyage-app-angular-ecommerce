@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   }
   @Input()
   isAuthenticated = false;
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', { static: false }) sidenav: MatSidenav;
   mobile: boolean;
   toggleTheme: false;
   isAdmin = false;

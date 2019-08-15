@@ -29,7 +29,7 @@ class StubSidebarComponent {
   isMobile = false;
   @Input()
   isAuthenticated = false;
-  @ViewChild('sidenav')
+  @ViewChild('sidenav', /* TODO: add static flag */ {})
   sidenav: any;
 }
 
