@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginService } from './login.service';
 import { MobileService } from '../../core/mobile.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private formBuilder: FormBuilder,
     private mobileService: MobileService,
-    private router: Router,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -30,8 +29,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
       this.isMobile = isMobile;
     });
-    this.route.queryParams
-      .subscribe(params => this.redirectUrl = params['redirectUrl'] || '');
   }
 
   ngOnDestroy(): void {
