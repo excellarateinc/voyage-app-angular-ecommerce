@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdersService } from '../orders.service';
 import { Order } from '../order.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmCancelOrderComponent } from '../../shared/confirm-cancel-order/confirm-cancel-order.component';
 import { BroadcastService } from 'app/core/broadcast.service';
 import { NotificationService } from 'app/shared/services/notification.service';

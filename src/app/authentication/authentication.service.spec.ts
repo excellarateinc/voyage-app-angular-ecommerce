@@ -66,7 +66,7 @@ describe('AuthenticationService', () => {
         expect(locationStub.replaceState).toHaveBeenCalled();
       }));
 
-    it('should call getTokenFromUrl if the token does not exist in sessionStorage, but not store in sessionStorage if it does not exist on the url',
+    it('should call getTokenFromUrl if the token does not exist in sessionStorage, but not store if it does not exist on the url',
       inject([AuthenticationService, 'Window', Location], (service: AuthenticationService, windowStub: any, locationStub: Location) => {
         windowStub.location.href = 'blah';
         spyOn(locationStub, 'replaceState');

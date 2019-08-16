@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   isMobile = false;
   working = false;
   private watcher: Subscription;
-  private redirectUrl: string;
 
   constructor(
     private loginService: LoginService,

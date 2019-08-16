@@ -64,11 +64,11 @@ describe('ProfileImageComponent', () => {
     it('should emit imageChanged event', () => {
       const evt = { target: { files: [new File([''], '', null)] } };
       spyOn<any>(window, 'FileReader').and.returnValue({
-        addEventListener: function () { },
-        readAsDataURL: function () {
-          if (this.onloadend) {
+        addEventListener: () => { },
+        readAsDataURL: (onloadend) => {
+          if (onloadend) {
             const loadEvent = { target: { result: null } };
-            this.onloadend(loadEvent);
+            onloadend(loadEvent);
           }
         },
         result: 'xxx'

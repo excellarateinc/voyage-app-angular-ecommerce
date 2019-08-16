@@ -3,7 +3,7 @@ import { Order } from 'app/orders/order.model';
 import { AdminService } from 'app/admin/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from 'app/shared/services/notification.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { ConfirmCancelOrderComponent } from 'app/shared/confirm-cancel-order/confirm-cancel-order.component';
 
 @Component({
