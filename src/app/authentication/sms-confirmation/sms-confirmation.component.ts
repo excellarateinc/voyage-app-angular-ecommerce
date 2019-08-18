@@ -1,17 +1,15 @@
-import { Component, OnInit, OnDestroy, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MobileService } from '../../core/mobile.service';
 import { environment } from 'environments/environment';
-import { ActivatedRoute } from '@angular/router';
-import { NotificationService } from 'app/shared/services/notification.service';
 
 @Component({
   selector: 'app-sms-confirmation',
   templateUrl: './sms-confirmation.component.html',
   styleUrls: ['./sms-confirmation.component.scss']
 })
-export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SmsConfirmationComponent implements OnInit, OnDestroy {
   codeForm: FormGroup;
   isMobile = false;
   working = false;
@@ -20,9 +18,7 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
   constructor(
     private formBuilder: FormBuilder,
     @Inject('Window') private window: any,
-    private mobileService: MobileService,
-    private notificationService: NotificationService,
-    private route: ActivatedRoute) { }
+    private mobileService: MobileService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -30,23 +26,6 @@ export class SmsConfirmationComponent implements OnInit, AfterViewInit, OnDestro
     this.watcher = this.mobileService.mobileChanged$.subscribe((isMobile: boolean) => {
       this.isMobile = isMobile;
     });
-  }
-
-  ngAfterViewInit() {
-    this.route.queryParams
-      .subscribe(params => {
-          if (this.isMobile) {
-            return;
-          }
-          const error = params['error'];
-          setTimeout(() => {
-            if (error === 'linkInvalid') {
-              this.notificationService.showErrorMessage('The code was invalid.');
-            } else if (error === 'linkUsed') {
-              this.notificationService.showErrorMessage('The code was already in use');
-            }
-          });
-      });
   }
 
   ngOnDestroy(): void {
