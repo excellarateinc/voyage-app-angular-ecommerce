@@ -6,16 +6,14 @@
         <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
     </div>
-    <div *ngIf="isMobile" fxLayout="column" fxLayoutAlign="center center">
-      <span>You will receive a magic link shortly.</span>
-      <span>If you have any issues, contact</span>
-      <span>hello@lighthousesoftware.com</span>
+    <div *ngIf="error === 'linkUsed'" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <span *ngIf="isMobile">Your link has already been used or is expired.</span>
+      <span *ngIf="!isMobile">Your code has already been used or is expired.</span>
+      <button mat-raised-button class="action-button" (click)="requestNewCode()">GET A NEW ONE</button>
     </div>
-
-    <div *ngIf="!isMobile" fxLayout="column" fxLayoutAlign="center center">
-      <span>You will receive a code shortly.</span>
-      <span>If you have any issues, contact</span>
-      <span>hello@lighthousesoftware.com</span>
+    <div *ngIf="error === 'linkInvalid'" fxLayout="column" fxLayoutAlign="center center">
+      <span *ngIf="isMobile">Your link was invalid.</span>
+      <span *ngIf="!isMobile">Your code was invalid.</span>
     </div>
   </div>
 </div>

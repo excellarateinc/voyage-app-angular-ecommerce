@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, Inject, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MobileService } from '../../core/mobile.service';
-import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificationService } from 'app/shared/services/notification.service';
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -21,8 +19,6 @@ export class SmsResponseComponent implements OnInit, AfterViewInit, OnDestroy {
   private phone: string;
 
   constructor(
-    private formBuilder: FormBuilder,
-    @Inject('Window') private window: any,
     private mobileService: MobileService,
     private route: ActivatedRoute,
     private router: Router,
@@ -38,8 +34,10 @@ export class SmsResponseComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.route.queryParams
       .subscribe(params => {
+        setTimeout(() => {
           this.error = params['error'];
           this.phone = params['phone'];
+        });
       });
   }
 
@@ -53,13 +51,6 @@ export class SmsResponseComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.loginService.sendLoginLink(this.phone, this.isMobile)
       .subscribe(() => {
-        this.reloadPage();
-      });
-  }
-
-  private reloadPage(): void {
-    this.router.navigateByUrl('/DummyComponent', { skipLocationChange: true })
-      .then(() => {
         this.router.navigate(['authentication/sms-confirmation']);
       });
   }
