@@ -6,6 +6,9 @@
         <h3>LIGHTHOUSE SOFTWARE</h3>
       </div>
     </div>
+    <div *ngIf="!error" fxLayout="row" fxLayoutAlign="center">
+      <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
     <div *ngIf="error === 'linkUsed'" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
       <span *ngIf="isMobile">Your link has already been used or is expired.</span>
       <span *ngIf="!isMobile">Your code has already been used or is expired.</span>

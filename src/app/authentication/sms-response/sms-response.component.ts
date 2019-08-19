@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { MobileService } from '../../core/mobile.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-sms-response',
@@ -22,7 +23,8 @@ export class SmsResponseComponent implements OnInit, AfterViewInit, OnDestroy {
     private mobileService: MobileService,
     private route: ActivatedRoute,
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    @Inject('Window') private window: any) { }
 
   ngOnInit(): void {
     this.isMobile = this.mobileService.isMobile();
@@ -35,6 +37,10 @@ export class SmsResponseComponent implements OnInit, AfterViewInit, OnDestroy {
     this.route.queryParams
       .subscribe(params => {
         setTimeout(() => {
+          const token = params['token'];
+          if (token) {
+            this.window.location.href = `${environment.SERVER_URL}/Authentication/LoginLink?token=${token}&isMobile=${this.isMobile}`;
+          }
           this.error = params['error'];
           this.phone = params['phone'];
         });
