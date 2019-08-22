@@ -2,9 +2,14 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center">
         <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
-        <h3>LIGHTHOUSE SOFTWARE</h3>
+        <h3 style="margin-bottom: 0">LIGHTHOUSE SOFTWARE</h3>
+        <div fxLayout="row" class="subtext" fxLayoutGap="20px">
+          <span>SUPPORT</span>
+          <span>MODERNIZE</span>
+          <span>INTEGRATE</span>
+        </div>
       </div>
       <form [formGroup]="loginForm" (ngSubmit)="login()" fxLayout="column" fxLayoutGap="10px" novalidate>
         <mat-form-field>
@@ -34,9 +39,14 @@
 <div class="masthead" *ngIf="isMobile" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="30px" class="form-container">
     <div fxLayout="column" fxFlexAlign="center" fxLayoutGap="20px">
-      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center">
         <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
-        <h3>LIGHTHOUSE SOFTWARE</h3>
+        <h3 style="margin-bottom: 0">LIGHTHOUSE SOFTWARE</h3>
+        <div fxLayout="row" class="subtext" fxLayoutGap="20px">
+          <span>SUPPORT</span>
+          <span>MODERNIZE</span>
+          <span>INTEGRATE</span>
+        </div>
       </div>
     </div>
     <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate fxLayout="column" fxLayoutGap="10px">
