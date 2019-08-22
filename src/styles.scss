@@ -125,6 +125,23 @@ https://github.com/angular/material2/issues/998 */
   border-bottom: 1px solid lightgray;
 }
 
+.logo-top {
+  font-weight: bold;
+  font-size: 22pt;
+  color: #424242;
+}
+
+.logo-bottom {
+  font-weight: bold;
+  font-size: 15pt;
+  color: #424242;
+}
+
+.logo-subtext {
+  color: #f4511e;
+  font-weight: 400;
+}
+
 .light-input .mat-input-element {
   font-family: Lato;
   font-weight: 300;
