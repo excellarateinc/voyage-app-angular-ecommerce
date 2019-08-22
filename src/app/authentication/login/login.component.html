@@ -2,10 +2,13 @@
 <div class="masthead" *ngIf="!isMobile">
   <div fxLayout="row" fxLayoutAlign="center center" class="full-height">
     <mat-card fxFlex="50" fxFlex.gt-md="40" fxLayout="column" fxLayoutGap="30px">
-      <div class="banner" fxLayout="column" fxLayoutAlign="center center">
+      <div class="banner" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
         <img class="lighthouse-logo" src="/assets/images/voyage-logo-orange.png" alt="lighthouse logo" />
-        <div>LIGHTHOUSE SOFTWARE</div>
-        <div fxLayout="row" class="subtext" fxLayoutGap="20px">
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <span class="logo-top">LIGHTHOUSE</span>
+          <span class="logo-bottom">SOFTWARE, INC</span>
+        </div>
+        <div fxLayout="row" class="logo-subtext" fxLayoutGap="50px">
           <span>SUPPORT</span>
           <span>MODERNIZE</span>
           <span>INTEGRATE</span>
@@ -27,7 +30,8 @@
             <mat-spinner [diameter]="30" *ngIf="working"></mat-spinner>
           </div>
           <div fxLayout="row" fxLayoutGap="20px">
-            <button fxFlex="100" (click)="login()" color="primary" mat-raised-button type="submit" [disabled]="working">LOGIN</button>
+            <button fxFlex="100" (click)="login()" color="primary" mat-raised-button type="submit"
+              [disabled]="working">LOGIN</button>
           </div>
         </div>
       </form>
