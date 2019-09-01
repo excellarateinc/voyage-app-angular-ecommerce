@@ -12,6 +12,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { SecurityHttpInterceptor } from './authentication/security-http-interceptor';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     AppRoutingModule,
     CoreModule,
     LayoutModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {
