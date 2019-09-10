@@ -1,6 +1,6 @@
 <div fxLayout="row" class="page-padding" fxLayoutAlign="center center">
   <div fxLayout="column" fxLayoutGap="15px" fxFlex fxFlex.gt-sm="50">
-    <div fxFlex fxLayout="column" *ngFor="let product of products">
+    <div fxLayout="column" *ngFor="let product of products">
       <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image clickable" (click)="openProductDetail(product.productId)">
       <span>{{ product.name }}</span>
       <span>{{ product.price | currency }}</span>
