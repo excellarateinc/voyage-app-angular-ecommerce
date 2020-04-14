@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ImageCropperModule } from 'ng2-img-cropper';
+import { ImageCropperModule } from 'ngx-img-cropper';
 import { SharedModule } from '../../shared/shared.module';
 import { ProfileImageComponent } from './profile-image.component';
 import { BroadcastService } from '../../core/broadcast.service';
