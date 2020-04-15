@@ -29,7 +29,7 @@ describe('ProfileImageComponent', () => {
   }));
 
   beforeEach(() => {
-    broadcastService = TestBed.get(BroadcastService);
+    broadcastService = TestBed.inject(BroadcastService);
     broadcastService.profileUpdated$ = Observable.create(o => o.next({}));
     fixture = TestBed.createComponent(ProfileImageComponent);
     component = fixture.componentInstance;

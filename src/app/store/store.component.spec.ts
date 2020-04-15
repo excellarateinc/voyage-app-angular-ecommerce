@@ -26,7 +26,7 @@ describe('StoreComponent', () => {
   }));
 
   beforeEach(() => {
-    storeService = TestBed.get(StoreService);
+    storeService = TestBed.inject(StoreService);
     spyOn(storeService, 'getProducts').and.callFake(() => new Observable(observer => observer.next()));
     fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
