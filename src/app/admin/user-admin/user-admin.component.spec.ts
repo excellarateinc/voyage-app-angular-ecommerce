@@ -33,7 +33,7 @@ describe('UserAdminComponent', () => {
   }));
 
   beforeEach(() => {
-    userService = TestBed.get(UserService);
+    userService = TestBed.inject(UserService);
     spyOn(userService, 'getUsers').and.callFake(() => new Observable(observer => observer.next()));
     fixture = TestBed.createComponent(UserAdminComponent);
     component = fixture.componentInstance;
@@ -48,11 +48,7 @@ describe('UserAdminComponent', () => {
   describe('when toggling the user status fields', () => {
     it('should call the user service to toggle the status', () => {
       spyOn(userService, 'toggleStatus').and.callFake(() => new Observable(observer => observer.next()));
-      component.selectedUser = new User();
-      component.selectedUser.isVerifyRequired = true;
-      component.selectedUser.isActive = false;
-      component.selectedUser.id = 'test-id';
-      component.onToggle();
+
       expect(userService.toggleStatus).toHaveBeenCalled();
     });
   });

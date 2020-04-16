@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreComponent } from './store.component';
-import { ExamplesModule } from '../examples/examples.module';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 import { StoreService } from '../shared/services/store.service';
 import { Observable } from 'rxjs';
@@ -16,7 +15,6 @@ describe('StoreComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        ExamplesModule,
         AngularMaterialModule
       ],
       declarations: [StoreComponent],
@@ -28,7 +26,7 @@ describe('StoreComponent', () => {
   }));
 
   beforeEach(() => {
-    storeService = TestBed.get(StoreService);
+    storeService = TestBed.inject(StoreService);
     spyOn(storeService, 'getProducts').and.callFake(() => new Observable(observer => observer.next()));
     fixture = TestBed.createComponent(StoreComponent);
     component = fixture.componentInstance;
