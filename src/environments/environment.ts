@@ -5,10 +5,9 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://swag-api.lighthousesoftware.com/api/v1',
-  SERVER_URL: 'https://swag-web.lighthousesoftware.com',
+  API_URL: 'http://localhost:55850/api/v1',
+  SERVER_URL: 'http://localhost:52431',
   OAUTH_REDIRECT_URL: 'http://localhost:3000/dashboard',
-  OAUTH_CLIENT_ID: 'client-super-qa',
+  OAUTH_CLIENT_ID: 'client-super',
   OAUTH_CLIENT_SECRET: 'secret'
-
 };
