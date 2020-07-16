@@ -29,9 +29,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   exports: [
     ProfileImageDirective,
     ConfirmCancelOrderComponent
-  ],
-  entryComponents: [
-    ConfirmCancelOrderComponent
   ]
+
 })
 export class SharedModule { }

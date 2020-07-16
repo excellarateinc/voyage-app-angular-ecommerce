@@ -68,6 +68,25 @@ ng serve -o
 
 This will start a local server which will watch for file changes and reload for you. The port will be displayed to you as `http://localhost:3000`.
 
+## Logging in/Accessing the App
+
+The easiest way to start using the application is to update the contents of the environment.ts file to the following:
+
+export const environment = {
+  production: false,
+  API_URL: 'https://swag-api.lighthousesoftware.com/api/v1',
+  SERVER_URL: 'https://swag-web.lighthousesoftware.com',
+  OAUTH_REDIRECT_URL: 'http://localhost:3000/dashboard',
+  OAUTH_CLIENT_ID: 'client-super-qa',
+  OAUTH_CLIENT_SECRET: 'secret'
+
+};
+
+This will allow you to connect to the QA instance of the ecommerce app voyage API and 
+allow you to access the application without running a local instance of the api.
+
+Then enter the number of a cellphone from which you are capable of receiving text messages in order to get the code needed to access the app.
+
 ## Developing
 
 ### Build files
